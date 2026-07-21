@@ -151,6 +151,7 @@ find-and-replace.
 ## Source Material
 
 - Logo: dual-qualified-attorney crest (shield, quail/partridge bird, scales
-  of justice, banner ribbons) on navy, provided by client.
+  of justice, banner ribbons) on navy, provided by client. Saved at
+  `public/logo.jpg`.
 - Reference sites (style inspiration, not to be copied): cditlaw.com,
   liganuylaw.com, ndvlaw.com, divinalaw.com.
