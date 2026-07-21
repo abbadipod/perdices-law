@@ -12,4 +12,10 @@ describe("PracticeAreas", () => {
       expect(heading).toHaveTextContent(practiceAreas[index].title);
     });
   });
+
+  it("renders one icon per practice area card", () => {
+    const { container } = render(<PracticeAreas />);
+    const icons = container.querySelectorAll("article svg");
+    expect(icons).toHaveLength(practiceAreas.length);
+  });
 });
