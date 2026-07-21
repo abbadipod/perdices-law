@@ -42,9 +42,18 @@ three are from the same manufacturer, so they're designed to work together.
 | `sidewalk` | `#CBCED0` | Light neutral — backgrounds, cards on dark sections |
 | `comet` | `#97A2AE` | Mid tone — secondary text on dark, borders, muted UI |
 | `hudson-bay` | `#3F5266` | Deep navy — primary brand color, header/footer, hero |
-| `gold` (accent) | `#B8955A` | Pulled from the logo — CTAs, dividers, eyebrow text, hover states. Used sparingly, never as a fill for large areas |
+| `gold` (accent) | `#C7A05E` | Pulled from the logo — borders, dividers, button fills, decorative/`aria-hidden` motifs, and hover accents only. Never the color of static readable text. Used sparingly, never as a fill for large areas |
 | `ink` | `#1A1F26` | Near-black for body text on light backgrounds |
 | `paper` | `#F7F6F3` | Warm off-white for light-section backgrounds (avoids stark `#FFFFFF`) |
+
+The gold value was brightened slightly from the `#B8955A` shown during
+brainstorming (`#C7A05E`) after a contrast check during implementation
+planning showed `#B8955A` fell short of WCAG AA's 3:1 non-text threshold
+against both `hudson-bay` and `paper`. Static eyebrow labels and links use
+`hudson-bay` (on light backgrounds) or `sidewalk` (on dark backgrounds)
+instead of gold text; gold itself is reserved for borders, button fills
+(paired with `ink` text), decorative motifs, and hover accents. See the
+implementation plan's Global Constraints for the exact rule.
 
 The gold accent was a deliberate addition beyond the client's original three
 colors, approved during design review — three cool grays alone read flat for
