@@ -89,20 +89,18 @@ export const faqItems = [
 
 export const contactInfo = {
   email: "info@perdiceslaw.com",
-  phones: [
-    { label: "Philippines Office", number: "+63 917 000 0000" },
-    { label: "United States Office", number: "+1 415 000 0000" },
-  ],
   offices: [
     {
       city: "Makati City, Philippines",
       address: "Unit 1500, 6750 Ayala Avenue, Makati City, 1226 Metro Manila",
       hours: "Monday–Friday, 9:00 AM–6:00 PM (PHT)",
+      phone: "+63 917 000 0000",
     },
     {
       city: "San Francisco, United States",
       address: "100 Market Street, Suite 300, San Francisco, CA 94105",
       hours: "Monday–Friday, 9:00 AM–5:00 PM (PT)",
+      phone: "+1 415 000 0000",
     },
   ],
 };

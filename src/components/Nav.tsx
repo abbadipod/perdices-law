@@ -63,6 +63,7 @@ export default function Nav() {
           type="button"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
           className="text-white md:hidden"
           onClick={() => setMenuOpen((open) => !open)}
         >
@@ -72,6 +73,7 @@ export default function Nav() {
 
       {menuOpen && (
         <ul
+          id="mobile-menu"
           data-testid="mobile-menu"
           className="flex flex-col gap-1 bg-hudson-bay px-6 pb-6 md:hidden"
         >

@@ -12,9 +12,9 @@ describe("Contact", () => {
 
   it("renders a tel link for every phone number", () => {
     render(<Contact />);
-    contactInfo.phones.forEach((phone) => {
-      const telLink = screen.getByRole("link", { name: phone.number });
-      const digitsOnly = phone.number.replace(/[^\d+]/g, "");
+    contactInfo.offices.forEach((office) => {
+      const telLink = screen.getByRole("link", { name: office.phone });
+      const digitsOnly = office.phone.replace(/[^\d+]/g, "");
       expect(telLink).toHaveAttribute("href", `tel:${digitsOnly}`);
     });
   });

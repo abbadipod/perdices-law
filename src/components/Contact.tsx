@@ -28,8 +28,7 @@ export default function Contact() {
 
         <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
           {contactInfo.offices.map((office, index) => {
-            const phone = contactInfo.phones[index];
-            const digitsOnly = phone.number.replace(/[^\d+]/g, "");
+            const digitsOnly = office.phone.replace(/[^\d+]/g, "");
             return (
               <Reveal key={office.city} delay={index * 0.05}>
                 <div className="border border-comet/40 p-6">
@@ -44,7 +43,7 @@ export default function Contact() {
                     href={`tel:${digitsOnly}`}
                     className="mt-3 inline-block text-sm text-sidewalk hover:text-gold hover:underline"
                   >
-                    {phone.number}
+                    {office.phone}
                   </a>
                 </div>
               </Reveal>

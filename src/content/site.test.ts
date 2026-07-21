@@ -38,9 +38,11 @@ describe("site content", () => {
     });
   });
 
-  it("defines contact info with 2 phones and 2 offices", () => {
+  it("defines contact info with 2 offices, each with a phone number", () => {
     expect(contactInfo.email).toBe("info@perdiceslaw.com");
-    expect(contactInfo.phones).toHaveLength(2);
     expect(contactInfo.offices).toHaveLength(2);
+    contactInfo.offices.forEach((office) => {
+      expect(office.phone.length).toBeGreaterThan(0);
+    });
   });
 });

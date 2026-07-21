@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { faqItems } from "@/content/site";
+import Reveal from "@/components/Reveal";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -13,12 +14,14 @@ export default function FAQ() {
       className="bg-paper px-6 py-24"
     >
       <div className="mx-auto max-w-3xl">
-        <p className="text-xs uppercase tracking-[0.25em] text-hudson-bay">
-          Common Questions
-        </p>
-        <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">
-          Frequently Asked Questions
-        </h2>
+        <Reveal>
+          <p className="text-xs uppercase tracking-[0.25em] text-hudson-bay">
+            Common Questions
+          </p>
+          <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">
+            Frequently Asked Questions
+          </h2>
+        </Reveal>
         <dl className="mt-10 divide-y divide-comet/30 border-y border-comet/30">
           {faqItems.map((item, index) => {
             const isOpen = openIndex === index;
