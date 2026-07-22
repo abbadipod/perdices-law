@@ -44,9 +44,10 @@ export default function Nav() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm tracking-wide text-sidewalk hover:text-gold"
+                className="group relative text-sm tracking-wide text-sidewalk hover:text-gold"
               >
                 {link.label}
+                <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100" />
               </a>
             </li>
           ))}

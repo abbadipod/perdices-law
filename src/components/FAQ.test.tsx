@@ -22,13 +22,17 @@ describe("FAQ", () => {
       name: faqItems[0].question,
     });
 
+    const icon = firstButton.querySelector('[aria-hidden="true"]');
+
     await user.click(firstButton);
     expect(firstButton).toHaveAttribute("aria-expanded", "true");
     expect(screen.getByText(faqItems[0].answer)).toBeVisible();
+    expect(icon).toHaveClass("rotate-45");
 
     await user.click(firstButton);
     expect(firstButton).toHaveAttribute("aria-expanded", "false");
     expect(screen.getByText(faqItems[0].answer)).not.toBeVisible();
+    expect(icon).not.toHaveClass("rotate-45");
   });
 
   it("closes the previously open question when a different one is opened", async () => {

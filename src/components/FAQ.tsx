@@ -38,8 +38,13 @@ export default function FAQ() {
                     <span className="font-display text-lg text-hudson-bay">
                       {item.question}
                     </span>
-                    <span aria-hidden="true" className="shrink-0 text-gold">
-                      {isOpen ? "−" : "+"}
+                    <span
+                      aria-hidden="true"
+                      className={`shrink-0 text-gold transition-transform duration-300 ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
+                    >
+                      +
                     </span>
                   </button>
                 </dt>

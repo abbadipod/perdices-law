@@ -23,7 +23,7 @@ export default function PracticeAreas() {
             const Icon = practiceIcons[index];
             return (
               <Reveal key={area.title} delay={index * 0.05}>
-                <article className="h-full border border-comet/40 p-6">
+                <article className="h-full border border-comet/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold">
                   <div className="text-gold">
                     <Icon />
                   </div>
