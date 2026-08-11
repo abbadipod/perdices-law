@@ -26,7 +26,12 @@ export default function PracticeAreas() {
           </div>
         </Reveal>
 
-        <div className="mt-11 grid gap-[22px] [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
+        {/* auto-rows-fr keeps every card the same height, not just the ones
+            sharing a row — otherwise a title that wraps to two lines makes
+            its whole row taller than the rest of the grid. Only from md up:
+            in a single column there is nothing to align to, so equal heights
+            would just pad the short cards with dead space. */}
+        <div className="mt-11 grid gap-[22px] md:auto-rows-fr [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
           {practiceAreas.map((area, index) => {
             const Icon = practiceIcons[index];
             return (
