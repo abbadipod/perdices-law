@@ -27,7 +27,7 @@ export default function Hero() {
       <div
         ref={bgRef}
         data-testid="hero-bg"
-        className="absolute -inset-y-[8%] inset-x-0 bg-hudson-bay bg-[url('/hero.jpg')] bg-cover bg-center will-change-transform"
+        className="absolute -inset-y-[8%] inset-x-0 bg-hudson-bay bg-[url('/hero.svg')] bg-cover bg-center will-change-transform"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/[0.72] via-ink/50 to-ink/[0.82]" />
 
