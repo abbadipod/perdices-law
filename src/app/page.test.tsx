@@ -19,13 +19,13 @@ describe("Home", () => {
       screen.getByRole("heading", { name: "Bar Admissions & Standing" })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: /about atty\. perdices/i })
+      screen.getByRole("img", { name: "Atty. Jose Mari Perdices" })
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Frequently Asked Questions" })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Contact" })
+      screen.getByRole("heading", { name: "Request a consultation" })
     ).toBeInTheDocument();
 
     const consultationLinks = screen.getAllByRole("link", {

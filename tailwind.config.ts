@@ -11,10 +11,20 @@ const config: Config = {
         gold: "#C7A05E",
         ink: "#1A1F26",
         paper: "#F7F6F3",
+        cream: "#ECE3D2",
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "serif"],
+        display: ["var(--font-oswald)", "ui-sans-serif", "sans-serif"],
         sans: ["var(--font-public-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
+      keyframes: {
+        "hero-in": {
+          from: { opacity: "0", transform: "translateY(18px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        "hero-in": "hero-in 700ms ease both",
       },
     },
   },

@@ -18,4 +18,13 @@ describe("PracticeAreas", () => {
     const icons = container.querySelectorAll("article svg");
     expect(icons).toHaveLength(practiceAreas.length);
   });
+
+  it("numbers the cards 01 through 07 in order", () => {
+    render(<PracticeAreas />);
+    practiceAreas.forEach((_, index) => {
+      expect(
+        screen.getByText(String(index + 1).padStart(2, "0"))
+      ).toBeInTheDocument();
+    });
+  });
 });

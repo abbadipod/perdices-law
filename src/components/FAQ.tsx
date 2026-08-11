@@ -11,36 +11,37 @@ export default function FAQ() {
     <section
       id="faq"
       aria-label="Frequently asked questions"
-      className="bg-paper px-6 py-24"
+      className="bg-paper px-7 py-[104px]"
     >
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-[840px]">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.25em] text-hudson-bay">
-            Common Questions
+          <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-hudson-bay">
+            Common questions
           </p>
-          <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">
+          <h2 className="font-display text-[clamp(30px,3.6vw,46px)] font-medium uppercase leading-[1.1] text-ink">
             Frequently Asked Questions
           </h2>
         </Reveal>
-        <dl className="mt-10 divide-y divide-comet/30 border-y border-comet/30">
+
+        <dl className="mt-10 border-t border-comet/40">
           {faqItems.map((item, index) => {
             const isOpen = openIndex === index;
             return (
-              <div key={item.question}>
+              <div key={item.question} className="border-b border-comet/40">
                 <dt>
                   <button
                     type="button"
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${index}`}
-                    className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                    className="flex w-full items-baseline justify-between gap-6 py-[22px] text-left"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                   >
-                    <span className="font-display text-lg text-hudson-bay">
+                    <span className="font-display text-[19px] leading-[1.35] text-hudson-bay">
                       {item.question}
                     </span>
                     <span
                       aria-hidden="true"
-                      className={`shrink-0 text-gold transition-transform duration-300 ${
+                      className={`shrink-0 text-xl text-gold transition-transform duration-300 ${
                         isOpen ? "rotate-45" : ""
                       }`}
                     >
@@ -51,7 +52,7 @@ export default function FAQ() {
                 <dd
                   id={`faq-answer-${index}`}
                   hidden={!isOpen}
-                  className="pb-5 text-sm leading-relaxed text-ink/80"
+                  className="m-0 max-w-[66ch] pb-6 text-[15px] leading-[1.75] text-ink/80"
                 >
                   {item.answer}
                 </dd>

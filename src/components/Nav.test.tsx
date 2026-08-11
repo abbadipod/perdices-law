@@ -8,8 +8,10 @@ import { navLinks } from "@/content/site";
 describe("Nav", () => {
   it("renders the brand name and logo", () => {
     render(<Nav />);
-    expect(screen.getByText("PERDICES LAW")).toBeInTheDocument();
-    expect(screen.getByAltText("Perdices Law crest")).toBeInTheDocument();
+    expect(screen.getByText("Perdices Law")).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "Perdices Law crest" })
+    ).toBeInTheDocument();
   });
 
   it("renders every nav link", () => {
@@ -43,11 +45,11 @@ describe("Nav", () => {
   it("switches to a solid background once the page is scrolled", () => {
     render(<Nav />);
     const header = screen.getByRole("banner");
-    expect(header.className).not.toContain("bg-hudson-bay");
+    expect(header.className).toContain("bg-transparent");
 
     Object.defineProperty(window, "scrollY", { value: 100, writable: true });
     fireEvent.scroll(window);
 
-    expect(header.className).toContain("bg-hudson-bay");
+    expect(header.className).toContain("bg-ink");
   });
 });

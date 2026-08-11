@@ -1,4 +1,4 @@
-import { practiceAreas } from "@/content/site";
+import { practiceAreas, practiceIntro } from "@/content/site";
 import Reveal from "@/components/Reveal";
 import { practiceIcons } from "@/components/PracticeIcons";
 
@@ -7,30 +7,43 @@ export default function PracticeAreas() {
     <section
       id="practice-areas"
       aria-label="Practice areas"
-      className="bg-paper px-6 py-24"
+      className="bg-cream px-7 py-[110px]"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-[1200px]">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.25em] text-hudson-bay">
-            What We Handle
-          </p>
-          <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">
-            Practice Areas
-          </h2>
+          <div className="flex flex-col gap-6 border-b border-ink/20 pb-[26px] md:flex-row md:items-end md:justify-between md:gap-8">
+            <div>
+              <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-hudson-bay">
+                What we handle
+              </p>
+              <h2 className="font-display text-[clamp(30px,3.6vw,46px)] font-medium uppercase leading-[1.1] text-ink">
+                Practice Areas
+              </h2>
+            </div>
+            <p className="max-w-[34ch] text-sm leading-[1.7] text-ink/70">
+              {practiceIntro}
+            </p>
+          </div>
         </Reveal>
-        <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+        <div className="mt-11 grid gap-[22px] [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
           {practiceAreas.map((area, index) => {
             const Icon = practiceIcons[index];
             return (
-              <Reveal key={area.title} delay={index * 0.05}>
-                <article className="h-full border border-comet/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold">
-                  <div className="text-gold">
-                    <Icon />
+              <Reveal key={area.title} delay={(index % 3) * 0.06}>
+                <article className="h-full border border-comet/50 bg-white px-7 pb-[34px] pt-[30px] transition-colors duration-300 hover:border-gold">
+                  <div className="flex items-center justify-between">
+                    <span className="text-gold">
+                      <Icon />
+                    </span>
+                    <span className="font-display text-[13px] tracking-[0.1em] text-gold/85">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                   </div>
-                  <h3 className="mt-4 font-display text-xl text-hudson-bay">
+                  <h3 className="mb-3 mt-[22px] font-display text-[21px] font-medium uppercase leading-[1.25] text-hudson-bay">
                     {area.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-ink/80">
+                  <p className="text-sm leading-[1.7] text-ink/[0.78]">
                     {area.description}
                   </p>
                 </article>

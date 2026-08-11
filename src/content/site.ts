@@ -6,6 +6,9 @@ export const navLinks = [
   { href: "#contact", label: "Contact" },
 ];
 
+export const practiceIntro =
+  "Seven areas of practice spanning both jurisdictions, handled directly by Atty. Perdices.";
+
 export const practiceAreas = [
   {
     title: "US Immigration (Philippines → US)",

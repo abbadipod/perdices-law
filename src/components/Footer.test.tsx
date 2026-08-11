@@ -6,7 +6,7 @@ import { navLinks } from "@/content/site";
 describe("Footer", () => {
   it("renders the brand, nav links, disclaimer, and copyright", () => {
     render(<Footer />);
-    expect(screen.getByText("PERDICES LAW")).toBeInTheDocument();
+    expect(screen.getByText("Perdices Law")).toBeInTheDocument();
 
     navLinks.forEach((link) => {
       expect(screen.getByText(link.label)).toBeInTheDocument();

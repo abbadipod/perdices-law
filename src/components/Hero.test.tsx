@@ -15,8 +15,23 @@ describe("Hero", () => {
     expect(cta).toHaveAttribute("href", "#contact");
   });
 
-  it("renders the crest flourish motif in both corners", () => {
-    const { container } = render(<Hero />);
-    expect(container.querySelectorAll("svg").length).toBe(2);
+  it("renders the eyebrow and supporting copy", () => {
+    render(<Hero />);
+    expect(
+      screen.getByText(/Dual-Qualified Attorney — US & Philippines/)
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Immigration, real estate, and litigation counsel/)
+    ).toBeInTheDocument();
+  });
+
+  it("applies a parallax transform to the background on scroll", () => {
+    render(<Hero />);
+    const bg = screen.getByTestId("hero-bg");
+
+    Object.defineProperty(window, "scrollY", { value: 200, writable: true });
+    window.dispatchEvent(new Event("scroll"));
+
+    expect(bg.style.transform).toContain("translate3d(0, 56.0px, 0)");
   });
 });

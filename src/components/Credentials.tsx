@@ -6,25 +6,26 @@ export default function Credentials() {
     <section
       id="credentials"
       aria-label="Credentials and bar admissions"
-      className="bg-sidewalk/40 px-6 py-24"
+      className="bg-ink px-7 py-[104px]"
     >
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-[1000px]">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.25em] text-hudson-bay">
+          <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-gold">
             Credentials
           </p>
-          <h2 className="mt-3 font-display text-3xl text-ink sm:text-4xl">
+          <h2 className="font-display text-[clamp(30px,3.6vw,46px)] font-medium uppercase leading-[1.1] text-paper">
             Bar Admissions &amp; Standing
           </h2>
         </Reveal>
-        <dl className="mt-12 divide-y divide-comet/40 border-y border-comet/40">
+
+        <dl className="mt-[46px] border-t border-comet/30">
           {credentials.map((item, index) => (
-            <Reveal key={item.label} delay={index * 0.05}>
-              <div className="flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between">
-                <dt className="font-display text-lg text-hudson-bay">
+            <Reveal key={item.label} delay={index * 0.06}>
+              <div className="grid items-baseline gap-3 border-b border-comet/30 py-[26px] sm:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] sm:gap-7">
+                <dt className="font-display text-[19px] text-paper">
                   {item.label}
                 </dt>
-                <dd className="text-sm text-ink/80 sm:text-right">
+                <dd className="m-0 text-sm leading-[1.7] text-sidewalk">
                   {item.detail}
                 </dd>
               </div>

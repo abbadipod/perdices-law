@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, Public_Sans } from "next/font/google";
+import { Oswald, Public_Sans } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const oswald = Oswald({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-oswald",
   display: "swap",
 });
 
 const publicSans = Public_Sans({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-public-sans",
   display: "swap",
 });
@@ -28,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fraunces.variable} ${publicSans.variable} font-sans bg-paper text-ink antialiased`}
+        className={`${oswald.variable} ${publicSans.variable} font-sans bg-paper text-ink antialiased`}
       >
         {children}
       </body>
