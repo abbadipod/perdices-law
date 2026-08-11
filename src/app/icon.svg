@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" fill="#1A1F26"/>
+  <!-- Scales of justice. The full crest turns to mud at 16px, so this is a
+       simplified mark that still reads at favicon sizes. -->
+  <g stroke="#C7A05E" stroke-width="2" stroke-linecap="round" fill="none">
+    <path d="M16 8v16"/>
+    <path d="M7 11h18"/>
+    <path d="M11 24h10"/>
+    <path d="M7 11v2"/>
+    <path d="M25 11v2"/>
+  </g>
+  <path d="M4 13a3 3 0 0 0 6 0z" fill="#C7A05E"/>
+  <path d="M22 13a3 3 0 0 0 6 0z" fill="#C7A05E"/>
+</svg>
