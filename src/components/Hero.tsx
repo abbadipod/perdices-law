@@ -39,8 +39,8 @@ export default function Hero() {
           Practical legal solutions, across two countries.
         </h1>
         <p className="animate-hero-in mt-7 max-w-[46ch] text-[17px] leading-[1.7] text-sidewalk [animation-delay:160ms]">
-          Immigration, real estate, and litigation counsel for clients moving
-          between the United States and the Philippines.
+          Philippine immigration, real estate, and litigation counsel for
+          clients with lives in both countries.
         </p>
         <a
           href="#contact"

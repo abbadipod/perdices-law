@@ -7,14 +7,9 @@ export const navLinks = [
 ];
 
 export const practiceIntro =
-  "Seven areas of practice spanning both jurisdictions, handled directly by Atty. Perdices.";
+  "Six areas of Philippine law, handled directly by Atty. Perdices.";
 
 export const practiceAreas = [
-  {
-    title: "US Immigration (Philippines → US)",
-    description:
-      "Family- and employment-based petitions, visa applications, and adjustment of status for Filipino nationals seeking to live or work in the United States.",
-  },
   {
     title: "Philippine Immigration (US → Philippines)",
     description:

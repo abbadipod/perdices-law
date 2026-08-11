@@ -21,7 +21,9 @@ describe("Hero", () => {
       screen.getByText(/Dual-Qualified Attorney — US & Philippines/)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Immigration, real estate, and litigation counsel/)
+      screen.getByText(
+        /Philippine immigration, real estate, and litigation counsel/
+      )
     ).toBeInTheDocument();
   });
 

@@ -12,10 +12,12 @@ describe("site content", () => {
     ]);
   });
 
-  it("lists 7 practice areas with immigration first", () => {
-    expect(practiceAreas).toHaveLength(7);
-    expect(practiceAreas[0].title).toBe("US Immigration (Philippines → US)");
-    expect(practiceAreas[1].title).toBe("Philippine Immigration (US → Philippines)");
+  it("lists 6 Philippine practice areas with immigration first", () => {
+    expect(practiceAreas).toHaveLength(6);
+    expect(practiceAreas[0].title).toBe("Philippine Immigration (US → Philippines)");
+    expect(
+      practiceAreas.some((area) => area.title.startsWith("US Immigration"))
+    ).toBe(false);
     practiceAreas.forEach((area) => {
       expect(area.title.length).toBeGreaterThan(0);
       expect(area.description.length).toBeGreaterThan(0);

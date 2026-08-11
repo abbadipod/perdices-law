@@ -19,7 +19,7 @@ const publicSans = Public_Sans({
 export const metadata: Metadata = {
   title: "Perdices Law | Dual-Qualified Attorney — US & Philippines",
   description:
-    "The Law Office of Atty. Jose Mari Perdices — practical legal solutions in US and Philippine immigration, real estate, criminal, family, and business law.",
+    "The Law Office of Atty. Jose Mari Perdices — a dual-qualified attorney practising Philippine immigration, real estate, criminal, family, and business law.",
 };
 
 export default function RootLayout({

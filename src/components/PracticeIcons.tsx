@@ -1,4 +1,4 @@
-function PlaneIcon({ mirrored = false }: { mirrored?: boolean }) {
+function PlaneIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -8,7 +8,7 @@ function PlaneIcon({ mirrored = false }: { mirrored?: boolean }) {
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
-      className={mirrored ? "h-6 w-6 scale-x-[-1]" : "h-6 w-6"}
+      className="h-6 w-6"
     >
       <path d="M3 11l18-8-8 18-2-8-8-2z" />
     </svg>
@@ -108,8 +108,7 @@ function DocumentIcon() {
 }
 
 export const practiceIcons = [
-  () => <PlaneIcon />,
-  () => <PlaneIcon mirrored />,
+  PlaneIcon,
   HouseIcon,
   ShieldIcon,
   FamilyIcon,

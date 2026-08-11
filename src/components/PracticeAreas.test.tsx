@@ -19,7 +19,7 @@ describe("PracticeAreas", () => {
     expect(icons).toHaveLength(practiceAreas.length);
   });
 
-  it("numbers the cards 01 through 07 in order", () => {
+  it("numbers the cards sequentially in order", () => {
     render(<PracticeAreas />);
     practiceAreas.forEach((_, index) => {
       expect(

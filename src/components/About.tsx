@@ -45,10 +45,10 @@ export default function About() {
                   to practice law in the United States and the Philippines.
                 </p>
                 <p className="text-[15px] leading-[1.75] text-ink/85">
-                  His practice is built around a simple idea: clients whose lives
-                  span both countries need one lawyer who understands both legal
-                  systems — not a referral chain between separate firms on each
-                  side of the Pacific.
+                  His practice is focused on Philippine law, serving clients
+                  whose lives span both countries — people who need counsel in
+                  the Philippines from someone who also understands how a matter
+                  looks from the US side.
                 </p>
               </div>
               <div>
@@ -57,7 +57,7 @@ export default function About() {
                 </h2>
                 <p className="mb-4 text-[15px] leading-[1.75] text-ink/85">
                   Over more than a decade of practice, he has guided individuals,
-                  families, and small businesses through immigration petitions,
+                  families, and small businesses through Philippine immigration,
                   property transactions, and disputes that cross borders.
                 </p>
                 <p className="text-[15px] leading-[1.75] text-ink/85">
