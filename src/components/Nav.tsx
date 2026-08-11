@@ -49,7 +49,7 @@ export default function Nav() {
 
         <a
           href="#contact"
-          className="hidden whitespace-nowrap border border-gold px-[18px] py-2.5 text-[10px] uppercase tracking-[0.22em] text-sidewalk transition-colors hover:bg-gold hover:text-ink lg:inline-block"
+          className="hidden whitespace-nowrap border border-gold px-[18px] py-[9px] text-[10px] uppercase tracking-[0.22em] text-sidewalk transition-colors hover:bg-gold hover:text-ink lg:inline-block"
         >
           Book a consultation
         </a>

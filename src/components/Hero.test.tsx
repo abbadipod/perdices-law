@@ -1,6 +1,11 @@
-import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { act, render, screen } from "@testing-library/react";
 import Hero from "./Hero";
+
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
 
 describe("Hero", () => {
   it("renders the headline and CTA", () => {
@@ -28,12 +33,29 @@ describe("Hero", () => {
   });
 
   it("applies a parallax transform to the background on scroll", () => {
+    // Parallax is measured from the section's rect, not window.scrollY.
+    // A top of -200 means the hero has travelled 200px up past the viewport.
+    vi.spyOn(Element.prototype, "getBoundingClientRect").mockReturnValue({
+      top: -200,
+    } as DOMRect);
+    const frames: FrameRequestCallback[] = [];
+    vi.stubGlobal("requestAnimationFrame", (cb: FrameRequestCallback) => {
+      frames.push(cb);
+      return frames.length;
+    });
+    vi.stubGlobal("cancelAnimationFrame", () => {});
+
     render(<Hero />);
     const bg = screen.getByTestId("hero-bg");
 
-    Object.defineProperty(window, "scrollY", { value: 200, writable: true });
-    window.dispatchEvent(new Event("scroll"));
+    act(() => {
+      window.dispatchEvent(new Event("scroll"));
+    });
+    act(() => {
+      frames.splice(0).forEach((cb) => cb(0));
+    });
 
-    expect(bg.style.transform).toContain("translate3d(0, 56.0px, 0)");
+    // 200 * 0.3 = 60
+    expect(bg.style.transform).toBe("translate3d(0, 60.0px, 0) scale(1.05)");
   });
 });

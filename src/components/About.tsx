@@ -6,9 +6,9 @@ export default function About() {
     <section
       id="about"
       aria-label="About"
-      className="relative bg-cream px-7 pb-[110px]"
+      className="relative bg-sand px-7 pb-[110px]"
     >
-      <div className="flex -translate-y-[46px] justify-center">
+      <div className="flex -translate-y-[52px] justify-center">
         <CrestMark size={104} />
       </div>
 
@@ -71,7 +71,7 @@ export default function About() {
         </Reveal>
 
         <Reveal>
-          <p className="mx-auto mt-14 max-w-[24ch] text-balance text-center font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.2] text-hudson-bay">
+          <p className="mx-auto mt-14 max-w-[24ch] text-balance text-center font-display text-[clamp(26px,3.2vw,40px)] font-medium uppercase leading-[1.22] text-hudson-bay">
             Two legal systems.
             <br />
             One point of contact.

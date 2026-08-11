@@ -18,7 +18,7 @@ export default function FAQ() {
           <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-hudson-bay">
             Common questions
           </p>
-          <h2 className="font-display text-[clamp(30px,3.6vw,46px)] font-medium uppercase leading-[1.1] text-ink">
+          <h2 className="font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-ink">
             Frequently Asked Questions
           </h2>
         </Reveal>
@@ -36,7 +36,7 @@ export default function FAQ() {
                     className="flex w-full items-baseline justify-between gap-6 py-[22px] text-left"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                   >
-                    <span className="font-display text-[19px] leading-[1.35] text-hudson-bay">
+                    <span className="font-display text-[17px] font-normal leading-[1.4] text-hudson-bay">
                       {item.question}
                     </span>
                     <span

@@ -7,7 +7,7 @@ export default function PracticeAreas() {
     <section
       id="practice-areas"
       aria-label="Practice areas"
-      className="bg-cream px-7 py-[110px]"
+      className="bg-sand px-7 pb-[110px] pt-5"
     >
       <div className="mx-auto max-w-[1200px]">
         <Reveal>
@@ -16,7 +16,7 @@ export default function PracticeAreas() {
               <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-hudson-bay">
                 What we handle
               </p>
-              <h2 className="font-display text-[clamp(30px,3.6vw,46px)] font-medium uppercase leading-[1.1] text-ink">
+              <h2 className="font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-ink">
                 Practice Areas
               </h2>
             </div>
@@ -31,16 +31,16 @@ export default function PracticeAreas() {
             const Icon = practiceIcons[index];
             return (
               <Reveal key={area.title} delay={(index % 3) * 0.06}>
-                <article className="h-full border border-comet/50 bg-white px-7 pb-[34px] pt-[30px] transition-colors duration-300 hover:border-gold">
+                <article className="h-full border border-comet/50 bg-white px-7 pb-[34px] pt-[30px] transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-gold">
                   <div className="flex items-center justify-between">
                     <span className="text-gold">
                       <Icon />
                     </span>
-                    <span className="font-display text-[13px] tracking-[0.1em] text-gold/85">
+                    <span className="font-display text-[13px] tracking-[0.1em] text-gold/95">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h3 className="mb-3 mt-[22px] font-display text-[21px] font-medium uppercase leading-[1.25] text-hudson-bay">
+                  <h3 className="mb-3 mt-[22px] font-display text-[19px] font-medium uppercase leading-[1.3] text-hudson-bay">
                     {area.title}
                   </h3>
                   <p className="text-sm leading-[1.7] text-ink/[0.78]">

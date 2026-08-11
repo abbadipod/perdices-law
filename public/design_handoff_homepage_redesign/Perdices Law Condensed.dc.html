@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+  body { margin: 0; background: #F7F6F3; color: #1A1F26; font-family: "Public Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #C7A05E; text-decoration: none; }
+  a:hover { color: #b08a45; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary { list-style: none; }
+</style>
+</helmet>
+
+<div style="width:100%; overflow-x:hidden">
+
+  <header id="site-nav" style="position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(26,31,38,0); transition:background 300ms ease, border-color 300ms ease; border-bottom:1px solid rgba(203,206,208,0)">
+    <nav style="max-width:1200px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; gap:24px">
+      <a href="#top" style="display:flex; align-items:center; gap:10px; color:#fff">
+        <img src="crest.png" alt="Perdices Law crest" width="38" height="38" style="width:38px; height:38px; object-fit:contain; display:block" />
+        <span style="font-family:Oswald,sans-serif; font-size:13px; letter-spacing:0.18em; text-transform:uppercase; color:#fff">Perdices Law</span>
+      </a>
+      <ul style="display:flex; align-items:center; gap:34px; list-style:none; margin:0; padding:0">
+        <li><a href="#practice-areas" style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">Practice</a></li>
+        <li><a href="#credentials" style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">Credentials</a></li>
+        <li><a href="#about" style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">About</a></li>
+        <li><a href="#faq" style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">FAQ</a></li>
+        <li><a href="#contact" style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">Contact</a></li>
+      </ul>
+      <a href="#contact" style="border:1px solid #C7A05E; padding:9px 18px; font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#CBCED0; transition:background 200ms ease, color 200ms ease" style-hover="background:#C7A05E; color:#1A1F26">Book a consultation</a>
+    </nav>
+  </header>
+
+  <section id="top" style="position:relative; min-height:88vh; overflow:hidden; background:#3F5266">
+    <div id="hero-bg" style="position:absolute; inset:-8% 0 -8% 0; will-change:transform">
+      <svg width="100%" height="100%" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" style="display:block; width:100%; height:100%">
+        <defs>
+          <pattern id="hs" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="14" height="14" fill="#3F5266"></rect>
+            <rect width="7" height="14" fill="#3a4c5e"></rect>
+          </pattern>
+        </defs>
+        <rect width="1600" height="1000" fill="url(#hs)"></rect>
+        <text x="800" y="880" text-anchor="middle" fill="#97A2AE" font-family="ui-monospace, monospace" font-size="20" letter-spacing="2">[ portrait of Atty. Perdices at his desk — full bleed ]</text>
+      </svg>
+    </div>
+    <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(26,31,38,0.72) 0%, rgba(26,31,38,0.5) 45%, rgba(26,31,38,0.82) 100%)"></div>
+    <div style="position:relative; min-height:88vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:120px 28px 150px">
+      <p data-reveal style="transition:opacity 700ms ease, transform 700ms ease; margin:0 0 22px; font-size:11px; letter-spacing:0.34em; text-transform:uppercase; color:#CBCED0">Dual-Qualified Attorney — US &amp; Philippines</p>
+      <h1 data-reveal style="transition:opacity 700ms ease 80ms, transform 700ms ease 80ms; margin:0; max-width:15ch; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:clamp(40px, 5.6vw, 82px); line-height:1.06; color:#F7F6F3; text-wrap:balance">Practical legal solutions, across two countries.</h1>
+      <p data-reveal style="transition:opacity 700ms ease 160ms, transform 700ms ease 160ms; margin:28px 0 0; max-width:46ch; font-size:17px; line-height:1.7; color:#CBCED0; text-wrap:pretty">Immigration, real estate, and litigation counsel for clients moving between the United States and the Philippines.</p>
+      <a data-reveal href="#contact" style="transition:opacity 700ms ease 240ms, transform 700ms ease 240ms, background 200ms ease, color 200ms ease; margin-top:40px; border:1px solid #C7A05E; padding:15px 34px; font-size:11px; letter-spacing:0.26em; text-transform:uppercase; color:#F7F6F3" style-hover="background:#C7A05E; color:#1A1F26">Book a consultation</a>
+    </div>
+    <div style="position:absolute; bottom:34px; left:0; right:0; display:flex; justify-content:center">
+      <div style="width:1px; height:52px; background:linear-gradient(180deg, rgba(199,160,94,0) 0%, #C7A05E 100%)"></div>
+    </div>
+  </section>
+
+  <section id="about" style="position:relative; background:#ECE3D2; padding:0 28px 110px">
+    <div style="display:flex; justify-content:center; transform:translateY(-52px)">
+      <div style="width:104px; height:104px; border-radius:50%; background:#1A1F26; display:flex; align-items:center; justify-content:center"><img src="crest.png" alt="Perdices Law crest" width="82" height="82" style="width:82px; height:82px; object-fit:contain; display:block" /></div>
+    </div>
+
+    <div style="max-width:1120px; margin:0 auto">
+      <div data-reveal style="transition:opacity 700ms ease, transform 700ms ease; display:grid; grid-template-columns:minmax(0,300px) minmax(0,1fr); gap:56px; align-items:start; padding-bottom:56px; border-bottom:1px solid rgba(26,31,38,0.18)">
+        <figure style="margin:0">
+          <img src="uploads/photos-1786431953818-xouq.jpg" alt="Atty. Jose Mari Perdices" style="width:100%; aspect-ratio:4/5; object-fit:cover; object-position:50% 30%; display:block; filter:grayscale(0.35) sepia(0.12) contrast(1.02)" />
+          <figcaption style="margin-top:14px; font-family:Oswald,sans-serif; text-transform:uppercase; letter-spacing:0.12em; font-size:13px; color:#1A1F26">Atty. Jose Mari Perdices<br /><span style="color:rgba(26,31,38,0.6)">Attorney at Law</span></figcaption>
+        </figure>
+        <div style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:44px">
+          <div>
+            <h2 style="margin:0 0 18px; font-size:12px; letter-spacing:0.28em; text-transform:uppercase; color:#3F5266; font-weight:600">About</h2>
+            <p style="margin:0 0 16px; font-size:15px; line-height:1.75; color:#1A1F26; text-wrap:pretty">Atty. Jose Mari Perdices is a dual-qualified attorney admitted to practice law in the United States and the Philippines.</p>
+            <p style="margin:0; font-size:15px; line-height:1.75; color:rgba(26,31,38,0.85); text-wrap:pretty">His practice is built around a simple idea: clients whose lives span both countries need one lawyer who understands both legal systems — not a referral chain between separate firms on each side of the Pacific.</p>
+          </div>
+          <div>
+            <h2 style="margin:0 0 18px; font-size:12px; letter-spacing:0.28em; text-transform:uppercase; color:#3F5266; font-weight:600">Approach</h2>
+            <p style="margin:0 0 16px; font-size:15px; line-height:1.75; color:rgba(26,31,38,0.85); text-wrap:pretty">Over more than a decade of practice, he has guided individuals, families, and small businesses through immigration petitions, property transactions, and disputes that cross borders.</p>
+            <p style="margin:0; font-size:15px; line-height:1.75; color:rgba(26,31,38,0.85); text-wrap:pretty">US and Philippine legal training combine into a single, practical point of contact — plain answers, agreed fees, no hidden charges.</p>
+          </div>
+        </div>
+      </div>
+
+      <p data-reveal style="transition:opacity 700ms ease, transform 700ms ease; margin:56px auto 0; max-width:24ch; text-align:center; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:clamp(26px, 3.2vw, 40px); line-height:1.22; color:#3F5266; text-wrap:balance">Two legal systems.<br />One point of contact.</p>
+    </div>
+  </section>
+
+  <section id="practice-areas" style="background:#ECE3D2; padding:20px 28px 110px">
+    <div style="max-width:1200px; margin:0 auto">
+      <div data-reveal style="transition:opacity 700ms ease, transform 700ms ease; display:flex; align-items:flex-end; justify-content:space-between; gap:32px; padding-bottom:26px; border-bottom:1px solid rgba(26,31,38,0.22)">
+        <div>
+          <p style="margin:0 0 10px; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#3F5266">What we handle</p>
+          <h2 style="margin:0; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:clamp(28px, 3.4vw, 44px); line-height:1.1; color:#1A1F26">Practice Areas</h2>
+        </div>
+        <p style="margin:0; max-width:34ch; font-size:14px; line-height:1.7; color:rgba(26,31,38,0.7)">Seven areas of practice spanning both jurisdictions, handled directly by Atty. Perdices.</p>
+      </div>
+
+      <div style="margin-top:44px; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:22px">
+        <article data-reveal style="transition:opacity 700ms ease, transform 700ms ease, border-color 300ms ease; height:100%; border:1px solid rgba(151,162,174,0.5); padding:30px 28px 34px; background:#fff" style-hover="border-color:#C7A05E; transform:translateY(-4px)">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C7A05E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px"><path d="M3 11l18-8-8 18-2-8-8-2z"></path></svg>
+            <span style="font-family:Oswald,sans-serif; font-size:13px; letter-spacing:0.1em; color:rgba(199,160,94,0.95)">01</span>
+          </div>
+          <h3 style="margin:22px 0 12px; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:19px; line-height:1.3; color:#3F5266">US Immigration (Philippines → US)</h3>
+          <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(26,31,38,0.78); text-wrap:pretty">Family- and employment-based petitions, visa applications, and adjustment of status for Filipino nationals seeking to live or work in the United States.</p>
+        </article>
+
+        <article data-reveal style="transition:opacity 700ms ease 60ms, transform 700ms ease 60ms, border-color 300ms ease; height:100%; border:1px solid rgba(151,162,174,0.5); padding:30px 28px 34px; background:#fff" style-hover="border-color:#C7A05E; transform:translateY(-4px)">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C7A05E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px; transform:scaleX(-1)"><path d="M3 11l18-8-8 18-2-8-8-2z"></path></svg>
+            <span style="font-family:Oswald,sans-serif; font-size:13px; letter-spacing:0.1em; color:rgba(199,160,94,0.95)">02</span>
+          </div>
+          <h3 style="margin:22px 0 12px; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:19px; line-height:1.3; color:#3F5266">Philippine Immigration (US → Philippines)</h3>
+          <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(26,31,38,0.78); text-wrap:pretty">Dual citizenship (RA 9225), balikbayan and long-term visas, and residency matters for US citizens and Filipino-Americans relocating to the Philippines.</p>
+        </article>
+
+        <article data-reveal style="transition:opacity 700ms ease 120ms, transform 700ms ease 120ms, border-color 300ms ease; height:100%; border:1px solid rgba(151,162,174,0.5); padding:30px 28px 34px; background:#fff" style-hover="border-color:#C7A05E; transform:translateY(-4px)">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C7A05E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px"><path d="M4 11.5 12 4l8 7.5"></path><path d="M6 10v9h5v-5h2v5h5v-9"></path></svg>
+            <span style="font-family:Oswald,sans-serif; font-size:13px; letter-spacing:0.1em; color:rgba(199,160,94,0.95)">03</span>
+          </div>
+          <h3 style="margin:22px 0 12px; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:19px; line-height:1.3; color:#3F5266">Real Estate Law</h3>
+          <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(26,31,38,0.78); text-wrap:pretty">Property due diligence, land title verification, and sale or lease agreements for real property located in the Philippines.</p>
+        </article>
+
+        <article data-reveal style="transition:opacity 700ms ease, transform 700ms ease, border-color 300ms ease; height:100%; border:1px solid rgba(151,162,174,0.5); padding:30px 28px 34px; background:#fff" style-hover="border-color:#C7A05E; transform:translateY(-4px)">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C7A05E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px"><path d="M12 3l7 3v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"></path></svg>
+            <span style="font-family:Oswald,sans-serif; font-size:13px; letter-spacing:0.1em; color:rgba(199,160,94,0.95)">04</span>
+          </div>
+          <h3 style="margin:22px 0 12px; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:19px; line-height:1.3; color:#3F5266">Criminal Law</h3>
+          <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(26,31,38,0.78); text-wrap:pretty">Representation and counsel in criminal proceedings before Philippine courts, from arraignment through trial.</p>
+        </article>
+
+        <article data-reveal style="transition:opacity 700ms ease 60ms, transform 700ms ease 60ms, border-color 300ms ease; height:100%; border:1px solid rgba(151,162,174,0.5); padding:30px 28px 34px; background:#fff" style-hover="border-color:#C7A05E; transform:translateY(-4px)">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C7A05E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px"><circle cx="9" cy="8" r="3"></circle><circle cx="16" cy="8.5" r="2.5"></circle><path d="M4 19c0-3 2.3-5 5-5s5 2 5 5"></path><path d="M14 19c.2-2.2 1.6-4.1 4-4.4"></path></svg>
+            <span style="font-family:Oswald,sans-serif; font-size:13px; letter-spacing:0.1em; color:rgba(199,160,94,0.95)">05</span>
+          </div>
+          <h3 style="margin:22px 0 12px; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:19px; line-height:1.3; color:#3F5266">Family Law</h3>
+          <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(26,31,38,0.78); text-wrap:pretty">Annulment, legal separation, custody, and support matters under Philippine family law.</p>
+        </article>
+
+        <article data-reveal style="transition:opacity 700ms ease 120ms, transform 700ms ease 120ms, border-color 300ms ease; height:100%; border:1px solid rgba(151,162,174,0.5); padding:30px 28px 34px; background:#fff" style-hover="border-color:#C7A05E; transform:translateY(-4px)">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C7A05E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px"><rect x="3" y="7" width="18" height="12" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M3 12h18"></path></svg>
+            <span style="font-family:Oswald,sans-serif; font-size:13px; letter-spacing:0.1em; color:rgba(199,160,94,0.95)">06</span>
+          </div>
+          <h3 style="margin:22px 0 12px; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:19px; line-height:1.3; color:#3F5266">Business &amp; Corporate Law</h3>
+          <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(26,31,38,0.78); text-wrap:pretty">Business registration, contracts, and corporate compliance for entities operating in the Philippines.</p>
+        </article>
+
+        <article data-reveal style="transition:opacity 700ms ease, transform 700ms ease, border-color 300ms ease; height:100%; border:1px solid rgba(151,162,174,0.5); padding:30px 28px 34px; background:#fff" style-hover="border-color:#C7A05E; transform:translateY(-4px)">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C7A05E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:26px; height:26px"><rect x="5" y="3" width="14" height="18" rx="1"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg>
+            <span style="font-family:Oswald,sans-serif; font-size:13px; letter-spacing:0.1em; color:rgba(199,160,94,0.95)">07</span>
+          </div>
+          <h3 style="margin:22px 0 12px; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:19px; line-height:1.3; color:#3F5266">Civil Litigation</h3>
+          <p style="margin:0; font-size:14px; line-height:1.7; color:rgba(26,31,38,0.78); text-wrap:pretty">Representation in civil disputes, including contract, property, and collection cases, before Philippine courts.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="credentials" style="background:#1A1F26; padding:104px 28px">
+    <div style="max-width:1000px; margin:0 auto">
+      <div data-reveal style="transition:opacity 700ms ease, transform 700ms ease">
+        <p style="margin:0 0 10px; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#C7A05E">Credentials</p>
+        <h2 style="margin:0; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:clamp(28px, 3.4vw, 44px); line-height:1.1; color:#F7F6F3">Bar Admissions &amp; Standing</h2>
+      </div>
+      <dl style="margin:46px 0 0; display:grid; gap:0; border-top:1px solid rgba(151,162,174,0.32)">
+        <div data-reveal style="transition:opacity 700ms ease, transform 700ms ease; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:28px; align-items:baseline; padding:26px 0; border-bottom:1px solid rgba(151,162,174,0.32)">
+          <dt style="font-family:Oswald,sans-serif; font-size:17px; text-transform:uppercase; letter-spacing:0.04em; color:#F7F6F3">United States Bar Admission</dt>
+          <dd style="margin:0; font-size:14px; line-height:1.7; color:#CBCED0">State Bar of California, admitted 2015</dd>
+        </div>
+        <div data-reveal style="transition:opacity 700ms ease 60ms, transform 700ms ease 60ms; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:28px; align-items:baseline; padding:26px 0; border-bottom:1px solid rgba(151,162,174,0.32)">
+          <dt style="font-family:Oswald,sans-serif; font-size:17px; text-transform:uppercase; letter-spacing:0.04em; color:#F7F6F3">Philippine Bar Admission</dt>
+          <dd style="margin:0; font-size:14px; line-height:1.7; color:#CBCED0">Integrated Bar of the Philippines, admitted 2012</dd>
+        </div>
+        <div data-reveal style="transition:opacity 700ms ease 120ms, transform 700ms ease 120ms; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:28px; align-items:baseline; padding:26px 0; border-bottom:1px solid rgba(151,162,174,0.32)">
+          <dt style="font-family:Oswald,sans-serif; font-size:17px; text-transform:uppercase; letter-spacing:0.04em; color:#F7F6F3">Education</dt>
+          <dd style="margin:0; font-size:14px; line-height:1.7; color:#CBCED0">J.D., University of California, Hastings College of the Law; LL.B., University of the Philippines</dd>
+        </div>
+        <div data-reveal style="transition:opacity 700ms ease 180ms, transform 700ms ease 180ms; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:28px; align-items:baseline; padding:26px 0; border-bottom:1px solid rgba(151,162,174,0.32)">
+          <dt style="font-family:Oswald,sans-serif; font-size:17px; text-transform:uppercase; letter-spacing:0.04em; color:#F7F6F3">Years of Practice</dt>
+          <dd style="margin:0; font-size:14px; line-height:1.7; color:#CBCED0">12+ years across both jurisdictions</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="faq" style="background:#F7F6F3; padding:104px 28px">
+    <div style="max-width:840px; margin:0 auto">
+      <div data-reveal style="transition:opacity 700ms ease, transform 700ms ease">
+        <p style="margin:0 0 10px; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#3F5266">Common questions</p>
+        <h2 style="margin:0; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:clamp(28px, 3.4vw, 44px); line-height:1.1; color:#1A1F26">Frequently Asked Questions</h2>
+      </div>
+      <div style="margin-top:40px; border-top:1px solid rgba(151,162,174,0.4)">
+        <details data-faq style="border-bottom:1px solid rgba(151,162,174,0.4)">
+          <summary style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:22px 0; cursor:pointer; font-family:Oswald,sans-serif; font-weight:400; font-size:17px; line-height:1.4; color:#3F5266">I live in the US but need help with a matter in the Philippines — can you still represent me?<span data-faq-mark style="flex-shrink:0; color:#C7A05E; font-family:'Public Sans',sans-serif; font-size:20px; transition:transform 300ms ease">+</span></summary>
+          <p style="margin:0; padding:0 0 24px; max-width:66ch; font-size:15px; line-height:1.75; color:rgba(26,31,38,0.8); text-wrap:pretty">Yes. As a dual-qualified attorney, I can advise on and handle Philippine legal matters directly, and coordinate with US counsel when a matter touches both jurisdictions — you don't need to manage two separate lawyers yourself.</p>
+        </details>
+        <details data-faq style="border-bottom:1px solid rgba(151,162,174,0.4)">
+          <summary style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:22px 0; cursor:pointer; font-family:Oswald,sans-serif; font-weight:400; font-size:17px; line-height:1.4; color:#3F5266">What does a consultation involve?<span data-faq-mark style="flex-shrink:0; color:#C7A05E; font-family:'Public Sans',sans-serif; font-size:20px; transition:transform 300ms ease">+</span></summary>
+          <p style="margin:0; padding:0 0 24px; max-width:66ch; font-size:15px; line-height:1.75; color:rgba(26,31,38,0.8); text-wrap:pretty">An initial consultation is a focused conversation about your situation — what's happened, what you're trying to accomplish, and which country's laws and courts are involved — followed by a plain-language explanation of your options and likely next steps.</p>
+        </details>
+        <details data-faq style="border-bottom:1px solid rgba(151,162,174,0.4)">
+          <summary style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:22px 0; cursor:pointer; font-family:Oswald,sans-serif; font-weight:400; font-size:17px; line-height:1.4; color:#3F5266">How do you determine which country's law applies to my case?<span data-faq-mark style="flex-shrink:0; color:#C7A05E; font-family:'Public Sans',sans-serif; font-size:20px; transition:transform 300ms ease">+</span></summary>
+          <p style="margin:0; padding:0 0 24px; max-width:66ch; font-size:15px; line-height:1.75; color:rgba(26,31,38,0.8); text-wrap:pretty">It depends on the subject matter and where the relevant facts, property, or parties are located. Immigration matters are generally governed by the receiving country's law; property, family, and criminal matters are generally governed by Philippine law if the matter arises there. This is one of the first things we sort out together.</p>
+        </details>
+        <details data-faq style="border-bottom:1px solid rgba(151,162,174,0.4)">
+          <summary style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:22px 0; cursor:pointer; font-family:Oswald,sans-serif; font-weight:400; font-size:17px; line-height:1.4; color:#3F5266">How much does a consultation cost?<span data-faq-mark style="flex-shrink:0; color:#C7A05E; font-family:'Public Sans',sans-serif; font-size:20px; transition:transform 300ms ease">+</span></summary>
+          <p style="margin:0; padding:0 0 24px; max-width:66ch; font-size:15px; line-height:1.75; color:rgba(26,31,38,0.8); text-wrap:pretty">Consultation fees are discussed and agreed upon before we begin, based on the nature and complexity of your matter. There are no hidden charges — you'll know the cost before any work starts.</p>
+        </details>
+        <details data-faq style="border-bottom:1px solid rgba(151,162,174,0.4)">
+          <summary style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:22px 0; cursor:pointer; font-family:Oswald,sans-serif; font-weight:400; font-size:17px; line-height:1.4; color:#3F5266">How long does a typical case take?<span data-faq-mark style="flex-shrink:0; color:#C7A05E; font-family:'Public Sans',sans-serif; font-size:20px; transition:transform 300ms ease">+</span></summary>
+          <p style="margin:0; padding:0 0 24px; max-width:66ch; font-size:15px; line-height:1.75; color:rgba(26,31,38,0.8); text-wrap:pretty">Timelines vary widely: immigration petitions can take months to years depending on the visa category and government processing times, while real estate or contract matters often resolve in weeks. You'll get a realistic estimate specific to your case during the consultation.</p>
+        </details>
+        <details data-faq style="border-bottom:1px solid rgba(151,162,174,0.4)">
+          <summary style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:22px 0; cursor:pointer; font-family:Oswald,sans-serif; font-weight:400; font-size:17px; line-height:1.4; color:#3F5266">Can I retain you without visiting the office in person?<span data-faq-mark style="flex-shrink:0; color:#C7A05E; font-family:'Public Sans',sans-serif; font-size:20px; transition:transform 300ms ease">+</span></summary>
+          <p style="margin:0; padding:0 0 24px; max-width:66ch; font-size:15px; line-height:1.75; color:rgba(26,31,38,0.8); text-wrap:pretty">In most cases, yes. Consultations, document review, and case updates can be handled remotely by phone or video call, with in-person appearances arranged only where a court or agency specifically requires it.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="background:#3F5266; padding:104px 28px">
+    <div style="max-width:1120px; margin:0 auto">
+      <div data-reveal style="transition:opacity 700ms ease, transform 700ms ease">
+        <p style="margin:0 0 10px; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#CBCED0">Get in touch</p>
+        <h2 style="margin:0; font-family:Oswald,sans-serif; font-weight:500; text-transform:uppercase; letter-spacing:0.01em; font-size:clamp(28px, 3.4vw, 44px); line-height:1.1; color:#F7F6F3">Request a consultation</h2>
+      </div>
+
+      <div style="margin-top:46px; display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr); gap:56px; align-items:start">
+        <form onSubmit="{{ onSubmit }}" style="display:grid; gap:22px">
+          <label style="display:grid; gap:8px">
+            <span style="font-size:10px; letter-spacing:0.24em; text-transform:uppercase; color:#CBCED0">Name</span>
+            <input type="text" name="name" required="required" style="background:transparent; border:0; border-bottom:1px solid rgba(203,206,208,0.45); padding:10px 2px; font-family:'Public Sans',sans-serif; font-size:16px; color:#F7F6F3; outline:none" style-focus="border-bottom-color:#C7A05E" />
+          </label>
+          <label style="display:grid; gap:8px">
+            <span style="font-size:10px; letter-spacing:0.24em; text-transform:uppercase; color:#CBCED0">Email</span>
+            <input type="email" name="email" required="required" style="background:transparent; border:0; border-bottom:1px solid rgba(203,206,208,0.45); padding:10px 2px; font-family:'Public Sans',sans-serif; font-size:16px; color:#F7F6F3; outline:none" style-focus="border-bottom-color:#C7A05E" />
+          </label>
+          <label style="display:grid; gap:8px">
+            <span style="font-size:10px; letter-spacing:0.24em; text-transform:uppercase; color:#CBCED0">How can I help?</span>
+            <textarea name="message" rows="5" required="required" style="background:transparent; border:1px solid rgba(203,206,208,0.45); padding:12px; font-family:'Public Sans',sans-serif; font-size:16px; line-height:1.6; color:#F7F6F3; outline:none; resize:vertical"></textarea>
+          </label>
+          <div style="display:flex; align-items:center; gap:20px; flex-wrap:wrap">
+            <button type="submit" style="border:1px solid #C7A05E; background:transparent; padding:15px 32px; font-family:'Public Sans',sans-serif; font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:#F7F6F3; cursor:pointer; transition:background 200ms ease, color 200ms ease" style-hover="background:#C7A05E; color:#1A1F26">Send inquiry</button>
+            <span style="font-size:13px; color:#CBCED0">{{ formNote }}</span>
+          </div>
+          <p style="margin:0; font-size:12px; line-height:1.6; color:rgba(203,206,208,0.75)">Submitting this form does not create an attorney-client relationship.</p>
+        </form>
+
+        <div style="display:grid; gap:22px">
+          <a href="mailto:info@perdiceslaw.com" style="font-size:15px; letter-spacing:0.02em; color:#CBCED0; border-bottom:1px solid rgba(199,160,94,0.6); padding-bottom:4px; justify-self:start" style-hover="color:#C7A05E">info@perdiceslaw.com</a>
+          <div style="border:1px solid rgba(151,162,174,0.45); padding:26px">
+            <h3 style="margin:0 0 14px; font-family:Oswald,sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:0.06em; font-size:16px; color:#F7F6F3">Makati City, Philippines</h3>
+            <p style="margin:0 0 8px; font-size:14px; line-height:1.7; color:#CBCED0">Unit 1500, 6750 Ayala Avenue, Makati City, 1226 Metro Manila</p>
+            <p style="margin:0 0 12px; font-size:14px; color:rgba(203,206,208,0.8)">Monday–Friday, 9:00 AM–6:00 PM (PHT)</p>
+            <a href="tel:+639170000000" style="font-size:14px; color:#CBCED0" style-hover="color:#C7A05E">+63 917 000 0000</a>
+          </div>
+          <div style="border:1px solid rgba(151,162,174,0.45); padding:26px">
+            <h3 style="margin:0 0 14px; font-family:Oswald,sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:0.06em; font-size:16px; color:#F7F6F3">San Francisco, United States</h3>
+            <p style="margin:0 0 8px; font-size:14px; line-height:1.7; color:#CBCED0">100 Market Street, Suite 300, San Francisco, CA 94105</p>
+            <p style="margin:0 0 12px; font-size:14px; color:rgba(203,206,208,0.8)">Monday–Friday, 9:00 AM–5:00 PM (PT)</p>
+            <a href="tel:+14150000000" style="font-size:14px; color:#CBCED0" style-hover="color:#C7A05E">+1 415 000 0000</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#1A1F26; padding:56px 28px 44px">
+    <div style="max-width:1120px; margin:0 auto">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:28px; flex-wrap:wrap; padding-bottom:26px; border-bottom:1px solid rgba(151,162,174,0.28)">
+        <a href="#top" style="display:flex; align-items:center; gap:10px">
+          <img src="crest.png" alt="Perdices Law crest" width="30" height="30" style="width:30px; height:30px; object-fit:contain; display:block" />
+          <span style="font-family:Oswald,sans-serif; font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#F7F6F3">Perdices Law</span>
+        </a>
+        <ul style="display:flex; flex-wrap:wrap; gap:28px; list-style:none; margin:0; padding:0">
+          <li><a href="#practice-areas" style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">Practice</a></li>
+          <li><a href="#credentials" style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">Credentials</a></li>
+          <li><a href="#about" style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">About</a></li>
+          <li><a href="#faq" style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">FAQ</a></li>
+          <li><a href="#contact" style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#CBCED0" style-hover="color:#C7A05E">Contact</a></li>
+        </ul>
+      </div>
+      <p style="margin:24px 0 0; max-width:80ch; font-size:12px; line-height:1.7; color:#97A2AE; text-wrap:pretty">Atty. Jose Mari Perdices is admitted to practice law in California, United States, and is a member of the Integrated Bar of the Philippines. This website is for informational purposes only and does not constitute legal advice. Prior results do not guarantee a similar outcome.</p>
+      <p style="margin:14px 0 0; font-size:12px; color:#97A2AE">© 2026 Perdices Law. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { formNote: "" };
+
+  componentDidMount() {
+    const nav = document.getElementById("site-nav");
+    const heroBg = document.getElementById("hero-bg");
+    const hero = document.getElementById("top");
+    let queued = false;
+
+    const apply = () => {
+      queued = false;
+      const past = hero ? -hero.getBoundingClientRect().top : 0;
+      if (nav) {
+        const on = past > 40;
+        nav.style.background = on ? "#1A1F26" : "rgba(26,31,38,0)";
+        nav.style.borderBottomColor = on ? "rgba(151,162,174,0.28)" : "rgba(203,206,208,0)";
+      }
+      if (heroBg) heroBg.style.transform = "translate3d(0," + Math.max(0, past * 0.3).toFixed(1) + "px,0) scale(1.05)";
+
+      const h = window.innerHeight || 800;
+      // re-query every pass: React may have replaced nodes since mount
+      document.querySelectorAll("[data-reveal]:not([data-shown])").forEach((el) => {
+        if (el.getBoundingClientRect().top < h * 0.9) {
+          el.setAttribute("data-shown", "");
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          setTimeout(() => { el.style.transform = ""; }, 1000);
+        } else if (!el.hasAttribute("data-armed")) {
+          el.setAttribute("data-armed", "");
+          el.style.opacity = "0";
+          el.style.transform = "translateY(18px)";
+        }
+      });
+    };
+
+    this.tick = () => { if (!queued) { queued = true; requestAnimationFrame(apply); } };
+    this.apply = apply;
+    apply();
+    window.addEventListener("scroll", this.tick, { passive: true, capture: true });
+    window.addEventListener("resize", this.tick, { passive: true });
+    document.addEventListener("scroll", this.tick, { passive: true, capture: true });
+
+    document.querySelectorAll("[data-faq]").forEach((d) => {
+      d.addEventListener("toggle", () => {
+        const mark = d.querySelector("[data-faq-mark]");
+        if (mark) mark.style.transform = d.open ? "rotate(45deg)" : "rotate(0deg)";
+      });
+    });
+  }
+
+  componentDidUpdate() {
+    if (this.tick) this.tick();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.tick, { capture: true });
+    window.removeEventListener("resize", this.tick);
+    document.removeEventListener("scroll", this.tick, { capture: true });
+  }
+
+  renderVals() {
+    return {
+      formNote: this.state.formNote,
+      onSubmit: (e) => {
+        e.preventDefault();
+        this.setState({ formNote: "Thank you — I'll reply within one business day." });
+      },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

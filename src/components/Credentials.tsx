@@ -13,7 +13,7 @@ export default function Credentials() {
           <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-gold">
             Credentials
           </p>
-          <h2 className="font-display text-[clamp(30px,3.6vw,46px)] font-medium uppercase leading-[1.1] text-paper">
+          <h2 className="font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-paper">
             Bar Admissions &amp; Standing
           </h2>
         </Reveal>
@@ -22,7 +22,7 @@ export default function Credentials() {
           {credentials.map((item, index) => (
             <Reveal key={item.label} delay={index * 0.06}>
               <div className="grid items-baseline gap-3 border-b border-comet/30 py-[26px] sm:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] sm:gap-7">
-                <dt className="font-display text-[19px] text-paper">
+                <dt className="font-display text-[17px] uppercase tracking-[0.04em] text-paper">
                   {item.label}
                 </dt>
                 <dd className="m-0 text-sm leading-[1.7] text-sidewalk">

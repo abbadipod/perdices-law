@@ -11,7 +11,7 @@ const config: Config = {
         gold: "#C7A05E",
         ink: "#1A1F26",
         paper: "#F7F6F3",
-        cream: "#ECE3D2",
+        sand: "#ECE3D2",
       },
       fontFamily: {
         display: ["var(--font-oswald)", "ui-sans-serif", "sans-serif"],

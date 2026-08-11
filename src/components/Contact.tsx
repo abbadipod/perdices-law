@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { contactInfo } from "@/content/site";
 import Reveal from "@/components/Reveal";
 
@@ -8,6 +9,10 @@ const FIELD_BASE =
   "bg-transparent text-base text-paper outline-none transition-colors";
 
 export default function Contact() {
+  // No backend exists, so the form hands off to the visitor's mail client
+  // rather than reporting a delivery it cannot actually perform.
+  const [status, setStatus] = useState<"idle" | "handoff">("idle");
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -20,6 +25,7 @@ export default function Contact() {
     window.location.href = `mailto:${contactInfo.email}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
+    setStatus("handoff");
   }
 
   return (
@@ -33,7 +39,7 @@ export default function Contact() {
           <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-sidewalk">
             Get in touch
           </p>
-          <h2 className="font-display text-[clamp(30px,3.6vw,46px)] font-medium uppercase leading-[1.1] text-paper">
+          <h2 className="font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-paper">
             Request a consultation
           </h2>
         </Reveal>
@@ -67,13 +73,18 @@ export default function Contact() {
                 className={`${FIELD_BASE} resize-y border border-sidewalk/45 p-3 leading-[1.6] focus:border-gold`}
               />
             </label>
-            <div>
+            <div className="flex flex-wrap items-center gap-5">
               <button
                 type="submit"
                 className="border border-gold px-8 py-[15px] text-[11px] uppercase tracking-[0.24em] text-paper transition-colors hover:bg-gold hover:text-ink"
               >
                 Send inquiry
               </button>
+              <span role="status" className="text-[13px] text-sidewalk">
+                {status === "handoff"
+                  ? "Opening your email app — press send there to reach me."
+                  : ""}
+              </span>
             </div>
             <p className="text-xs leading-[1.6] text-sidewalk/75">
               Opens in your email app so you keep a copy of what you sent.
@@ -93,7 +104,7 @@ export default function Contact() {
               const digitsOnly = office.phone.replace(/[^\d+]/g, "");
               return (
                 <div key={office.city} className="border border-comet/45 p-[26px]">
-                  <h3 className="mb-3.5 font-display text-lg font-medium uppercase text-paper">
+                  <h3 className="mb-3.5 font-display text-base font-normal uppercase tracking-[0.06em] text-paper">
                     {office.city}
                   </h3>
                   <p className="mb-2 text-sm leading-[1.7] text-sidewalk">
