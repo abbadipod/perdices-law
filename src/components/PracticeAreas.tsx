@@ -31,7 +31,10 @@ export default function PracticeAreas() {
             its whole row taller than the rest of the grid. Only from md up:
             in a single column there is nothing to align to, so equal heights
             would just pad the short cards with dead space. */}
-        <div className="mt-11 grid gap-[22px] md:auto-rows-fr [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
+        {/* min(300px,100%) rather than a bare 300px: below ~356px viewport the
+            container is narrower than the track floor, and a bare 300px would
+            overflow the page horizontally. */}
+        <div className="mt-11 grid gap-[22px] md:auto-rows-fr [grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))]">
           {practiceAreas.map((area, index) => {
             const Icon = practiceIcons[index];
             return (

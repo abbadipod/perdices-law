@@ -114,7 +114,7 @@ export default function Contact() {
                   <p className="mb-3 text-sm text-sidewalk/95">{office.hours}</p>
                   <a
                     href={`tel:${digitsOnly}`}
-                    className="text-sm text-sidewalk transition-colors hover:text-gold"
+                    className="inline-block py-1.5 text-sm text-sidewalk transition-colors hover:text-gold"
                   >
                     {office.phone}
                   </a>

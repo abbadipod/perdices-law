@@ -38,7 +38,10 @@ export default function Nav() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="group relative text-[11px] uppercase tracking-[0.2em] text-sidewalk transition-colors hover:text-gold"
+                // The ::after overlay enlarges the tap target. Padding would
+                // work too, but it would drag the hover underline (positioned
+                // off this box) away from the text.
+                className="group relative text-[11px] uppercase tracking-[0.2em] text-sidewalk transition-colors after:absolute after:inset-x-0 after:-inset-y-2 after:content-[''] hover:text-gold"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100" />
@@ -59,7 +62,9 @@ export default function Nav() {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
-          className="text-[11px] uppercase tracking-[0.2em] text-white lg:hidden"
+          // Negative margin cancels the padding, so the hit area grows to a
+          // thumb-friendly size without moving the label.
+          className="-m-3 p-3 text-[11px] uppercase tracking-[0.2em] text-white lg:hidden"
           onClick={() => setMenuOpen((open) => !open)}
         >
           {menuOpen ? "Close" : "Menu"}

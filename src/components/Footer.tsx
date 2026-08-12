@@ -17,7 +17,9 @@ export default function Footer() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-[10px] uppercase tracking-[0.2em] text-sidewalk transition-colors hover:text-gold"
+                  // Inline padding: enlarges the tap target without changing
+                  // the footer's layout.
+                  className="py-2 text-[10px] uppercase tracking-[0.2em] text-sidewalk transition-colors hover:text-gold"
                 >
                   {link.label}
                 </a>
