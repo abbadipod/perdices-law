@@ -1,8 +1,12 @@
-// The source asset is the full 1080x1080 logo (crest + wordmark). These values crop
-// to just the circular emblem so it stays legible at small sizes.
-const EMBLEM_ZOOM = "174%";
-const EMBLEM_FOCUS = "50% 20%";
+import Image from "next/image";
 
+/**
+ * The circular crest, on its navy disc.
+ *
+ * Uses the pre-keyed transparent crest from the design handoff, so the navy
+ * disc behind it is a real background rather than part of the image — no
+ * CSS cropping of the full logo lockup.
+ */
 export default function CrestMark({
   size,
   className = "",
@@ -12,16 +16,18 @@ export default function CrestMark({
 }) {
   return (
     <span
-      role="img"
-      aria-label="Perdices Law crest"
-      className={`inline-block shrink-0 rounded-full bg-ink bg-no-repeat ${className}`}
-      style={{
-        width: size,
-        height: size,
-        backgroundImage: "url(/crest.jpg)",
-        backgroundSize: EMBLEM_ZOOM,
-        backgroundPosition: EMBLEM_FOCUS,
-      }}
-    />
+      className={`inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-ink ${className}`}
+      style={{ width: size, height: size }}
+    >
+      <Image
+        src="/crest.png"
+        alt="Perdices Law crest"
+        width={size}
+        height={size}
+        // Small, fixed-size mark; skip the intrinsic-size warning path.
+        style={{ width: size, height: size, objectFit: "contain" }}
+        priority
+      />
+    </span>
   );
 }
