@@ -43,10 +43,14 @@ export default function PracticeAreas() {
                     </span>
                     {/* Ordinal decoration — the title carries the meaning, so
                         it is hidden from screen readers rather than read out
-                        before every card. */}
+                        before every card. Navy at 80% rather than the gold the
+                        handoff specifies: gold on white measures 2.32:1, and
+                        no gold light enough to still read as gold reaches the
+                        4.5:1 this needs as text. The icon above keeps the
+                        gold accent on the card. */}
                     <span
                       aria-hidden="true"
-                      className="font-display text-[13px] tracking-[0.1em] text-gold/95"
+                      className="font-display text-[13px] tracking-[0.1em] text-hudson-bay/80"
                     >
                       {String(index + 1).padStart(2, "0")}
                     </span>
