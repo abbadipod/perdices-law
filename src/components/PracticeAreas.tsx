@@ -41,7 +41,13 @@ export default function PracticeAreas() {
                     <span className="text-gold">
                       <Icon />
                     </span>
-                    <span className="font-display text-[13px] tracking-[0.1em] text-gold/95">
+                    {/* Ordinal decoration — the title carries the meaning, so
+                        it is hidden from screen readers rather than read out
+                        before every card. */}
+                    <span
+                      aria-hidden="true"
+                      className="font-display text-[13px] tracking-[0.1em] text-gold/95"
+                    >
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>

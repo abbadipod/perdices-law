@@ -3,6 +3,17 @@ import { render, screen } from "@testing-library/react";
 import Home from "./page";
 
 describe("Home", () => {
+  it("offers a skip link to the main landmark", () => {
+    const { container } = render(<Home />);
+    const skip = screen.getByRole("link", { name: /skip to content/i });
+
+    expect(skip).toHaveAttribute("href", "#main");
+    // The target must exist or the link silently does nothing.
+    expect(container.querySelector("main#main")).not.toBeNull();
+    // Hidden until focused.
+    expect(skip.className).toContain("sr-only");
+  });
+
   it("renders every major section", () => {
     render(<Home />);
 

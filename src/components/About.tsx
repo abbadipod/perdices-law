@@ -31,7 +31,7 @@ export default function About() {
               <figcaption className="mt-3.5 font-display text-[13px] uppercase tracking-[0.12em] text-ink">
                 Atty. Jose Mari Perdices
                 <br />
-                <span className="text-ink/60">Attorney at Law</span>
+                <span className="text-ink/70">Attorney at Law</span>
               </figcaption>
             </figure>
 

@@ -11,6 +11,14 @@ body {
   min-height: 100vh;
 }
 
+/* Visible keyboard focus. Gold clears 3:1 against every dark section, which
+   is where almost all controls sit; the FAQ buttons are on paper and
+   override this with hudson-bay. */
+:where(a, button, input, textarea, summary):focus-visible {
+  outline: 2px solid #c7a05e;
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

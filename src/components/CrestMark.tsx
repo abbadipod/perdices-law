@@ -21,7 +21,10 @@ export default function CrestMark({
     >
       <Image
         src="/crest.png"
-        alt="Perdices Law crest"
+        // Decorative in every usage: the nav and footer pair it with the
+        // wordmark, and the About badge is pure ornament. Labelling it would
+        // make screen readers announce the firm name twice per link.
+        alt=""
         width={size}
         height={size}
         // Small, fixed-size mark; skip the intrinsic-size warning path.

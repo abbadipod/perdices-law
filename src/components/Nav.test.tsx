@@ -6,12 +6,13 @@ import Nav from "./Nav";
 import { navLinks } from "@/content/site";
 
 describe("Nav", () => {
-  it("renders the brand name and logo", () => {
+  it("exposes the brand as a single home link", () => {
     render(<Nav />);
-    expect(screen.getByText("Perdices Law")).toBeInTheDocument();
-    expect(
-      screen.getByRole("img", { name: "Perdices Law crest" })
-    ).toBeInTheDocument();
+    // The crest is decorative, so the link's name comes from the wordmark
+    // alone rather than being announced twice.
+    const brand = screen.getByRole("link", { name: "Perdices Law" });
+    expect(brand).toHaveAttribute("href", "#top");
+    expect(within(brand).queryByRole("img")).toBeNull();
   });
 
   it("renders every nav link", () => {

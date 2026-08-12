@@ -33,7 +33,8 @@ export default function FAQ() {
                     type="button"
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${index}`}
-                    className="flex w-full items-baseline justify-between gap-6 py-[22px] text-left"
+                    // On paper, so the global gold ring would not clear 3:1.
+                    className="flex w-full items-baseline justify-between gap-6 py-[22px] text-left focus-visible:outline-hudson-bay"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                   >
                     <span className="font-display text-[17px] font-normal leading-[1.4] text-hudson-bay">

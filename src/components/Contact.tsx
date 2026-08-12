@@ -5,8 +5,9 @@ import { contactInfo } from "@/content/site";
 import Reveal from "@/components/Reveal";
 
 const FIELD_LABEL = "text-[10px] uppercase tracking-[0.24em] text-sidewalk";
-const FIELD_BASE =
-  "bg-transparent text-base text-paper outline-none transition-colors";
+// No outline-none here — the global focus-visible ring in globals.css is the
+// keyboard indicator; the gold border change is the supporting cue.
+const FIELD_BASE = "bg-transparent text-base text-paper transition-colors";
 
 export default function Contact() {
   // No backend exists, so the form hands off to the visitor's mail client
@@ -52,7 +53,7 @@ export default function Contact() {
                 type="text"
                 name="name"
                 required
-                className={`${FIELD_BASE} border-0 border-b border-sidewalk/45 px-0.5 py-2.5 focus:border-gold`}
+                className={`${FIELD_BASE} border-0 border-b border-sidewalk/70 px-0.5 py-2.5 focus:border-gold`}
               />
             </label>
             <label className="grid gap-2">
@@ -61,7 +62,7 @@ export default function Contact() {
                 type="email"
                 name="email"
                 required
-                className={`${FIELD_BASE} border-0 border-b border-sidewalk/45 px-0.5 py-2.5 focus:border-gold`}
+                className={`${FIELD_BASE} border-0 border-b border-sidewalk/70 px-0.5 py-2.5 focus:border-gold`}
               />
             </label>
             <label className="grid gap-2">
@@ -70,7 +71,7 @@ export default function Contact() {
                 name="message"
                 rows={5}
                 required
-                className={`${FIELD_BASE} resize-y border border-sidewalk/45 p-3 leading-[1.6] focus:border-gold`}
+                className={`${FIELD_BASE} resize-y border border-sidewalk/70 p-3 leading-[1.6] focus:border-gold`}
               />
             </label>
             <div className="flex flex-wrap items-center gap-5">
@@ -86,7 +87,7 @@ export default function Contact() {
                   : ""}
               </span>
             </div>
-            <p className="text-xs leading-[1.6] text-sidewalk/75">
+            <p className="text-xs leading-[1.6] text-sidewalk/95">
               Opens in your email app so you keep a copy of what you sent.
               Submitting this form does not create an attorney-client
               relationship.
@@ -110,7 +111,7 @@ export default function Contact() {
                   <p className="mb-2 text-sm leading-[1.7] text-sidewalk">
                     {office.address}
                   </p>
-                  <p className="mb-3 text-sm text-sidewalk/80">{office.hours}</p>
+                  <p className="mb-3 text-sm text-sidewalk/95">{office.hours}</p>
                   <a
                     href={`tel:${digitsOnly}`}
                     className="text-sm text-sidewalk transition-colors hover:text-gold"
