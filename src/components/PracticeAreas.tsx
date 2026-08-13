@@ -40,15 +40,17 @@ export default function PracticeAreas() {
             in a single column there is nothing to align to, so equal heights
             would just pad the short cards with dead space.
 
-            It stands down while a card is expanded: equal rows would stretch
-            all six to match the open one.
+            While a card is open it gives way to items-start. Grid items
+            stretch to their row by default, so otherwise the open card's
+            neighbours grow to match it and fill with blank space — and
+            equal rows would drag the other row up to that height too.
 
             min(300px,100%) rather than a bare 300px: below ~356px viewport the
             container is narrower than the track floor, and a bare 300px would
             overflow the page horizontally. */}
         <div
           className={`mt-11 grid gap-[22px] [grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))] ${
-            anyOpen ? "" : "md:auto-rows-fr"
+            anyOpen ? "items-start" : "md:auto-rows-fr"
           }`}
         >
           {practiceAreas.map((area, index) => {
