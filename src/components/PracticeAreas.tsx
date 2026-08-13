@@ -1,8 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import { practiceAreas, practiceIntro } from "@/content/site";
 import Reveal from "@/components/Reveal";
 import { practiceIcons } from "@/components/PracticeIcons";
 
 export default function PracticeAreas() {
+  // Single-open, matching the FAQ accordion. Letting several cards expand at
+  // once makes the grid jump around as rows resize.
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const anyOpen = openIndex !== null;
+
   return (
     <section
       id="practice-areas"
@@ -30,16 +38,27 @@ export default function PracticeAreas() {
             sharing a row — otherwise a title that wraps to two lines makes
             its whole row taller than the rest of the grid. Only from md up:
             in a single column there is nothing to align to, so equal heights
-            would just pad the short cards with dead space. */}
-        {/* min(300px,100%) rather than a bare 300px: below ~356px viewport the
+            would just pad the short cards with dead space.
+
+            It stands down while a card is expanded: equal rows would stretch
+            all six to match the open one.
+
+            min(300px,100%) rather than a bare 300px: below ~356px viewport the
             container is narrower than the track floor, and a bare 300px would
             overflow the page horizontally. */}
-        <div className="mt-11 grid gap-[22px] md:auto-rows-fr [grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))]">
+        <div
+          className={`mt-11 grid gap-[22px] [grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))] ${
+            anyOpen ? "" : "md:auto-rows-fr"
+          }`}
+        >
           {practiceAreas.map((area, index) => {
             const Icon = practiceIcons[index];
+            const isOpen = openIndex === index;
+            const detailId = `practice-detail-${index}`;
+
             return (
               <Reveal key={area.title} delay={(index % 3) * 0.06}>
-                <article className="h-full border border-comet/50 bg-white px-7 pb-[34px] pt-[30px] transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-gold">
+                <article className="flex h-full flex-col border border-comet/50 bg-white px-7 pb-[34px] pt-[30px] transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-gold">
                   <div className="flex items-center justify-between">
                     <span className="text-gold">
                       <Icon />
@@ -64,6 +83,36 @@ export default function PracticeAreas() {
                   <p className="text-sm leading-[1.7] text-ink/[0.78]">
                     {area.description}
                   </p>
+
+                  <div
+                    id={detailId}
+                    hidden={!isOpen}
+                    className="mt-4 border-t border-comet/40 pt-4 text-sm leading-[1.75] text-ink/[0.78]"
+                  >
+                    {area.detail}
+                  </div>
+
+                  {/* mt-auto pins the control to the bottom so it lines up
+                      across cards of differing text length. */}
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={detailId}
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="mt-auto flex items-center gap-2 self-start pt-5 text-[11px] uppercase tracking-[0.2em] text-hudson-bay transition-colors hover:text-ink"
+                  >
+                    <span className="border-b border-gold pb-1">
+                      {isOpen ? "Show less" : "What this covers"}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className={`text-gold transition-transform duration-300 ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
+                    >
+                      +
+                    </span>
+                  </button>
                 </article>
               </Reveal>
             );
