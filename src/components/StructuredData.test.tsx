@@ -44,7 +44,7 @@ describe("StructuredData", () => {
       (l: { address: { addressCountry: string } }) => l.address.addressCountry
     );
     expect(countries).toContain("PH");
-    expect(countries).toContain("US");
+    // Every office must resolve to a code; an unmatched city would emit "".
     expect(countries).not.toContain("");
   });
 

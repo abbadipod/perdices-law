@@ -63,13 +63,29 @@ export const practiceAreas = [
 ];
 
 export const credentials = [
-  { label: "United States Bar Admission", detail: "State Bar of California, admitted 2015" },
-  { label: "Philippine Bar Admission", detail: "Integrated Bar of the Philippines, admitted 2012" },
+  {
+    label: "Philippine Bar Admission",
+    detail: "Admitted 2006 — Roll of Attorneys No. 51416",
+  },
+  {
+    label: "Washington State Bar Admission",
+    detail: "Admitted 2023 — WSBA No. 61514",
+  },
   {
     label: "Education",
-    detail: "J.D., University of California, Hastings College of the Law; LL.B., University of the Philippines",
+    detail:
+      "LL.M., University of Washington; LL.B., Xavier University – Ateneo de Cagayan; B.S. Accounting, University of Santo Tomas",
   },
-  { label: "Years of Practice", detail: "12+ years across both jurisdictions" },
+  {
+    label: "Honors",
+    detail:
+      "CALI Excellence for the Future Awards — Constitutional Law I (Federalism) and Constitutional Law II (Individual Rights)",
+  },
+  {
+    label: "Years of Practice",
+    detail: "15+ years in litigation, appellate research, and legal advisory work",
+  },
+  { label: "Languages", detail: "English, Tagalog, and Cebuano" },
 ];
 
 export const faqItems = [
@@ -106,19 +122,23 @@ export const faqItems = [
 ];
 
 export const contactInfo = {
-  email: "info@perdiceslaw.com",
+  email: "chemaperdices@gmail.com",
   offices: [
     {
-      city: "Makati City, Philippines",
-      address: "Unit 1500, 6750 Ayala Avenue, Makati City, 1226 Metro Manila",
-      hours: "Monday–Friday, 9:00 AM–6:00 PM (PHT)",
-      phone: "+63 917 000 0000",
-    },
-    {
-      city: "San Francisco, United States",
-      address: "100 Market Street, Suite 300, San Francisco, CA 94105",
-      hours: "Monday–Friday, 9:00 AM–5:00 PM (PT)",
-      phone: "+1 415 000 0000",
+      city: "Dumaguete City, Philippines",
+      address: "Bricktown Center, Daro, Dumaguete City, Negros Oriental",
+      // `hours` is optional and deliberately unset: office hours were not in
+      // the source material, and inventing them on a law firm's site is worse
+      // than omitting them.
+      phone: "+63 945 779 5260",
     },
   ],
+} as {
+  email: string;
+  offices: {
+    city: string;
+    address: string;
+    hours?: string;
+    phone: string;
+  }[];
 };

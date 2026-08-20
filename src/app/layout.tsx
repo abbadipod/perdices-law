@@ -20,7 +20,7 @@ const publicSans = Public_Sans({
 
 const title = "Perdices Law | Dual-Qualified Attorney — US & Philippines";
 const description =
-  "The Law Office of Atty. Jose Mari Perdices — a dual-qualified attorney practising Philippine immigration, real estate, criminal, family, and business law.";
+  "The Law Office of Atty. Jose Mari V. Perdices, Dumaguete City — a Philippine lawyer with over fifteen years in litigation, appellate research, and legal advisory work, admitted in the Philippines and Washington State.";
 
 export const metadata: Metadata = {
   // Makes the OG/Twitter image URLs absolute, which scrapers require.

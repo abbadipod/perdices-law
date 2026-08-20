@@ -1,7 +1,7 @@
 import { contactInfo, credentials, practiceAreas } from "@/content/site";
 import { getSiteUrl } from "@/lib/site-url";
 
-const ATTORNEY_NAME = "Atty. Jose Mari Perdices";
+const ATTORNEY_NAME = "Atty. Jose Mari V. Perdices";
 const FIRM_NAME = "Perdices Law";
 
 function countryCode(city: string): string {
@@ -61,7 +61,8 @@ export default function StructuredData() {
         streetAddress: office.address,
         addressCountry: countryCode(office.city),
       },
-      openingHours: office.hours,
+      // Omitted rather than emitted empty when hours are unknown.
+      ...(office.hours ? { openingHours: office.hours } : {}),
     })),
   };
 

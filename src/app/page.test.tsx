@@ -30,7 +30,7 @@ describe("Home", () => {
       screen.getByRole("heading", { name: "Bar Admissions & Standing" })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("img", { name: "Atty. Jose Mari Perdices" })
+      screen.getByRole("img", { name: "Atty. Jose Mari V. Perdices" })
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Frequently Asked Questions" })

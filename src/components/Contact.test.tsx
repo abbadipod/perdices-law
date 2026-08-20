@@ -33,7 +33,10 @@ describe("Contact", () => {
     contactInfo.offices.forEach((office) => {
       expect(screen.getByText(office.city)).toBeInTheDocument();
       expect(screen.getByText(office.address)).toBeInTheDocument();
-      expect(screen.getByText(office.hours)).toBeInTheDocument();
+      // Hours are optional — only rendered when supplied.
+      if (office.hours) {
+        expect(screen.getByText(office.hours)).toBeInTheDocument();
+      }
     });
   });
 

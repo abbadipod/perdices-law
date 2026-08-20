@@ -24,8 +24,8 @@ describe("site content", () => {
     });
   });
 
-  it("lists 4 credentials entries", () => {
-    expect(credentials).toHaveLength(4);
+  it("lists the bar admissions and credentials", () => {
+    expect(credentials).toHaveLength(6);
     credentials.forEach((item) => {
       expect(item.label.length).toBeGreaterThan(0);
       expect(item.detail.length).toBeGreaterThan(0);
@@ -40,9 +40,9 @@ describe("site content", () => {
     });
   });
 
-  it("defines contact info with 2 offices, each with a phone number", () => {
-    expect(contactInfo.email).toBe("info@perdiceslaw.com");
-    expect(contactInfo.offices).toHaveLength(2);
+  it("defines contact info with the Dumaguete office and a phone number", () => {
+    expect(contactInfo.email).toBe("chemaperdices@gmail.com");
+    expect(contactInfo.offices).toHaveLength(1);
     contactInfo.offices.forEach((office) => {
       expect(office.phone.length).toBeGreaterThan(0);
     });
