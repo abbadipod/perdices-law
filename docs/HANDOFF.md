@@ -1,0 +1,137 @@
+# Perdices Law — handoff
+
+Single-page marketing site for the Law Office of Atty. Jose Mari V. Perdices,
+a Philippine lawyer in Dumaguete City who is also admitted in Washington State.
+
+- Repo: `https://github.com/abbadipod/perdices-law` (branch `master`)
+- Deploys automatically to Vercel on push to `master`
+- Next.js 16 · React 19 · Tailwind · Vitest · TypeScript strict
+- Every route is statically prerendered. No API routes, no database, no auth.
+
+## Running it
+
+Node lives at `C:\Program Files\nodejs` but is **not on PATH** in this
+environment. Prefix commands that need it:
+
+```bash
+export PATH="$PATH:/c/Program Files/nodejs"
+```
+
+```bash
+npm run dev      # next dev (Turbopack, default in 16)
+npm test         # 55 tests
+npm run lint     # eslint . — `next lint` was removed in Next 16
+npm run build
+```
+
+## Layout
+
+```
+src/app/           layout, page, robots.ts, sitemap.ts, icon.svg, opengraph-image.tsx
+src/components/    Nav Hero About PullQuote PracticeAreas Credentials FAQ Contact Footer
+                   + Reveal Eyebrow CrestMark PracticeIcons StructuredData
+src/content/site.ts   ALL copy and data. Components read from here; nothing is
+                      hardcoded in JSX except section headings.
+src/lib/site-url.ts   base URL resolution for metadata/robots/sitemap
+public/            crest.png  hero.webp  portrait.jpg
+docs/design-handoff-homepage-redesign/   the original design brief + prototype
+```
+
+Page order: Hero → About → PullQuote → PracticeAreas → Credentials → FAQ →
+Contact → Footer.
+
+## Decisions that look arbitrary but are not
+
+Please read before "fixing" any of these — each was measured, and several
+have tests guarding them.
+
+**Content is real, not placeholder.** Bar numbers, admission years, degrees,
+address, phone, email all come from his résumé and a `Content for Website.docx`
+he supplied. Earlier drafts contained invented credentials; those are gone.
+Do not reintroduce plausible-sounding detail — if a fact is not in his
+documents, it does not belong on the site.
+
+**Practice areas deliberately exclude immigration and family law.** Neither
+appears anywhere in his Philippine practice; his immigration/family exposure
+was US paralegal work in a *non-attorney* role. A test in `site.test.ts` fails
+if either reappears. Appellate leads because it is his strongest credential —
+close to five years inside the Court of Appeals drafting decisions.
+
+**US roles were non-attorney.** He is admitted in Washington State but worked
+there as a paralegal. The footer disclaimer says so explicitly. Keep that
+distinction; his own document is careful about it.
+
+**`gold` (#C7A05E) fails contrast as small text on light surfaces** (2.25–2.44
+on paper/white). So:
+- eyebrow labels are `hudson-bay`, not gold — gold lives in the *rule* beneath
+- practice card index numerals are `hudson-bay/80` (4.75:1)
+- the `+` state markers use `gold-deep` (#A67C2E), which clears 3:1
+- the focus ring is a two-tone light-inside-dark ring, because no single brand
+  colour clears 3:1 on all five surfaces (see `globals.css`)
+
+**`Reveal` renders visible and hides itself on mount.** Required by the design
+brief so a JS failure cannot blank the page. Framer's `whileInView` cannot do
+this — it puts `opacity:0` in the server HTML — which is why `Reveal` is plain
+React + CSS transitions and framer-motion is not a dependency.
+
+**Practice grid: `md:auto-rows-fr` when closed, `items-start` when open.**
+Grid items stretch to their row, so without the swap, expanding one card
+stretches all six to match (measured: all six hit 711px). Closed, equal rows
+stop a two-line title making its row taller than the other.
+`minmax(min(300px,100%),1fr)` — a bare `300px` overflows the page below ~356px.
+
+**Hero `object-position` is a responsive pair** (`66%` below `lg`, `100%`
+above). The photo is composed right of centre — detail centroid at 62.9% —
+and crop headroom is ~25% at desktop but 78% on a phone, so one value cannot
+centre it at both.
+
+**ESLint is pinned to 9.x, not latest.** `eslint-config-next@16` needs `>=9`,
+but ESLint 10 breaks its bundled parser (`scopeManager.addGlobals is not a
+function`).
+
+**The contact form hands off to `mailto:` on purpose.** There is no backend. A
+route handler without an email provider would report success and drop
+inquiries, which is worse than the handoff.
+
+## Outstanding
+
+Blocked on the client:
+
+1. **Office hours** — not in any source document. Deliberately omitted rather
+   than invented; `Contact` and the JSON-LD skip them when absent.
+2. **Contact form delivery.** `mailto:` silently does nothing for visitors with
+   no mail client bound — common on desktop. Needs Formspree/Basin (fastest) or
+   a route handler + Resend (needs account, verified domain, API key). Whatever
+   is chosen also needs spam protection and SPF/DKIM/DMARC, and should not
+   store submissions — a law firm inquiry can contain sensitive facts.
+3. **Practice-area detail copy needs Atty. Perdices's review.** The expandable
+   text describes Philippine procedure — filings, sequence, what needs a
+   personal appearance. It is a careful draft, not verified law.
+4. **Hero photograph is low-resolution and probably stock.** 1240px wide,
+   upscaled 1.68× on a 1440 screen, so it will look soft on a large monitor.
+   Wants a ~2400px original, and a commercial licence if it came from a stock
+   site or an image search.
+5. **`NEXT_PUBLIC_SITE_URL`** should be set on Vercel once a custom domain
+   exists. It currently falls back to the Vercel production URL, which is
+   correct for now.
+
+Optional, unstarted: analytics, routed practice-area pages, a Filipino
+language toggle.
+
+## Verification habits that worked
+
+The browser preview pane frequently refuses to composite, so screenshots fail.
+Measuring the DOM is more reliable anyway and caught several things a
+screenshot would have hidden:
+
+- contrast: composite `rgba` colours over their real backdrop before measuring;
+  a naive DOM walk reports the fixed nav as failing when it sits over the hero
+- tap targets: hit-test with `elementFromPoint`, since `::after` overlays
+  enlarge targets invisibly to `getBoundingClientRect`
+- content accuracy: diff the rendered HTML against a list of required facts and
+  banned former-placeholders
+- responsive: sweep 320 / 375 / 414 / 768 / 1024 / 1440 / 1920 and assert
+  `scrollWidth - clientWidth === 0`
+
+`git log` messages carry the reasoning for most changes and are worth reading
+before reversing something.
