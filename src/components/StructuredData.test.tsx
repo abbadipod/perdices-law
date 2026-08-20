@@ -36,6 +36,27 @@ describe("StructuredData", () => {
     );
   });
 
+  it("advertises no service his own documents do not evidence", () => {
+    // The sibling guard in site.test.ts only inspects `practiceAreas`. The
+    // JSON-LD description used to be authored separately and still named
+    // immigration and family law; crawlers read it, so the whole payload —
+    // not just the offer catalogue — has to be clean.
+    const { container } = render(<StructuredData />);
+    const payload = JSON.stringify(parsed(container));
+
+    expect(payload).not.toMatch(/immigration/i);
+    expect(payload).not.toMatch(/family/i);
+  });
+
+  it("describes the practice from the practice areas, not a parallel string", () => {
+    const { container } = render(<StructuredData />);
+    const data = parsed(container);
+
+    practiceAreas.forEach((area) => {
+      expect(data.description).toContain(area.title);
+    });
+  });
+
   it("lists every school he attended as a separate alumniOf entry", () => {
     const { container } = render(<StructuredData />);
     const data = parsed(container);

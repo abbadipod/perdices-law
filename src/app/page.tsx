@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import PracticeAreas from "@/components/PracticeAreas";
 import Credentials from "@/components/Credentials";
 import About from "@/components/About";
-import PullQuote from "@/components/PullQuote";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -22,9 +21,13 @@ export default function Home() {
       <main id="main">
         <Hero />
         <About />
-        <PullQuote />
-        <PracticeAreas />
+        {/* Credentials sits between the two sand sections on purpose: it is the
+            page's dark beat. About and PracticeAreas are both bg-sand, and
+            adjacent they ran 1723px unbroken — a third of the page reading as
+            one block. It also reads better here, with the bio flowing into the
+            admissions that back it. */}
         <Credentials />
+        <PracticeAreas />
         <FAQ />
         <Contact />
       </main>

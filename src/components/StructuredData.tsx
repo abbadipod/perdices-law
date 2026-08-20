@@ -4,6 +4,12 @@ import { getSiteUrl } from "@/lib/site-url";
 const ATTORNEY_NAME = "Atty. Jose Mari V. Perdices";
 const FIRM_NAME = "Perdices Law";
 
+/** Oxford-comma list, so the description reads as a sentence. */
+function sentenceList(items: string[]): string {
+  if (items.length < 3) return items.join(" and ");
+  return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
 function countryCode(city: string): string {
   if (city.includes("Philippines")) return "PH";
   if (city.includes("United States")) return "US";
@@ -30,8 +36,14 @@ export default function StructuredData() {
     url: siteUrl,
     image: `${siteUrl}/opengraph-image`,
     email: contactInfo.email,
-    description:
-      "Philippine immigration, real estate, criminal, family, business, and civil litigation counsel from a dual-qualified US and Philippine attorney.",
+    // Derived, not authored. This was a hardcoded string that still listed
+    // immigration and family law — neither of which is offered — long after
+    // they were removed from the practice areas. The guard in site.test.ts
+    // only inspected `practiceAreas`, so the drift went unnoticed. Building
+    // it from the same source makes that class of drift impossible.
+    description: `Philippine legal counsel from ${ATTORNEY_NAME}: ${sentenceList(
+      practiceAreas.map((area) => area.title)
+    )}.`,
     areaServed: [
       { "@type": "Country", name: "Philippines" },
       { "@type": "Country", name: "United States" },

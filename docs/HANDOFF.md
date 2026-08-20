@@ -19,7 +19,7 @@ export PATH="$PATH:/c/Program Files/nodejs"
 
 ```bash
 npm run dev      # next dev (Turbopack, default in 16)
-npm test         # 55 tests
+npm test         # 54 tests
 npm run lint     # eslint . — `next lint` was removed in Next 16
 npm run build
 ```
@@ -28,7 +28,7 @@ npm run build
 
 ```
 src/app/           layout, page, robots.ts, sitemap.ts, icon.svg, opengraph-image.tsx
-src/components/    Nav Hero About PullQuote PracticeAreas Credentials FAQ Contact Footer
+src/components/    Nav Hero About Credentials PracticeAreas FAQ Contact Footer
                    + Reveal Eyebrow CrestMark PracticeIcons StructuredData
 src/content/site.ts   ALL copy and data. Components read from here; nothing is
                       hardcoded in JSX except section headings.
@@ -37,8 +37,8 @@ public/            crest.png  hero.webp  portrait.jpg
 docs/design-handoff-homepage-redesign/   the original design brief + prototype
 ```
 
-Page order: Hero → About → PullQuote → PracticeAreas → Credentials → FAQ →
-Contact → Footer.
+Page order: Hero → About → Credentials → PracticeAreas → FAQ → Contact →
+Footer.
 
 ## Decisions that look arbitrary but are not
 
@@ -53,9 +53,15 @@ documents, it does not belong on the site.
 
 **Practice areas deliberately exclude immigration and family law.** Neither
 appears anywhere in his Philippine practice; his immigration/family exposure
-was US paralegal work in a *non-attorney* role. A test in `site.test.ts` fails
-if either reappears. Appellate leads because it is his strongest credential —
-close to five years inside the Court of Appeals drafting decisions.
+was US paralegal work in a *non-attorney* role. Two tests fail if either
+reappears: one in `site.test.ts` over `practiceAreas`, and one in
+`StructuredData.test.tsx` over the whole JSON-LD payload. The second exists
+because the first was not enough — the JSON-LD description was authored
+separately and still advertised both to crawlers long after they were dropped
+from the site. It is now derived from `practiceAreas`, so it cannot drift
+again. Anything else that restates the practice list should be derived too.
+Appellate leads because it is his strongest credential — close to five years
+inside the Court of Appeals drafting decisions.
 
 **US roles were non-attorney.** He is admitted in Washington State but worked
 there as a paralegal. The footer disclaimer says so explicitly. Keep that
@@ -68,6 +74,16 @@ on paper/white). So:
 - the `+` state markers use `gold-deep` (#A67C2E), which clears 3:1
 - the focus ring is a two-tone light-inside-dark ring, because no single brand
   colour clears 3:1 on all five surfaces (see `globals.css`)
+
+**`Credentials` sits between About and PracticeAreas as the page’s dark
+beat.** Those two are both `bg-sand`; adjacent they ran 1723px unbroken — a
+third of the page reading as one block. A `PullQuote` section (“Two legal
+systems. One point of contact.”) used to do the splitting, but the firm does
+not practise US law, so the claim was dropped and the existing dark section
+took over the job. No new surface was introduced, so none of the measured
+contrast work above needed re-auditing. Verified at 1440: no two adjacent
+sections share a background, longest single-surface run 1119px. It also reads
+better here — the bio flows into the admissions that back it.
 
 **`Reveal` renders visible and hides itself on mount.** Required by the design
 brief so a JS failure cannot blank the page. Framer's `whileInView` cannot do
