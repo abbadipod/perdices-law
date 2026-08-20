@@ -1,4 +1,4 @@
-import { contactInfo, credentials, practiceAreas } from "@/content/site";
+import { contactInfo, education, practiceAreas } from "@/content/site";
 import { getSiteUrl } from "@/lib/site-url";
 
 const ATTORNEY_NAME = "Atty. Jose Mari V. Perdices";
@@ -40,9 +40,12 @@ export default function StructuredData() {
       "@type": "Person",
       name: ATTORNEY_NAME,
       jobTitle: "Attorney at Law",
-      alumniOf: credentials
-        .filter((item) => item.label === "Education")
-        .map((item) => ({ "@type": "EducationalOrganization", name: item.detail })),
+      // One entry per institution, from the structured education list —
+      // schema wants the bare institution name, not the display line.
+      alumniOf: education.map((e) => ({
+        "@type": "EducationalOrganization",
+        name: e.school,
+      })),
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",

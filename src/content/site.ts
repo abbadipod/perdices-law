@@ -62,6 +62,37 @@ export const practiceAreas = [
   },
 ];
 
+/**
+ * Structured so the Credentials list and the JSON-LD `alumniOf` both derive
+ * from one source — the schema needs the bare institution name, the page
+ * wants the full line.
+ *
+ * Reverse chronological, as credentials are conventionally listed.
+ */
+export const education = [
+  {
+    degree: "Master of Laws (LL.M.)",
+    school: "University of Washington",
+    year: "2017",
+  },
+  {
+    degree: "Advanced Paralegal Certificate",
+    school: "Edmonds College",
+    year: "2016",
+    note: "academic honors",
+  },
+  {
+    degree: "Bachelor of Laws (LL.B.)",
+    school: "Xavier University – Ateneo de Cagayan",
+    year: "2005",
+  },
+  {
+    degree: "Bachelor of Science in Accounting",
+    school: "University of Santo Tomas",
+    year: "1996",
+  },
+];
+
 export const credentials = [
   {
     label: "Philippine Bar Admission",
@@ -73,8 +104,11 @@ export const credentials = [
   },
   {
     label: "Education",
-    detail:
-      "LL.M., University of Washington; LL.B., Xavier University – Ateneo de Cagayan; B.S. Accounting, University of Santo Tomas",
+    // An array renders as one line per entry.
+    detail: education.map(
+      (e) =>
+        `${e.degree}${e.note ? ` (${e.note})` : ""} — ${e.school}, ${e.year}`
+    ),
   },
   {
     label: "Honors",

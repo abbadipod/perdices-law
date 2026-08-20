@@ -26,7 +26,16 @@ export default function Credentials() {
                   {item.label}
                 </dt>
                 <dd className="m-0 text-sm leading-[1.7] text-sidewalk">
-                  {item.detail}
+                  {Array.isArray(item.detail) ? (
+                    // Multi-entry credentials (education) get a line each.
+                    <span className="flex flex-col gap-2">
+                      {item.detail.map((line) => (
+                        <span key={line}>{line}</span>
+                      ))}
+                    </span>
+                  ) : (
+                    item.detail
+                  )}
                 </dd>
               </div>
             </Reveal>

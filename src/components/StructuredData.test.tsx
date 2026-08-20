@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import StructuredData from "./StructuredData";
-import { contactInfo, practiceAreas } from "@/content/site";
+import { contactInfo, education, practiceAreas } from "@/content/site";
 
 function parsed(container: HTMLElement) {
   const script = container.querySelector(
@@ -34,6 +34,20 @@ describe("StructuredData", () => {
     expect(data.hasOfferCatalog.itemListElement[0].itemOffered.name).toBe(
       practiceAreas[0].title
     );
+  });
+
+  it("lists every school he attended as a separate alumniOf entry", () => {
+    const { container } = render(<StructuredData />);
+    const data = parsed(container);
+
+    const schools = data.founder.alumniOf.map((a: { name: string }) => a.name);
+    expect(schools).toHaveLength(education.length);
+    expect(schools).toContain("University of Washington");
+    expect(schools).toContain("Xavier University – Ateneo de Cagayan");
+    // Bare institution names — not the display line with degree and year.
+    schools.forEach((name: string) => {
+      expect(name).not.toMatch(/—|\d{4}/);
+    });
   });
 
   it("tags each office with a country code", () => {
