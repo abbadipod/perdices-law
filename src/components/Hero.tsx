@@ -48,14 +48,21 @@ export default function Hero() {
         className="absolute -inset-y-[8%] inset-x-0 bg-hudson-bay will-change-transform"
       >
         {/* Decorative — the headline carries the meaning. `priority` because
-            this is the LCP element. */}
+            this is the LCP element.
+
+            The photograph is composed right of centre: its detail sits
+            between 40% and 90% of the width, centred near 63%, with dead
+            haze on the left. Centring the subject means cropping from the
+            left, and how far that can go depends on the crop headroom —
+            about 25% at desktop widths but 78% on a phone. One value cannot
+            serve both, hence the pair. */}
         <Image
           src="/hero.webp"
           alt=""
           fill
           sizes="100vw"
           priority
-          className="object-cover object-center"
+          className="object-cover object-[66%_50%] lg:object-[100%_50%]"
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-ink/[0.72] via-ink/50 to-ink/[0.82]" />
