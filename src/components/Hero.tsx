@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function Hero() {
@@ -44,8 +45,19 @@ export default function Hero() {
       <div
         ref={bgRef}
         data-testid="hero-bg"
-        className="absolute -inset-y-[8%] inset-x-0 bg-hudson-bay bg-[url('/hero.svg')] bg-cover bg-center will-change-transform"
-      />
+        className="absolute -inset-y-[8%] inset-x-0 bg-hudson-bay will-change-transform"
+      >
+        {/* Decorative — the headline carries the meaning. `priority` because
+            this is the LCP element. */}
+        <Image
+          src="/hero.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          priority
+          className="object-cover object-center"
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-b from-ink/[0.72] via-ink/50 to-ink/[0.82]" />
 
       <div className="relative flex min-h-[88vh] flex-col items-center justify-center px-7 pb-[150px] pt-[120px] text-center">
