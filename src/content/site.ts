@@ -19,46 +19,46 @@ export const practiceIntro =
  */
 export const practiceAreas = [
   {
-    title: "Philippine Immigration (US → Philippines)",
+    title: "Appellate Litigation",
     description:
-      "Dual citizenship (RA 9225), balikbayan and long-term visas, and residency matters for US citizens and Filipino-Americans relocating to the Philippines.",
+      "Appeals, petitions for review, and certiorari before the Court of Appeals and higher courts.",
     detail:
-      "Most clients arrive in one of three situations: a Filipino-American reacquiring citizenship under RA 9225, a retiree weighing a long-term resident visa, or a family settling the status of a spouse or child ahead of a move. The work covers an eligibility review, preparation and filing of the petition with the Bureau of Immigration or the appropriate consulate, coordination of civil registry documents, and appearance at interviews or hearings where these are required. Dual citizenship is often quicker than clients expect. Resident visa applications vary considerably by category and by how complete the supporting documents are at the point of filing — you will get an assessment of both at the consultation.",
-  },
-  {
-    title: "Real Estate Law",
-    description:
-      "Property due diligence, land title verification, and sale or lease agreements for real property located in the Philippines.",
-    detail:
-      "Property transactions here turn on the quality of the title, so the work starts with verification: the title and tax declaration, checks for liens, adverse claims and unpaid real property tax, and confirmation that the seller actually has authority to sell. From there it covers drafting or reviewing the deed of sale, lease, or contract to sell; computing and coordinating the taxes and transfer fees that fall due; and following the transfer through to issuance of a new title. Inherited property and purchases made from abroad get particular attention — the latter usually needs a special power of attorney arranged before anything can be signed.",
-  },
-  {
-    title: "Criminal Law",
-    description:
-      "Representation and counsel in criminal proceedings before Philippine courts, from arraignment through trial.",
-    detail:
-      "Representation in criminal proceedings before Philippine courts, from the earliest stage through to trial. That includes assistance during inquest and preliminary investigation, preparation of counter-affidavits, applications for bail, and appearance at arraignment, pre-trial and trial. Where a matter is still at the complaint stage, the work often centres on whether there is probable cause at all. Clients abroad with a pending case or an outstanding warrant in the Philippines should raise it early: what can be handled remotely and what genuinely requires a personal appearance differs case to case, and is one of the first things worth establishing.",
-  },
-  {
-    title: "Family Law",
-    description:
-      "Annulment, legal separation, custody, and support matters under Philippine family law.",
-    detail:
-      "Petitions for declaration of nullity and annulment of marriage, legal separation, and the custody and support questions that usually travel with them. Annulment in the Philippines is a court proceeding rather than an administrative one, and it takes time. The work covers assessing which ground realistically applies, preparing the petition and its supporting evidence, coordinating expert evaluation where the ground calls for it, and representation through hearings to decision and registration of the decree. Also handled: judicial recognition of a foreign divorce, a separate proceeding often needed by Filipinos whose marriage to a foreign spouse ended abroad.",
-  },
-  {
-    title: "Business & Corporate Law",
-    description:
-      "Business registration, contracts, and corporate compliance for entities operating in the Philippines.",
-    detail:
-      "Setting up a Philippine entity and keeping it compliant: registration with the appropriate agency, drafting of constitutive documents, local business and tax registration, and advice on the ownership structures open to a business with foreign shareholders. Ongoing work covers contracts with suppliers, customers and staff; corporate housekeeping such as board and stockholder resolutions and annual filings; and review of arrangements that carry a compliance dimension, including the restrictions that apply to foreign investment in certain sectors. The question that comes up first is usually structural — whether a corporation, a branch, or a representative office actually fits what the business intends to do here.",
+      "Atty. Perdices spent close to five years inside the Court of Appeals – Mindanao Station, researching appealed cases and drafting the decisions and resolutions the court issued. That vantage point shapes how appeals are handled here: identifying which errors are genuinely reviewable, framing assignments of error the court can act on, and building a record that survives scrutiny rather than restating the trial below. Work covers appeals and petitions for review, petitions for certiorari, motions for reconsideration, and appellate briefs and memoranda. Where an adverse decision has just been received, the first question is usually the remedy and the period left to take it — both worth establishing quickly, since appellate deadlines are unforgiving.",
   },
   {
     title: "Civil Litigation",
     description:
-      "Representation in civil disputes, including contract, property, and collection cases, before Philippine courts.",
+      "Contract, property, collection, and damages disputes before Philippine trial courts.",
     detail:
-      "Representation in civil disputes before Philippine courts — breach of contract, collection of sums due, property and boundary disputes, damages, and enforcement of judgments already obtained. The work begins with an assessment that is often worth more than the filing itself: the strength of the evidence, the likely cost and timeline, whether the claim is still within the prescriptive period, and whether the matter is better resolved through settlement or barangay conciliation before it reaches a courtroom at all. Where litigation is the right route, it covers pleadings, representation through pre-trial and trial, and execution after judgment.",
+      "Representation in civil disputes — breach of contract, collection of sums due, property and boundary disputes, damages, and enforcement of judgments already obtained. The work begins with an assessment that is often worth more than the filing itself: the strength of the evidence, the likely cost and timeline, whether the claim is still within the prescriptive period, and whether the matter should first go through barangay conciliation or is better resolved by settlement. Where litigation is the right route, it covers the pleadings, representation through pre-trial and trial, and execution after judgment.",
+  },
+  {
+    title: "Criminal Law & Preliminary Investigation",
+    description:
+      "Representation from inquest and preliminary investigation through arraignment, trial, and appeal.",
+    detail:
+      "Criminal matters are often decided long before trial, at preliminary investigation, where the question is simply whether probable cause exists. Work at that stage covers counter-affidavits, motions for reconsideration of a prosecutor's resolution, and petitions for review — the points at which a case can end without a courtroom. Where an information has been filed, representation continues through applications for bail, arraignment, pre-trial, trial, and appeal. Years as a Public Attorney II in Cagayan de Oro built this practice on frontline criminal defence. Clients abroad with a pending case or an outstanding warrant should raise it early: what can be handled remotely and what requires a personal appearance differs case to case.",
+  },
+  {
+    title: "Land Registration & Property",
+    description:
+      "Title verification, registration proceedings, and due diligence for Philippine real property.",
+    detail:
+      "Property matters here turn on the quality of the title, so the work starts with verification: the certificate of title and tax declaration, checks for liens, adverse claims and unpaid real property tax, and confirmation that the seller has authority to sell. It extends to original and subsequent registration proceedings, reconstitution of lost or destroyed titles, correction of entries, and the transfer itself — deed preparation, the taxes and fees that fall due, and follow-through to issuance of a new title. Inherited property and purchases made from abroad get particular attention; the latter usually needs a special power of attorney arranged before anything can be signed.",
+  },
+  {
+    title: "Estate Settlement & Planning",
+    description:
+      "Judicial and extrajudicial settlement of estates, and planning to keep succession straightforward.",
+    detail:
+      "When someone dies owning property in the Philippines, the estate has to be settled before title can move to the heirs. Where the heirs agree and the conditions are met, this can be done extrajudicially — a settlement agreement, publication, estate tax clearance with the BIR, and transfer of the titles. Where there is a will, a dispute, or a minor among the heirs, it goes to court instead. The work covers both routes, along with the estate tax filings that gate the transfer. Planning ahead is the cheaper conversation: how property is titled and documented during a lifetime determines how difficult the settlement becomes later, particularly for families with heirs living abroad.",
+  },
+  {
+    title: "Transactional & Corporate",
+    description:
+      "Contracts, business registration, and corporate compliance for companies operating in the Philippines.",
+    detail:
+      "Contract drafting and review across the arrangements a business or an individual actually signs — sale, lease, services, loan and security, and agency. On the corporate side: registration of the entity, constitutive documents, local business and tax registration, and the housekeeping that keeps a company in good standing, including board and stockholder resolutions and annual filings. Atty. Perdices has served as corporate secretary and advised a company chairman on contract negotiation and review, so the perspective is a practical one. For businesses with foreign shareholders, the first question is usually structural — which vehicle fits what the business actually intends to do here, and what ownership restrictions apply to the sector.",
   },
 ];
 
@@ -102,7 +102,7 @@ export const faqItems = [
   {
     question: "How do you determine which country's law applies to my case?",
     answer:
-      "It depends on the subject matter and where the relevant facts, property, or parties are located. Immigration matters are generally governed by the receiving country's law; property, family, and criminal matters are generally governed by Philippine law if the matter arises there. This is one of the first things we sort out together.",
+      "It depends on the subject matter and where the relevant facts, property, or parties are located. Property, succession, and criminal matters arising in the Philippines are generally governed by Philippine law and heard by Philippine courts, whichever country you happen to live in. This practice handles the Philippine side; where a matter also has a US dimension, that is identified early so it can be referred to US counsel rather than left unaddressed.",
   },
   {
     question: "How much does a consultation cost?",

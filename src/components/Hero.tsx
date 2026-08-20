@@ -53,11 +53,11 @@ export default function Hero() {
           Dual-Qualified Attorney — US &amp; Philippines
         </p>
         <h1 className="animate-hero-in max-w-[15ch] text-balance font-display text-[clamp(40px,5.6vw,82px)] font-medium uppercase leading-[1.06] tracking-[0.01em] text-paper [animation-delay:80ms]">
-          Practical legal solutions, across two countries.
+          Litigation. Appellate insight. Practical legal solutions.
         </h1>
         <p className="animate-hero-in mt-7 max-w-[46ch] text-[17px] leading-[1.7] text-sidewalk [animation-delay:160ms]">
-          Philippine immigration, real estate, and litigation counsel for
-          clients with lives in both countries.
+          Appellate, litigation, property, and transactional counsel under
+          Philippine law — from Dumaguete City, for clients here and abroad.
         </p>
         <a
           href="#contact"

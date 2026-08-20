@@ -12,7 +12,7 @@ describe("Hero", () => {
     render(<Hero />);
     expect(
       screen.getByRole("heading", {
-        name: "Practical legal solutions, across two countries.",
+        name: "Litigation. Appellate insight. Practical legal solutions.",
       })
     ).toBeInTheDocument();
 
@@ -27,7 +27,7 @@ describe("Hero", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText(
-        /Philippine immigration, real estate, and litigation counsel/
+        /Appellate, litigation, property, and transactional counsel/
       )
     ).toBeInTheDocument();
   });

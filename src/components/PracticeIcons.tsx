@@ -1,4 +1,7 @@
-function PlaneIcon() {
+// Thin-line marks in the crest's style, one per practice area.
+
+// Appellate: a courthouse colonnade — the reviewing court above the trial one.
+function PillarsIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -10,7 +13,48 @@ function PlaneIcon() {
       aria-hidden="true"
       className="h-6 w-6"
     >
-      <path d="M3 11l18-8-8 18-2-8-8-2z" />
+      <path d="M3 9 12 4l9 5" />
+      <path d="M5 9v9M10 9v9M14 9v9M19 9v9" />
+      <path d="M3 21h18" />
+    </svg>
+  );
+}
+
+// Civil litigation: scales — the balancing of competing claims.
+function ScalesIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="h-6 w-6"
+    >
+      <path d="M12 4v16" />
+      <path d="M7 20h10" />
+      <path d="M4 8h16" />
+      <path d="M4 8 1.5 14a3 3 0 0 0 5 0z" />
+      <path d="M20 8l-2.5 6a3 3 0 0 0 5 0z" />
+    </svg>
+  );
+}
+
+function ShieldIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="h-6 w-6"
+    >
+      <path d="M12 3l7 3v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" />
     </svg>
   );
 }
@@ -33,23 +77,7 @@ function HouseIcon() {
   );
 }
 
-function ShieldIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className="h-6 w-6"
-    >
-      <path d="M12 3l7 3v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" />
-    </svg>
-  );
-}
-
+// Estate settlement: heirs and succession.
 function FamilyIcon() {
   return (
     <svg
@@ -89,29 +117,12 @@ function BriefcaseIcon() {
   );
 }
 
-function DocumentIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className="h-6 w-6"
-    >
-      <rect x="5" y="3" width="14" height="18" rx="1" />
-      <path d="M8 8h8M8 12h8M8 16h5" />
-    </svg>
-  );
-}
-
+// Order matches `practiceAreas` in site.ts.
 export const practiceIcons = [
-  PlaneIcon,
-  HouseIcon,
-  ShieldIcon,
-  FamilyIcon,
-  BriefcaseIcon,
-  DocumentIcon,
+  PillarsIcon, // Appellate Litigation
+  ScalesIcon, // Civil Litigation
+  ShieldIcon, // Criminal Law & Preliminary Investigation
+  HouseIcon, // Land Registration & Property
+  FamilyIcon, // Estate Settlement & Planning
+  BriefcaseIcon, // Transactional & Corporate
 ];

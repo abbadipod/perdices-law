@@ -12,16 +12,22 @@ describe("site content", () => {
     ]);
   });
 
-  it("lists 6 Philippine practice areas with immigration first", () => {
+  it("leads with appellate work, his strongest credential", () => {
     expect(practiceAreas).toHaveLength(6);
-    expect(practiceAreas[0].title).toBe("Philippine Immigration (US → Philippines)");
-    expect(
-      practiceAreas.some((area) => area.title.startsWith("US Immigration"))
-    ).toBe(false);
+    expect(practiceAreas[0].title).toBe("Appellate Litigation");
     practiceAreas.forEach((area) => {
       expect(area.title.length).toBeGreaterThan(0);
       expect(area.description.length).toBeGreaterThan(0);
+      expect(area.detail.length).toBeGreaterThan(0);
     });
+  });
+
+  it("advertises no service his own documents do not evidence", () => {
+    // Immigration and family law appear nowhere in his Philippine practice;
+    // the US immigration exposure was in a non-attorney paralegal role.
+    const titles = practiceAreas.map((a) => a.title).join(" ");
+    expect(titles).not.toMatch(/immigration/i);
+    expect(titles).not.toMatch(/family law/i);
   });
 
   it("lists the bar admissions and credentials", () => {
