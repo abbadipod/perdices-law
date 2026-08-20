@@ -75,13 +75,6 @@ export default function About() {
           </div>
         </Reveal>
 
-        <Reveal>
-          <p className="mx-auto mt-14 max-w-[24ch] text-balance text-center font-display text-[clamp(26px,3.2vw,40px)] font-medium uppercase leading-[1.22] text-hudson-bay">
-            Two legal systems.
-            <br />
-            One point of contact.
-          </p>
-        </Reveal>
       </div>
     </section>
   );

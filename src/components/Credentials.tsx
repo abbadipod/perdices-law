@@ -1,5 +1,6 @@
-import { credentials } from "@/content/site";
+import { credentials, credentialStats } from "@/content/site";
 import Reveal from "@/components/Reveal";
+import Eyebrow from "@/components/Eyebrow";
 
 export default function Credentials() {
   return (
@@ -9,16 +10,36 @@ export default function Credentials() {
       className="bg-ink px-7 py-[104px]"
     >
       <div className="mx-auto max-w-[1000px]">
+        {/* Centred here — the other sections lead left, so this one reads as
+            its own moment rather than another row in the same rhythm. */}
         <Reveal>
-          <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-gold">
-            Credentials
-          </p>
-          <h2 className="font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-paper">
-            Bar Admissions &amp; Standing
-          </h2>
+          <div className="flex flex-col items-center text-center">
+            <Eyebrow tone="light" align="center">
+              Credentials
+            </Eyebrow>
+            <h2 className="mt-4 font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-paper">
+              Bar Admissions &amp; Standing
+            </h2>
+          </div>
         </Reveal>
 
-        <dl className="mt-[46px] border-t border-comet/30">
+        {/* The three facts worth reading at a glance. */}
+        <div className="mt-14 grid gap-10 sm:grid-cols-3">
+          {credentialStats.map((stat, index) => (
+            <Reveal key={stat.figure} delay={index * 0.08}>
+              <div className="flex flex-col items-center text-center">
+                <span className="font-display text-[clamp(44px,5vw,64px)] font-medium leading-none text-gold">
+                  {stat.figure}
+                </span>
+                <span className="mt-3 text-[11px] uppercase tracking-[0.2em] text-sidewalk">
+                  {stat.label}
+                </span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <dl className="mt-16 border-t border-comet/30">
           {credentials.map((item, index) => (
             <Reveal key={item.label} delay={index * 0.06}>
               <div className="grid items-baseline gap-3 border-b border-comet/30 py-[26px] sm:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] sm:gap-7">

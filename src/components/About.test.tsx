@@ -23,11 +23,4 @@ describe("About", () => {
     expect(screen.getByText("Attorney at Law")).toBeInTheDocument();
   });
 
-  it("renders the pull-quote", () => {
-    render(<About />);
-    expect(
-      screen.getByText(/Two legal systems\./)
-    ).toBeInTheDocument();
-    expect(screen.getByText(/One point of contact\./)).toBeInTheDocument();
-  });
 });

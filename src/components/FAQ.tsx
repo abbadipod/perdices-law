@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { faqItems } from "@/content/site";
 import Reveal from "@/components/Reveal";
+import Eyebrow from "@/components/Eyebrow";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -15,10 +16,8 @@ export default function FAQ() {
     >
       <div className="mx-auto max-w-[840px]">
         <Reveal>
-          <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-hudson-bay">
-            Common questions
-          </p>
-          <h2 className="font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-ink">
+          <Eyebrow>Common questions</Eyebrow>
+          <h2 className="mt-4 font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-ink">
             Frequently Asked Questions
           </h2>
         </Reveal>

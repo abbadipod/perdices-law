@@ -93,14 +93,25 @@ export const education = [
   },
 ];
 
+/**
+ * The three facts worth reading at a glance, set as display figures above
+ * the detailed list. Only facts with a genuine numeral belong here —
+ * education and honours have none, so they stay in the list below.
+ */
+export const credentialStats = [
+  { figure: "2006", label: "Admitted, Philippines" },
+  { figure: "2023", label: "Admitted, Washington State" },
+  { figure: "15+", label: "Years in practice" },
+];
+
 export const credentials = [
   {
     label: "Philippine Bar Admission",
-    detail: "Admitted 2006 — Roll of Attorneys No. 51416",
+    detail: "Roll of Attorneys No. 51416",
   },
   {
     label: "Washington State Bar Admission",
-    detail: "Admitted 2023 — WSBA No. 61514",
+    detail: "WSBA No. 61514",
   },
   {
     label: "Education",
@@ -116,8 +127,8 @@ export const credentials = [
       "CALI Excellence for the Future Awards — Constitutional Law I (Federalism) and Constitutional Law II (Individual Rights)",
   },
   {
-    label: "Years of Practice",
-    detail: "15+ years in litigation, appellate research, and legal advisory work",
+    label: "Practice",
+    detail: "Litigation, appellate research, and legal advisory work",
   },
   { label: "Languages", detail: "English, Tagalog, and Cebuano" },
 ];

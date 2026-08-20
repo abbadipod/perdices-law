@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { contactInfo } from "@/content/site";
 import Reveal from "@/components/Reveal";
+import Eyebrow from "@/components/Eyebrow";
 
 const FIELD_LABEL = "text-[10px] uppercase tracking-[0.24em] text-sidewalk";
 // No outline-none here — the global focus-visible ring in globals.css is the
@@ -37,10 +38,8 @@ export default function Contact() {
     >
       <div className="mx-auto max-w-[1120px]">
         <Reveal>
-          <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-sidewalk">
-            Get in touch
-          </p>
-          <h2 className="font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-paper">
+          <Eyebrow tone="light">Get in touch</Eyebrow>
+          <h2 className="mt-4 font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-paper">
             Request a consultation
           </h2>
         </Reveal>

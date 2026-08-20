@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { practiceAreas, practiceIntro } from "@/content/site";
 import Reveal from "@/components/Reveal";
+import Eyebrow from "@/components/Eyebrow";
 import { practiceIcons } from "@/components/PracticeIcons";
 
 export default function PracticeAreas() {
@@ -21,10 +22,8 @@ export default function PracticeAreas() {
         <Reveal>
           <div className="flex flex-col gap-6 border-b border-ink/20 pb-[26px] md:flex-row md:items-end md:justify-between md:gap-8">
             <div>
-              <p className="mb-2.5 text-[11px] uppercase tracking-[0.28em] text-hudson-bay">
-                What we handle
-              </p>
-              <h2 className="font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-ink">
+              <Eyebrow>What we handle</Eyebrow>
+              <h2 className="mt-4 font-display text-[clamp(28px,3.4vw,44px)] font-medium uppercase leading-[1.1] text-ink">
                 Practice Areas
               </h2>
             </div>
@@ -60,7 +59,10 @@ export default function PracticeAreas() {
 
             return (
               <Reveal key={area.title} delay={(index % 3) * 0.06}>
-                <article className="flex h-full flex-col border border-comet/50 bg-white px-7 pb-[34px] pt-[30px] transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-gold">
+                {/* group/before: a gold rule draws across the top edge on
+                    hover, so the card has an accent moment of its own rather
+                    than only a border colour change. */}
+                <article className="group relative flex h-full flex-col border border-comet/50 bg-white px-7 pb-[34px] pt-[30px] transition-[border-color,transform] duration-300 before:absolute before:inset-x-0 before:-top-px before:h-0.5 before:origin-left before:scale-x-0 before:bg-gold before:transition-transform before:duration-300 before:content-[''] hover:-translate-y-1 hover:border-gold hover:before:scale-x-100">
                   <div className="flex items-center justify-between">
                     <span className="text-gold">
                       <Icon />
