@@ -9,6 +9,10 @@ build/
 # Environment
 .env*.local
 
+# TypeScript incremental build cache
+*.tsbuildinfo
+next-env.d.ts.bak
+
 # Misc
 .DS_Store
 *.pem

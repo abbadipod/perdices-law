@@ -9,6 +9,10 @@ const config: Config = {
         comet: "#97A2AE",
         "hudson-bay": "#3F5266",
         gold: "#C7A05E",
+        // Deeper gold for marks that must carry contrast on light
+        // backgrounds: #C7A05E measures 2.25:1 on paper, under the 3:1
+        // WCAG 1.4.11 asks of a control that conveys state.
+        "gold-deep": "#A67C2E",
         ink: "#1A1F26",
         paper: "#F7F6F3",
         sand: "#ECE3D2",

@@ -11,12 +11,19 @@ body {
   min-height: 100vh;
 }
 
-/* Visible keyboard focus. Gold clears 3:1 against every dark section, which
-   is where almost all controls sit; the FAQ buttons are on paper and
-   override this with hudson-bay. */
+/* Visible keyboard focus.
+   No single brand colour clears 3:1 on every surface here — gold fails on
+   white, paper and sand; the deeper gold fails on hudson-bay and sand. So
+   the ring is two-tone: a light band inside a dark one. Whatever sits
+   behind it, one of the two contrasts.
+   The transparent outline is deliberate — Windows High Contrast Mode does
+   not paint box-shadow, but it does honour an outline. */
 :where(a, button, input, textarea, summary):focus-visible {
-  outline: 2px solid #c7a05e;
+  outline: 2px solid transparent;
   outline-offset: 2px;
+  box-shadow:
+    0 0 0 2px #f7f6f3,
+    0 0 0 4px #1a1f26;
 }
 
 @media (prefers-reduced-motion: reduce) {

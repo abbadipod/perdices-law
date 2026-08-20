@@ -34,7 +34,7 @@ export default function FAQ() {
                     aria-expanded={isOpen}
                     aria-controls={`faq-answer-${index}`}
                     // On paper, so the global gold ring would not clear 3:1.
-                    className="flex w-full items-baseline justify-between gap-6 py-[22px] text-left focus-visible:outline-hudson-bay"
+                    className="flex w-full items-baseline justify-between gap-6 py-[22px] text-left"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                   >
                     <span className="font-display text-[17px] font-normal leading-[1.4] text-hudson-bay">
@@ -42,7 +42,7 @@ export default function FAQ() {
                     </span>
                     <span
                       aria-hidden="true"
-                      className={`shrink-0 text-xl text-gold transition-transform duration-300 ${
+                      className={`shrink-0 text-xl text-gold-deep transition-transform duration-300 ${
                         isOpen ? "rotate-45" : ""
                       }`}
                     >

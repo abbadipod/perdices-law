@@ -11,6 +11,7 @@ describe("tailwind color tokens", () => {
       comet: "#97A2AE",
       "hudson-bay": "#3F5266",
       gold: "#C7A05E",
+      "gold-deep": "#A67C2E",
       ink: "#1A1F26",
       paper: "#F7F6F3",
       sand: "#ECE3D2",

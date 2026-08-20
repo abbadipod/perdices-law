@@ -108,7 +108,7 @@ export default function PracticeAreas() {
                     </span>
                     <span
                       aria-hidden="true"
-                      className={`text-gold transition-transform duration-300 ${
+                      className={`text-gold-deep transition-transform duration-300 ${
                         isOpen ? "rotate-45" : ""
                       }`}
                     >
