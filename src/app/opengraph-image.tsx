@@ -1,9 +1,5 @@
 import { ImageResponse } from "next/og";
 
-// The Node build of @vercel/og resolves its bundled font via fileURLToPath,
-// which throws on Windows. The edge build sidesteps that entirely.
-export const runtime = "edge";
-
 export const alt =
   "Perdices Law — Dual-Qualified Attorney, US & Philippines";
 export const size = { width: 1200, height: 630 };
