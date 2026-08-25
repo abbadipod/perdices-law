@@ -19,7 +19,7 @@ export PATH="$PATH:/c/Program Files/nodejs"
 
 ```bash
 npm run dev      # next dev (Turbopack, default in 16)
-npm test         # 54 tests
+npm test         # 55 tests
 npm run lint     # eslint . — `next lint` was removed in Next 16
 npm run build
 ```
@@ -62,6 +62,26 @@ from the site. It is now derived from `practiceAreas`, so it cannot drift
 again. Anything else that restates the practice list should be derived too.
 Appellate leads because it is his strongest credential — close to five years
 inside the Court of Appeals drafting decisions.
+
+**The hero previews Credentials' three stat figures, not new content.**
+A trust strip sits under the “Book a consultation” button, using
+`credentialStats` from `site.ts` directly — the identical array Credentials
+renders lower on the page, not a re-authored copy. `Hero.test.tsx` asserts
+every figure and label from `credentialStats` renders, so the two cannot
+drift the way the JSON-LD description once did. Laid out as
+`grid-cols-1 sm:grid-cols-3`, matching Credentials' own stack-below-`sm`
+breakpoint, rather than a divided flex row: a flex-wrap row with
+`divide-x` leaves a stray border on whichever stat wraps onto its own line
+once three items no longer fit one row — measured at 320–414px, fixed by
+switching to grid before it shipped.
+
+**Nav order matches page order.** `navLinks` in `site.ts` used to read
+Practice, Credentials, About, FAQ, Contact — Credentials sat between two
+items it doesn't sit between on the page (Hero → About → Credentials →
+Practice Areas → FAQ → Contact). Reordered to About, Credentials, Practice,
+FAQ, Contact. `Nav.test.tsx` and `Footer.test.tsx` were already order-agnostic
+(`.forEach`, not a literal array); only the exact-array assertion in
+`site.test.ts` needed updating.
 
 **US roles were non-attorney.** He is admitted in Washington State but worked
 there as a paralegal. The footer disclaimer says so explicitly. Keep that
@@ -115,11 +135,26 @@ Blocked on the client:
 
 1. **Office hours** — not in any source document. Deliberately omitted rather
    than invented; `Contact` and the JSON-LD skip them when absent.
-2. **Contact form delivery.** `mailto:` silently does nothing for visitors with
-   no mail client bound — common on desktop. Needs Formspree/Basin (fastest) or
-   a route handler + Resend (needs account, verified domain, API key). Whatever
-   is chosen also needs spam protection and SPF/DKIM/DMARC, and should not
-   store submissions — a law firm inquiry can contain sensitive facts.
+2. **Contact form delivery — decided, blocked on (5).** `mailto:` silently
+   does nothing for visitors with no mail client bound, which is common on
+   desktop. `Contact` does render the address as selectable text alongside
+   the button, so it is a poor experience rather than a dead end.
+
+   The approach is a route handler + Resend. Formspree/Basin were considered
+   and ruled out despite being faster to wire up: storing submissions in a
+   third-party dashboard is their product, and a prospective client's inquiry
+   can carry privileged facts before any conflicts check has happened. Do not
+   reverse this on speed grounds.
+
+   Waiting on the custom domain in (5), because Resend needs a verified
+   sending domain and `onboarding@resend.dev` lands in spam. Once it exists:
+   verify the domain (SPF/DKIM/DMARC), add the route handler, use a honeypot
+   plus a per-IP rate limit rather than a CAPTCHA, set `reply_to` to the
+   inquirer, and keep the message body out of every log — Vercel function
+   logs included, which is where "do not store submissions" usually gets
+   broken by accident. Keep the visible address as a fallback. Note this ends
+   the "every route is statically prerendered, no API routes" property
+   claimed at the top of this file.
 3. **Practice-area detail copy needs Atty. Perdices's review.** The expandable
    text describes Philippine procedure — filings, sequence, what needs a
    personal appearance. It is a careful draft, not verified law.
@@ -130,6 +165,14 @@ Blocked on the client:
 5. **`NEXT_PUBLIC_SITE_URL`** should be set on Vercel once a custom domain
    exists. It currently falls back to the Vercel production URL, which is
    correct for now.
+
+Decided but not yet done: the JSON-LD `description` in `StructuredData.tsx`
+no longer mentions the Washington admission — the phrase went with the
+immigration/family fix when the description became derived. The dual-qualified
+framing in the tab title, hero and OG card is confirmed deliberate and stays,
+so the schema should match it: add an admission clause as separate copy,
+keeping the practice list derived. Deferred to avoid a deploy of its own;
+fold it in with the next change.
 
 Optional, unstarted: analytics, routed practice-area pages, a Filipino
 language toggle.

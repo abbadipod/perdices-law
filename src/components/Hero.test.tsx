@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { act, render, screen } from "@testing-library/react";
 import Hero from "./Hero";
+import { credentialStats } from "@/content/site";
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -30,6 +31,16 @@ describe("Hero", () => {
         /Appellate, litigation, property, and transactional counsel/
       )
     ).toBeInTheDocument();
+  });
+
+  it("previews the same credential figures Credentials shows in full", () => {
+    // Same source, no separately authored copy — the JSON-LD description
+    // drifted exactly this way once already.
+    render(<Hero />);
+    credentialStats.forEach((stat) => {
+      expect(screen.getByText(stat.figure)).toBeInTheDocument();
+      expect(screen.getByText(stat.label)).toBeInTheDocument();
+    });
   });
 
   it("applies a parallax transform to the background on scroll", () => {

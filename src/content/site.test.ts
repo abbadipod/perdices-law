@@ -2,11 +2,11 @@ import { describe, expect, it } from "vitest";
 import { navLinks, practiceAreas, credentials, faqItems, contactInfo } from "./site";
 
 describe("site content", () => {
-  it("defines the primary nav links", () => {
+  it("orders the primary nav links to match the page", () => {
     expect(navLinks).toEqual([
-      { href: "#practice-areas", label: "Practice" },
-      { href: "#credentials", label: "Credentials" },
       { href: "#about", label: "About" },
+      { href: "#credentials", label: "Credentials" },
+      { href: "#practice-areas", label: "Practice" },
       { href: "#faq", label: "FAQ" },
       { href: "#contact", label: "Contact" },
     ]);

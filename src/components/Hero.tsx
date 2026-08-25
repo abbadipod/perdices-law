@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { credentialStats } from "@/content/site";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -84,6 +85,28 @@ export default function Hero() {
         >
           Book a consultation
         </a>
+
+        {/* Same figures as Credentials, surfaced here too — the fold ends
+            before a visitor reaches that section, and this is the moment
+            they're deciding whether to keep reading. No new claim, just an
+            earlier one.
+
+            Grid, not a divided row: below sm there's nothing to divide
+            against once it stacks to one column, and dividers on a
+            flex-wrap row leave a stray rule beside whichever stat wraps
+            onto its own line. Same trade Credentials already made. */}
+        <div className="animate-hero-in mt-10 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-10 sm:gap-y-0 [animation-delay:300ms]">
+          {credentialStats.map((stat) => (
+            <div key={stat.label} className="flex flex-col items-center">
+              <span className="font-display text-[20px] font-medium text-gold">
+                {stat.figure}
+              </span>
+              <span className="mt-1.5 text-[9px] uppercase leading-[1.4] tracking-[0.16em] text-sidewalk">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="absolute inset-x-0 bottom-[34px] flex justify-center">

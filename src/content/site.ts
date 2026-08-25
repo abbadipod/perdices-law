@@ -1,7 +1,8 @@
+// Matches the order the sections actually appear on the page.
 export const navLinks = [
-  { href: "#practice-areas", label: "Practice" },
-  { href: "#credentials", label: "Credentials" },
   { href: "#about", label: "About" },
+  { href: "#credentials", label: "Credentials" },
+  { href: "#practice-areas", label: "Practice" },
   { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
 ];
