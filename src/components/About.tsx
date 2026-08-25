@@ -9,8 +9,10 @@ export default function About() {
       aria-label="About"
       className="relative bg-sand px-7 pb-[110px]"
     >
-      <div className="flex -translate-y-[52px] justify-center">
-        <CrestMark size={104} />
+      {/* translate-y is always -size/2, so the badge straddles the Hero/About
+          seam evenly regardless of size. */}
+      <div className="flex -translate-y-[64px] justify-center">
+        <CrestMark size={128} />
       </div>
 
       <div className="mx-auto max-w-[1120px]">

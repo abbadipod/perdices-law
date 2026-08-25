@@ -95,13 +95,13 @@ export default function Hero() {
             against once it stacks to one column, and dividers on a
             flex-wrap row leave a stray rule beside whichever stat wraps
             onto its own line. Same trade Credentials already made. */}
-        <div className="animate-hero-in mt-10 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-10 sm:gap-y-0 [animation-delay:300ms]">
+        <div className="animate-hero-in mt-10 grid grid-cols-1 gap-y-7 sm:grid-cols-3 sm:gap-x-12 sm:gap-y-0 [animation-delay:300ms]">
           {credentialStats.map((stat) => (
             <div key={stat.label} className="flex flex-col items-center">
-              <span className="font-display text-[20px] font-medium text-gold">
+              <span className="font-display text-[28px] font-medium text-gold">
                 {stat.figure}
               </span>
-              <span className="mt-1.5 text-[9px] uppercase leading-[1.4] tracking-[0.16em] text-sidewalk">
+              <span className="mt-2 text-[10px] uppercase leading-[1.4] tracking-[0.16em] text-sidewalk">
                 {stat.label}
               </span>
             </div>
