@@ -10,7 +10,6 @@ export default function PracticeAreas() {
   // Single-open, matching the FAQ accordion. Letting several cards expand at
   // once makes the grid jump around as rows resize.
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const anyOpen = openIndex !== null;
 
   return (
     <section
@@ -33,25 +32,29 @@ export default function PracticeAreas() {
           </div>
         </Reveal>
 
-        {/* auto-rows-fr keeps every card the same height, not just the ones
-            sharing a row — otherwise a title that wraps to two lines makes
-            its whole row taller than the rest of the grid. Only from md up:
-            in a single column there is nothing to align to, so equal heights
-            would just pad the short cards with dead space.
+        {/* items-start, not auto-rows-fr: fr tracks equalise every row in
+            the grid to the tallest one, not just the row a card sits in —
+            so toggling auto-rows-fr on and off at the grid level made an
+            open card's own row stop stretching its neighbours, but also
+            reset every OTHER row's height at the same time, since the whole
+            grid lost its row-equalising track sizing the moment anything
+            was open. Measured: opening card one shrank cards four, five,
+            and six too, though nothing about them had changed.
 
-            While a card is open it gives way to items-start. Grid items
-            stretch to their row by default, so otherwise the open card's
-            neighbours grow to match it and fill with blank space — and
-            equal rows would drag the other row up to that height too.
+            min-h-[286px] instead gets the same "every closed card matches"
+            look without touching row sizing at all: 286px is the natural
+            height of the tallest closed card's own content (Criminal Law &
+            Preliminary Investigation), so it pads the shorter ones up to
+            match without needing the grid to coordinate row heights across
+            cards that aren't related to whichever one is open. Only from
+            md up: in a single column there is nothing to align to, so
+            forcing a minimum height would just pad the short cards with
+            dead space for no compositional benefit.
 
             min(300px,100%) rather than a bare 300px: below ~356px viewport the
             container is narrower than the track floor, and a bare 300px would
             overflow the page horizontally. */}
-        <div
-          className={`mt-11 grid gap-[22px] [grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))] ${
-            anyOpen ? "items-start" : "md:auto-rows-fr"
-          }`}
-        >
+        <div className="mt-11 grid items-start gap-[22px] [grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))]">
           {practiceAreas.map((area, index) => {
             const Icon = practiceIcons[index];
             const isOpen = openIndex === index;
@@ -62,7 +65,7 @@ export default function PracticeAreas() {
                 {/* group/before: a gold rule draws across the top edge on
                     hover, so the card has an accent moment of its own rather
                     than only a border colour change. */}
-                <article className="group relative flex h-full flex-col border border-comet/50 bg-white px-7 pb-[34px] pt-[30px] transition-[border-color,transform] duration-300 before:absolute before:inset-x-0 before:-top-px before:h-0.5 before:origin-left before:scale-x-0 before:bg-gold before:transition-transform before:duration-300 before:content-[''] hover:-translate-y-1 hover:border-gold hover:before:scale-x-100">
+                <article className="group relative flex flex-col border border-comet/50 bg-white px-7 pb-[34px] pt-[30px] transition-[border-color,transform] duration-300 before:absolute before:inset-x-0 before:-top-px before:h-0.5 before:origin-left before:scale-x-0 before:bg-gold before:transition-transform before:duration-300 before:content-[''] hover:-translate-y-1 hover:border-gold hover:before:scale-x-100 md:min-h-[286px]">
                   <div className="flex items-center justify-between">
                     <span className="text-gold">
                       <Icon />

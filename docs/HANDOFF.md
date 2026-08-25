@@ -19,7 +19,7 @@ export PATH="$PATH:/c/Program Files/nodejs"
 
 ```bash
 npm run dev      # next dev (Turbopack, default in 16)
-npm test         # 55 tests
+npm test         # 56 tests
 npm run lint     # eslint . — `next lint` was removed in Next 16
 npm run build
 ```
@@ -110,10 +110,20 @@ brief so a JS failure cannot blank the page. Framer's `whileInView` cannot do
 this — it puts `opacity:0` in the server HTML — which is why `Reveal` is plain
 React + CSS transitions and framer-motion is not a dependency.
 
-**Practice grid: `md:auto-rows-fr` when closed, `items-start` when open.**
-Grid items stretch to their row, so without the swap, expanding one card
-stretches all six to match (measured: all six hit 711px). Closed, equal rows
-stop a two-line title making its row taller than the other.
+**Practice grid: `items-start` always, `md:min-h-[286px]` per card, no
+`auto-rows-fr`.** Used to swap `md:auto-rows-fr` (closed) for `items-start`
+(any card open) — `auto-rows-fr` equalises every row in the *whole* grid
+to the tallest one, not just the row a card sits in, so removing it the
+moment anything opened reset every other row's height too. Measured:
+opening card one shrank cards four, five, and six as well, though nothing
+about them had changed. `md:min-h-[286px]` (the natural height of the
+tallest closed card, Criminal Law & Preliminary Investigation) gets the
+same "every closed card matches" look without the grid needing to
+coordinate row heights across cards that aren't related to whichever one
+is open — so `items-start` can just stay on permanently and there's
+nothing left to toggle. `PracticeAreas.test.tsx` asserts the grid's
+`className` is identical whether a card is open or closed, so the old
+conditional class can't come back silently.
 `minmax(min(300px,100%),1fr)` — a bare `300px` overflows the page below ~356px.
 
 **Hero `object-position` is a responsive pair** (`66%` below `lg`, `100%`

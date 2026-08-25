@@ -57,6 +57,28 @@ describe("PracticeAreas", () => {
     expect(screen.getByText(practiceAreas[0].detail)).not.toBeVisible();
   });
 
+  it("never changes the grid's row-sizing based on which card is open", async () => {
+    // Regression: the grid used to swap auto-rows-fr for items-start the
+    // moment any card opened. auto-rows-fr equalises every row in the
+    // grid, not just the row a card sits in, so removing it reset every
+    // OTHER row's height too - opening one card shrank cards in unrelated
+    // rows that hadn't changed. Uniform closed-card height now comes from
+    // md:min-h-[286px] on each card instead, so the grid's own className
+    // has nothing left to toggle.
+    const user = userEvent.setup();
+    const { container } = render(<PracticeAreas />);
+    const grid = container.querySelector(
+      "#practice-areas > div > div:nth-of-type(2)"
+    ) as HTMLElement;
+    const classNameClosed = grid.className;
+
+    await user.click(
+      screen.getAllByRole("button", { name: /what this covers/i })[0]
+    );
+
+    expect(grid.className).toBe(classNameClosed);
+  });
+
   it("opens one card at a time", async () => {
     const user = userEvent.setup();
     render(<PracticeAreas />);
