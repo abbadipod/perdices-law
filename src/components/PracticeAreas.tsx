@@ -91,12 +91,37 @@ export default function PracticeAreas() {
                     {area.description}
                   </p>
 
+                  {/* grid-rows-[0fr]→[1fr], not the hidden attribute:
+                      hidden maps to display:none, which can't be
+                      transitioned, so opening used to be an instant snap.
+                      This animates a fraction of the panel's own natural
+                      height, so it grows in real time regardless of how
+                      long each card's detail text is — a fixed-duration
+                      max-height would make short panels finish early and
+                      sit idle for the rest of the transition. min-h-0
+                      overrides the grid item's default auto min-size,
+                      which otherwise floors the collapse at min-content
+                      height instead of 0. aria-hidden carries the
+                      accessibility state hidden used to; overflow-hidden
+                      on the inner wrapper is the actual clip boundary, so
+                      the border is invisible while collapsed instead of
+                      still drawing as a line at zero height. */}
                   <div
-                    id={detailId}
-                    hidden={!isOpen}
-                    className="mt-4 border-t border-comet/40 pt-4 text-sm leading-[1.75] text-ink/[0.78]"
+                    className={`grid transition-[grid-template-rows,margin-top] duration-300 ease-out motion-reduce:transition-none ${
+                      isOpen ? "mt-4 grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
                   >
-                    {area.detail}
+                    <div className="min-h-0 overflow-hidden">
+                      <div
+                        id={detailId}
+                        aria-hidden={!isOpen}
+                        className={`border-t border-comet/40 pt-4 text-sm leading-[1.75] text-ink/[0.78] transition-opacity duration-300 motion-reduce:transition-none ${
+                          isOpen ? "opacity-100" : "opacity-0"
+                        }`}
+                      >
+                        {area.detail}
+                      </div>
+                    </div>
                   </div>
 
                   {/* mt-auto pins the control to the bottom so it lines up

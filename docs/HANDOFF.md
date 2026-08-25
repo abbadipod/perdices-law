@@ -126,6 +126,26 @@ nothing left to toggle. `PracticeAreas.test.tsx` asserts the grid's
 conditional class can't come back silently.
 `minmax(min(300px,100%),1fr)` — a bare `300px` overflows the page below ~356px.
 
+**Practice card detail panel animates via `grid-rows-[0fr]`→`[1fr]`, not
+the `hidden` attribute.** `hidden` maps to `display:none`, which can't be
+transitioned — opening used to be an instant snap with no animation at
+all. The `0fr`/`1fr` trick animates a *fraction* of the panel's own
+natural height, so it grows in real time regardless of how long each
+card's detail text is; a fixed-duration `max-height` transition would
+make short panels finish early and sit idle for the rest of the
+duration. `min-h-0` on the inner wrapper overrides the grid item's
+default `auto` min-size, which otherwise floors the collapse at
+min-content height instead of a genuine `0` — verified `0px` via
+`getComputedStyle`, not just visually. `aria-hidden` on the panel
+carries the accessibility state `hidden` used to; the actual clip
+boundary is `overflow-hidden` on the middle wrapper, so the border
+disappears entirely rather than still drawing as a line at zero height.
+`jsdom` never loads the compiled Tailwind stylesheet, so
+`PracticeAreas.test.tsx` asserts `aria-hidden` directly rather than
+`toBeVisible()` — the old test only worked because `hidden` is a native
+HTML attribute jsdom understands intrinsically, not because of anything
+Tailwind-generated.
+
 **Hero `object-position` is a responsive pair** (`66%` below `lg`, `100%`
 above). The photo is composed right of centre — detail centroid at 62.9% —
 and crop headroom is ~25% at desktop but 78% on a phone, so one value cannot

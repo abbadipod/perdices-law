@@ -30,11 +30,18 @@ describe("PracticeAreas", () => {
   });
 
   it("keeps every detail in the markup but collapsed by default", () => {
+    // aria-hidden, not toBeVisible: the collapse is now an animated
+    // grid-template-rows transition rather than the hidden attribute, and
+    // jsdom never loads the compiled Tailwind stylesheet, so it has no way
+    // to compute that a 0fr row track is visually collapsed. aria-hidden
+    // is the real accessibility contract the animation has to uphold
+    // regardless, so it's the more meaningful assertion either way.
     render(<PracticeAreas />);
     practiceAreas.forEach((area) => {
       // Present for crawlers even while hidden from sighted users.
-      expect(screen.getByText(area.detail)).toBeInTheDocument();
-      expect(screen.getByText(area.detail)).not.toBeVisible();
+      const detail = screen.getByText(area.detail);
+      expect(detail).toBeInTheDocument();
+      expect(detail).toHaveAttribute("aria-hidden", "true");
     });
     screen.getAllByRole("button", { name: /what this covers/i }).forEach((b) => {
       expect(b).toHaveAttribute("aria-expanded", "false");
@@ -49,12 +56,18 @@ describe("PracticeAreas", () => {
     })[0];
 
     await user.click(toggle);
-    expect(screen.getByText(practiceAreas[0].detail)).toBeVisible();
+    expect(screen.getByText(practiceAreas[0].detail)).toHaveAttribute(
+      "aria-hidden",
+      "false"
+    );
     const openToggle = screen.getByRole("button", { name: /show less/i });
     expect(openToggle).toHaveAttribute("aria-expanded", "true");
 
     await user.click(openToggle);
-    expect(screen.getByText(practiceAreas[0].detail)).not.toBeVisible();
+    expect(screen.getByText(practiceAreas[0].detail)).toHaveAttribute(
+      "aria-hidden",
+      "true"
+    );
   });
 
   it("never changes the grid's row-sizing based on which card is open", async () => {
@@ -87,14 +100,23 @@ describe("PracticeAreas", () => {
     });
 
     await user.click(toggles[0]);
-    expect(screen.getByText(practiceAreas[0].detail)).toBeVisible();
+    expect(screen.getByText(practiceAreas[0].detail)).toHaveAttribute(
+      "aria-hidden",
+      "false"
+    );
 
     // Opening another card closes the first.
     await user.click(
       screen.getAllByRole("button", { name: /what this covers/i })[0]
     );
-    expect(screen.getByText(practiceAreas[1].detail)).toBeVisible();
-    expect(screen.getByText(practiceAreas[0].detail)).not.toBeVisible();
+    expect(screen.getByText(practiceAreas[1].detail)).toHaveAttribute(
+      "aria-hidden",
+      "false"
+    );
+    expect(screen.getByText(practiceAreas[0].detail)).toHaveAttribute(
+      "aria-hidden",
+      "true"
+    );
   });
 
   it("points each toggle at the detail it controls", () => {
