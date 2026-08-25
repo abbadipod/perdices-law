@@ -73,7 +73,7 @@ export default function Hero() {
           Dual-Qualified Attorney — US &amp; Philippines
         </p>
         <h1 className="animate-hero-in max-w-[15ch] text-balance font-display text-[clamp(40px,5.6vw,82px)] font-medium uppercase leading-[1.06] tracking-[0.01em] text-paper [animation-delay:80ms]">
-          Litigation. Appellate insight. Practical legal solutions.
+          Dual-Qualified Attorney offering practical legal solutions
         </h1>
         <p className="animate-hero-in mt-7 max-w-[46ch] text-[17px] leading-[1.7] text-sidewalk [animation-delay:160ms]">
           Appellate, litigation, property, and transactional counsel under
