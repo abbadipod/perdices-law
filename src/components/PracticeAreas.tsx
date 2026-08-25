@@ -1,15 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { practiceAreas, practiceIntro } from "@/content/site";
 import Reveal from "@/components/Reveal";
 import Eyebrow from "@/components/Eyebrow";
 import { practiceIcons } from "@/components/PracticeIcons";
 
+// useLayoutEffect would warn during SSR; effects never run on the server
+// anyway, so fall back to useEffect there. Matches Reveal.tsx.
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export default function PracticeAreas() {
   // Single-open, matching the FAQ accordion. Letting several cards expand at
   // once makes the grid jump around as rows resize.
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const detailRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [openHeight, setOpenHeight] = useState(0);
+
+  // Measures the open card's real content height for the max-height
+  // transition below, and re-measures on resize so a card left open while
+  // its text rewraps to more or fewer lines doesn't end up clipped or
+  // leaving dead space. useLayoutEffect, not useEffect, so the correct
+  // height is already in place before paint — otherwise the first open of
+  // any given card would flash at height 0 for a frame before correcting,
+  // same reasoning as Reveal hiding itself before paint.
+  useIsomorphicLayoutEffect(() => {
+    if (openIndex === null) return;
+    const el = detailRefs.current[openIndex];
+    if (!el) return;
+
+    const measure = () => setOpenHeight(el.scrollHeight);
+    measure();
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [openIndex]);
 
   return (
     <section
@@ -91,36 +118,39 @@ export default function PracticeAreas() {
                     {area.description}
                   </p>
 
-                  {/* grid-rows-[0fr]→[1fr], not the hidden attribute:
-                      hidden maps to display:none, which can't be
-                      transitioned, so opening used to be an instant snap.
-                      This animates a fraction of the panel's own natural
-                      height, so it grows in real time regardless of how
-                      long each card's detail text is — a fixed-duration
-                      max-height would make short panels finish early and
-                      sit idle for the rest of the transition. min-h-0
-                      overrides the grid item's default auto min-size,
-                      which otherwise floors the collapse at min-content
-                      height instead of 0. aria-hidden carries the
-                      accessibility state hidden used to; overflow-hidden
-                      on the inner wrapper is the actual clip boundary, so
-                      the border is invisible while collapsed instead of
-                      still drawing as a line at zero height. */}
+                  {/* max-height, measured from the panel's own scrollHeight,
+                      not the hidden attribute: hidden maps to display:none,
+                      which can't be transitioned, so opening used to be an
+                      instant snap. A grid-template-rows fr transition was
+                      tried first, since it doesn't need a JS measurement —
+                      but transitioning a fr row track on a container whose
+                      own height is intrinsic doesn't reliably resolve in
+                      every browser; measured it getting stuck at 0px even
+                      after the class correctly switched to grid-rows-[1fr].
+                      max-height sidesteps that entirely: the browser is
+                      just interpolating between two known pixel numbers,
+                      not resolving an intrinsic size mid-transition. The
+                      real per-card height (from the effect above) also
+                      means short and long detail text both animate at a
+                      speed proportional to their own length, rather than a
+                      guessed max-height every card shares regardless of
+                      how much it actually needs to grow. aria-hidden
+                      carries the accessibility state hidden used to. */}
                   <div
-                    className={`grid transition-[grid-template-rows,margin-top] duration-300 ease-out motion-reduce:transition-none ${
-                      isOpen ? "mt-4 grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
+                    style={{ maxHeight: isOpen ? openHeight : 0 }}
+                    className="overflow-hidden transition-[max-height] duration-300 ease-out motion-reduce:transition-none"
                   >
-                    <div className="min-h-0 overflow-hidden">
-                      <div
-                        id={detailId}
-                        aria-hidden={!isOpen}
-                        className={`border-t border-comet/40 pt-4 text-sm leading-[1.75] text-ink/[0.78] transition-opacity duration-300 motion-reduce:transition-none ${
-                          isOpen ? "opacity-100" : "opacity-0"
-                        }`}
-                      >
-                        {area.detail}
-                      </div>
+                    <div
+                      ref={(el) => {
+                        detailRefs.current[index] = el;
+                      }}
+                      id={detailId}
+                      aria-hidden={!isOpen}
+                      className={`mt-4 border-t border-comet/40 pt-4 text-sm leading-[1.75] text-ink/[0.78] transition-opacity duration-300 motion-reduce:transition-none ${
+                        isOpen ? "opacity-100" : "opacity-0"
+                      }`}
+                    >
+                      {area.detail}
                     </div>
                   </div>
 

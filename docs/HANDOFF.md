@@ -126,25 +126,44 @@ nothing left to toggle. `PracticeAreas.test.tsx` asserts the grid's
 conditional class can't come back silently.
 `minmax(min(300px,100%),1fr)` — a bare `300px` overflows the page below ~356px.
 
-**Practice card detail panel animates via `grid-rows-[0fr]`→`[1fr]`, not
+**Practice card detail panel animates via a JS-measured `max-height`, not
 the `hidden` attribute.** `hidden` maps to `display:none`, which can't be
 transitioned — opening used to be an instant snap with no animation at
-all. The `0fr`/`1fr` trick animates a *fraction* of the panel's own
-natural height, so it grows in real time regardless of how long each
-card's detail text is; a fixed-duration `max-height` transition would
-make short panels finish early and sit idle for the rest of the
-duration. `min-h-0` on the inner wrapper overrides the grid item's
-default `auto` min-size, which otherwise floors the collapse at
-min-content height instead of a genuine `0` — verified `0px` via
-`getComputedStyle`, not just visually. `aria-hidden` on the panel
-carries the accessibility state `hidden` used to; the actual clip
-boundary is `overflow-hidden` on the middle wrapper, so the border
-disappears entirely rather than still drawing as a line at zero height.
+all. Each card's real content height is measured off its own
+`scrollHeight` (`useLayoutEffect`, re-measured on `ResizeObserver` so a
+card left open while its text rewraps to more or fewer lines doesn't end
+up clipped), and that pixel value is what `max-height` transitions
+between — so short and long detail text both animate at a speed
+proportional to their own length rather than a guessed max-height every
+card shares. `aria-hidden` on the panel carries the accessibility state
+`hidden` used to.
+
+A `grid-template-rows: 0fr → 1fr` version was tried first, since it
+needs no JS measurement at all. It looked broken in the Browser preview
+pane — the row stayed stuck at `0px` even after the class correctly
+switched to `grid-rows-[1fr]` — so it shipped as a JS-measured
+`max-height` instead. Turned out the pane itself was the problem, not
+the technique: `document.hidden` reads `true` there even when fronted,
+and a plain non-transitioned style change resolves instantly and
+correctly while *any* transitioned one (grid-rows, max-height, even a
+bare `opacity` fade tested in isolation) reads stuck at its starting
+value forever, confirming the pane doesn't run the paint/compositor
+loop transitions depend on rather than either CSS approach being
+broken. Kept the `max-height` version anyway — the pane's unreliability
+here means the original `grid-rows` approach was never actually
+disproven either, but the measured version needs no fr-on-intrinsic-
+height resolution and is what most production accordion libraries do
+regardless, so there was no reason to go back and re-risk it. If you're
+verifying an animation and the Browser pane's `document.hidden` is
+`true`, don't trust a stuck `getComputedStyle` reading as a bug — check
+in a real, foregrounded browser instead.
+
 `jsdom` never loads the compiled Tailwind stylesheet, so
 `PracticeAreas.test.tsx` asserts `aria-hidden` directly rather than
 `toBeVisible()` — the old test only worked because `hidden` is a native
 HTML attribute jsdom understands intrinsically, not because of anything
-Tailwind-generated.
+Tailwind-generated. `ResizeObserver` needed a mock added to
+`vitest.setup.tsx`, matching the existing `IntersectionObserverMock`.
 
 **Hero `object-position` is a responsive pair** (`66%` below `lg`, `100%`
 above). The photo is composed right of centre — detail centroid at 62.9% —
@@ -221,6 +240,18 @@ screenshot would have hidden:
   banned former-placeholders
 - responsive: sweep 320 / 375 / 414 / 768 / 1024 / 1440 / 1920 and assert
   `scrollWidth - clientWidth === 0`
+
+DOM measurement has one gap of its own: the pane's `document.hidden` reads
+`true` even when fronted, which appears to stop the paint/compositor loop
+CSS *transitions* depend on. A non-transitioned style change resolves
+correctly and instantly regardless; a transitioned one (tested: max-height,
+grid-template-rows, even a bare opacity fade in isolation) reads stuck at
+its starting value via `getComputedStyle` no matter how long you wait.
+Static end states are still trustworthy — only the animated middle of a
+transition is affected. Don't diagnose an animation as broken from a
+stuck reading here; confirm in a real, foregrounded browser first. This
+cost real time once already: see the practice-card detail panel entry
+above.
 
 `git log` messages carry the reasoning for most changes and are worth reading
 before reversing something.
