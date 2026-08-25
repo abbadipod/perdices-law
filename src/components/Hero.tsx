@@ -69,10 +69,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-ink/[0.72] via-ink/50 to-ink/[0.82]" />
 
       <div className="relative flex min-h-[88vh] flex-col items-center justify-center px-7 pb-[150px] pt-[120px] text-center">
-        <p className="animate-hero-in mb-[22px] text-[11px] uppercase tracking-[0.34em] text-sidewalk">
-          Dual-Qualified Attorney — US &amp; Philippines
-        </p>
-        <h1 className="animate-hero-in max-w-[15ch] text-balance font-display text-[clamp(40px,5.6vw,82px)] font-medium uppercase leading-[1.06] tracking-[0.01em] text-paper [animation-delay:80ms]">
+        <h1 className="animate-hero-in max-w-[26ch] text-balance font-display text-[clamp(40px,5.6vw,82px)] font-medium uppercase leading-[1.06] tracking-[0.01em] text-paper [animation-delay:80ms]">
           Dual-Qualified Attorney offering practical legal solutions
         </h1>
         <p className="animate-hero-in mt-7 max-w-[46ch] text-[17px] leading-[1.7] text-sidewalk [animation-delay:160ms]">

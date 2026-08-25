@@ -21,11 +21,8 @@ describe("Hero", () => {
     expect(cta).toHaveAttribute("href", "#contact");
   });
 
-  it("renders the eyebrow and supporting copy", () => {
+  it("renders the supporting copy", () => {
     render(<Hero />);
-    expect(
-      screen.getByText(/Dual-Qualified Attorney — US & Philippines/)
-    ).toBeInTheDocument();
     expect(
       screen.getByText(
         /Appellate, litigation, property, and transactional counsel/
