@@ -56,9 +56,6 @@ export default function About() {
                 </p>
               </div>
               <div>
-                <h2 className="mb-[18px] text-xs font-semibold uppercase tracking-[0.28em] text-hudson-bay">
-                  Approach
-                </h2>
                 <p className="mb-4 text-[15px] leading-[1.75] text-ink/85">
                   He has since practised in the private sector as a senior
                   associate and later a partner — arguing motions, drafting
@@ -69,8 +66,7 @@ export default function About() {
                   Several years in non-attorney roles with US firms in
                   Washington State and New York added procedural depth in civil
                   litigation, immigration, and family matters — the background
-                  he brings to cross-border concerns. He is fluent in English,
-                  Tagalog, and Cebuano.
+                  he brings to cross-border concerns.
                 </p>
               </div>
             </div>

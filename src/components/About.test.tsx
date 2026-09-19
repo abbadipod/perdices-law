@@ -3,16 +3,20 @@ import { render, screen } from "@testing-library/react";
 import About from "./About";
 
 describe("About", () => {
-  it("renders the About and Approach columns", () => {
+  it("renders the About column and the unlabelled second column", () => {
     render(<About />);
     expect(screen.getByRole("heading", { name: "About" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Approach" })).toBeInTheDocument();
+    // Second column carries no heading of its own — removed deliberately.
+    expect(
+      screen.queryByRole("heading", { name: "Approach" })
+    ).not.toBeInTheDocument();
     expect(
       screen.getByText(/Philippine lawyer with over/i)
     ).toBeInTheDocument();
     expect(
       screen.getByText(/non-attorney roles with US firms/i)
     ).toBeInTheDocument();
+    expect(screen.queryByText(/fluent in English/i)).not.toBeInTheDocument();
   });
 
   it("renders the attorney portrait with its caption", () => {
