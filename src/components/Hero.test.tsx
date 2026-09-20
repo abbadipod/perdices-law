@@ -25,7 +25,7 @@ describe("Hero", () => {
     render(<Hero />);
     expect(
       screen.getByText(
-        /Litigation, appellate, criminal, property, estate, and business/
+        /Based in Dumaguete City, Perdices Law provides Philippine legal/
       )
     ).toBeInTheDocument();
   });

@@ -57,17 +57,21 @@ export default function About() {
               </div>
               <div>
                 <p className="mb-4 text-[15px] leading-[1.75] text-ink/85">
-                  He has since practised in the private sector as a senior
-                  associate and later a partner — arguing motions, drafting
-                  pleadings and memoranda, reviewing contracts, and appearing
-                  before courts and government agencies.
+                  He later practiced in the private sector as a senior
+                  associate and partner, handling motion practice, drafting
+                  pleadings and legal memoranda, reviewing contracts, and
+                  appearing before courts and government agencies. He is now
+                  the founder and principal lawyer of Perdices Law.
                 </p>
                 <p className="text-[15px] leading-[1.75] text-ink/85">
-                  Several years working as a paralegal with US law firms in
-                  Washington State and New York provided practical exposure to
-                  civil litigation, immigration, and family-law matters — work
-                  that was separate from his years of practice as an attorney
-                  in the Philippines.
+                  His several years of experience as a paralegal with U.S. law
+                  firms in Washington State and New York broadened his
+                  professional perspective and sharpened his approach to
+                  legal research, drafting, case management, and client
+                  service. Although performed in a paralegal capacity, this
+                  experience complements and strengthens his practice of
+                  Philippine law by bringing valuable exposure to U.S. legal
+                  systems and professional standards.
                 </p>
               </div>
             </div>

@@ -38,8 +38,8 @@ describe("site content", () => {
     });
   });
 
-  it("lists 6 FAQ items", () => {
-    expect(faqItems).toHaveLength(6);
+  it("lists 4 FAQ items", () => {
+    expect(faqItems).toHaveLength(4);
     faqItems.forEach((item) => {
       expect(item.question.length).toBeGreaterThan(0);
       expect(item.answer.length).toBeGreaterThan(0);

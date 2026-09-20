@@ -1,43 +1,9 @@
-"use client";
-
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { practiceAreas, practiceIntro } from "@/content/site";
 import Reveal from "@/components/Reveal";
 import Eyebrow from "@/components/Eyebrow";
 import { practiceIcons } from "@/components/PracticeIcons";
 
-// useLayoutEffect would warn during SSR; effects never run on the server
-// anyway, so fall back to useEffect there. Matches Reveal.tsx.
-const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
 export default function PracticeAreas() {
-  // Single-open, matching the FAQ accordion. Letting several cards expand at
-  // once makes the grid jump around as rows resize.
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const detailRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [openHeight, setOpenHeight] = useState(0);
-
-  // Measures the open card's real content height for the max-height
-  // transition below, and re-measures on resize so a card left open while
-  // its text rewraps to more or fewer lines doesn't end up clipped or
-  // leaving dead space. useLayoutEffect, not useEffect, so the correct
-  // height is already in place before paint — otherwise the first open of
-  // any given card would flash at height 0 for a frame before correcting,
-  // same reasoning as Reveal hiding itself before paint.
-  useIsomorphicLayoutEffect(() => {
-    if (openIndex === null) return;
-    const el = detailRefs.current[openIndex];
-    if (!el) return;
-
-    const measure = () => setOpenHeight(el.scrollHeight);
-    measure();
-
-    const observer = new ResizeObserver(measure);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [openIndex]);
-
   return (
     <section
       id="practice-areas"
@@ -84,8 +50,6 @@ export default function PracticeAreas() {
         <div className="mt-11 grid items-start gap-[22px] [grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))]">
           {practiceAreas.map((area, index) => {
             const Icon = practiceIcons[index];
-            const isOpen = openIndex === index;
-            const detailId = `practice-detail-${index}`;
 
             return (
               <Reveal key={area.title} delay={(index % 3) * 0.06}>
@@ -117,64 +81,6 @@ export default function PracticeAreas() {
                   <p className="text-sm leading-[1.7] text-ink/[0.78]">
                     {area.description}
                   </p>
-
-                  {/* max-height, measured from the panel's own scrollHeight,
-                      not the hidden attribute: hidden maps to display:none,
-                      which can't be transitioned, so opening used to be an
-                      instant snap. A grid-template-rows fr transition was
-                      tried first, since it doesn't need a JS measurement —
-                      but transitioning a fr row track on a container whose
-                      own height is intrinsic doesn't reliably resolve in
-                      every browser; measured it getting stuck at 0px even
-                      after the class correctly switched to grid-rows-[1fr].
-                      max-height sidesteps that entirely: the browser is
-                      just interpolating between two known pixel numbers,
-                      not resolving an intrinsic size mid-transition. The
-                      real per-card height (from the effect above) also
-                      means short and long detail text both animate at a
-                      speed proportional to their own length, rather than a
-                      guessed max-height every card shares regardless of
-                      how much it actually needs to grow. aria-hidden
-                      carries the accessibility state hidden used to. */}
-                  <div
-                    style={{ maxHeight: isOpen ? openHeight : 0 }}
-                    className="overflow-hidden transition-[max-height] duration-300 ease-out motion-reduce:transition-none"
-                  >
-                    <div
-                      ref={(el) => {
-                        detailRefs.current[index] = el;
-                      }}
-                      id={detailId}
-                      aria-hidden={!isOpen}
-                      className={`mt-4 border-t border-comet/40 pt-4 text-sm leading-[1.75] text-ink/[0.78] transition-opacity duration-300 motion-reduce:transition-none ${
-                        isOpen ? "opacity-100" : "opacity-0"
-                      }`}
-                    >
-                      {area.detail}
-                    </div>
-                  </div>
-
-                  {/* mt-auto pins the control to the bottom so it lines up
-                      across cards of differing text length. */}
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={detailId}
-                    onClick={() => setOpenIndex(isOpen ? null : index)}
-                    className="mt-auto flex items-center gap-2 self-start pt-5 text-[11px] uppercase tracking-[0.2em] text-hudson-bay transition-colors hover:text-ink"
-                  >
-                    <span className="border-b border-gold pb-1">
-                      {isOpen ? "Show less" : "What this covers"}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className={`text-gold-deep transition-transform duration-300 ${
-                        isOpen ? "rotate-45" : ""
-                      }`}
-                    >
-                      +
-                    </span>
-                  </button>
                 </article>
               </Reveal>
             );

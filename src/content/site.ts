@@ -146,19 +146,9 @@ export const faqItems = [
       "An initial consultation is a focused conversation about your situation — what's happened, what you're trying to accomplish, and which country's laws and courts are involved — followed by a plain-language explanation of your options and likely next steps.",
   },
   {
-    question: "How do you determine which country's law applies to my case?",
-    answer:
-      "It depends on the subject matter and where the relevant facts, property, or parties are located. Property, succession, and criminal matters arising in the Philippines are generally governed by Philippine law and heard by Philippine courts, whichever country you happen to live in. This practice handles the Philippine side; where a matter also has a US dimension, that is identified early so it can be referred to US counsel rather than left unaddressed.",
-  },
-  {
     question: "How much does a consultation cost?",
     answer:
       "Consultation fees are discussed and agreed upon before we begin, based on the nature and complexity of your matter. There are no hidden charges — you'll know the cost before any work starts.",
-  },
-  {
-    question: "How long does a typical case take?",
-    answer:
-      "The timeframe depends substantially on the type of matter involved. Court proceedings may take significantly longer than transactional, registration, or documentation matters, with delays depending on court calendars, opposing parties, government agencies, and case complexity. After reviewing your matter, we'll provide a realistic assessment of the process and likely timeline.",
   },
   {
     question: "Can I retain you without visiting the office in person?",

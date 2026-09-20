@@ -14,7 +14,7 @@ describe("About", () => {
       screen.getByText(/Philippine lawyer with over/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/working as a paralegal with US law firms/i)
+      screen.getByText(/experience as a paralegal with U\.S\. law firms/i)
     ).toBeInTheDocument();
     expect(screen.queryByText(/fluent in English/i)).not.toBeInTheDocument();
   });

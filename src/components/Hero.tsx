@@ -73,8 +73,10 @@ export default function Hero() {
           Philippine legal counsel for clients in the Philippines and abroad
         </h1>
         <p className="animate-hero-in mt-7 max-w-[46ch] text-[17px] leading-[1.7] text-sidewalk [animation-delay:160ms]">
-          Litigation, appellate, criminal, property, estate, and business
-          legal services under Philippine law — based in Dumaguete City.
+          Based in Dumaguete City, Perdices Law provides Philippine legal
+          services in appellate and civil litigation, criminal law
+          representation, land registration and property, estate settlement
+          and planning, transactional law and corporate matters.
         </p>
         <a
           href="#contact"
