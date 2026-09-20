@@ -72,11 +72,12 @@ export default function Hero() {
         <h1 className="animate-hero-in max-w-[26ch] text-balance font-display text-[clamp(40px,5.6vw,82px)] font-medium uppercase leading-[1.06] tracking-[0.01em] text-paper [animation-delay:80ms]">
           Philippine legal counsel for clients in the Philippines and abroad
         </h1>
-        <p className="animate-hero-in mt-7 max-w-[46ch] text-[17px] leading-[1.7] text-sidewalk [animation-delay:160ms]">
+        <p className="animate-hero-in mt-7 max-w-[64ch] text-[17px] leading-[1.7] text-sidewalk [animation-delay:160ms]">
           Based in Dumaguete City, Perdices Law provides Philippine legal
           services in appellate and civil litigation, criminal law
-          representation, land registration and property, estate settlement
-          and planning, transactional law and corporate matters.
+          representation, land registration and property transfers, estate
+          settlement and planning, transactional law and corporate matters,
+          and legal advisory work.
         </p>
         <a
           href="#contact"

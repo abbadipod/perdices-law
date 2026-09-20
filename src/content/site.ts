@@ -129,7 +129,8 @@ export const credentials = [
   },
   {
     label: "Practice",
-    detail: "Litigation, appellate research, and legal advisory work",
+    detail:
+      "Appellate and civil litigation, criminal law representation, land registration and property transfers, estate settlement and planning, transactional law and corporate matters, and legal advisory work",
   },
   { label: "Languages", detail: "English, Tagalog, and Cebuano" },
 ];
