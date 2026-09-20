@@ -73,7 +73,7 @@ export default function Hero() {
           Practical legal solutions from a{" "}
           <span className="whitespace-nowrap">dual-qualified</span> attorney
         </h1>
-        <p className="animate-hero-in mt-7 max-w-[64ch] text-[17px] leading-[1.7] text-sidewalk [animation-delay:160ms]">
+        <p className="animate-hero-in mt-7 max-w-[64ch] text-[17px] leading-[1.7] text-paper [text-shadow:0_2px_10px_rgba(0,0,0,0.55)] [animation-delay:160ms]">
           Based in Dumaguete City, Perdices Law provides Philippine legal
           services in appellate and civil litigation, criminal law
           representation, land registration and property transfers, estate
