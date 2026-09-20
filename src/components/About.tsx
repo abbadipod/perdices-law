@@ -37,7 +37,7 @@ export default function About() {
               </figcaption>
             </figure>
 
-            <div className="grid gap-11 sm:grid-cols-2">
+            <div className="grid gap-11 lg:grid-cols-2">
               <div>
                 <h2 className="mb-[18px] text-xs font-semibold uppercase tracking-[0.28em] text-hudson-bay">
                   About
