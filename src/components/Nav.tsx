@@ -24,11 +24,15 @@ export default function Nav() {
     >
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-[1200px] items-center justify-between gap-6 px-7 py-3.5"
+        className="mx-auto flex max-w-[1440px] items-center justify-between gap-6 px-7 py-3.5"
       >
         <a href="#top" className="flex items-center gap-2.5">
-          <CrestMark size={38} />
-          <span className="whitespace-nowrap font-display text-[13px] uppercase tracking-[0.18em] text-white">
+          {/* Fixed sizes elsewhere (About, Footer) don't need this — only
+              the nav sits beside hero text that grows with viewport width
+              (clamp(40px,5.6vw,82px)), so a nav pinned to a flat pixel size
+              read as shrinking in comparison on wide screens. */}
+          <CrestMark size="clamp(38px, 2.4vw, 52px)" />
+          <span className="whitespace-nowrap font-display text-[clamp(13px,1vw,16px)] uppercase tracking-[0.18em] text-white">
             Perdices Law
           </span>
         </a>
@@ -41,7 +45,7 @@ export default function Nav() {
                 // The ::after overlay enlarges the tap target. Padding would
                 // work too, but it would drag the hover underline (positioned
                 // off this box) away from the text.
-                className="group relative text-[11px] uppercase tracking-[0.2em] text-sidewalk transition-colors after:absolute after:inset-x-0 after:-inset-y-2 after:content-[''] hover:text-gold"
+                className="group relative text-[clamp(11px,0.85vw,13px)] uppercase tracking-[0.2em] text-sidewalk transition-colors after:absolute after:inset-x-0 after:-inset-y-2 after:content-[''] hover:text-gold"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100" />
@@ -52,7 +56,7 @@ export default function Nav() {
 
         <a
           href="#contact"
-          className="hidden whitespace-nowrap border border-gold px-[18px] py-[9px] text-[10px] uppercase tracking-[0.22em] text-sidewalk transition-colors hover:bg-gold hover:text-ink lg:inline-block"
+          className="hidden whitespace-nowrap border border-gold px-[18px] py-[9px] text-[clamp(10px,0.8vw,12px)] uppercase tracking-[0.22em] text-sidewalk transition-colors hover:bg-gold hover:text-ink lg:inline-block"
         >
           Book a consultation
         </a>
