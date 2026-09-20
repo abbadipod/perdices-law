@@ -1,5 +1,6 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { getSiteUrl } from "@/lib/site-url";
 
 export const alt = "Perdices Law — Philippine Lawyer in Dumaguete City";
 export const size = { width: 1200, height: 630 };
@@ -42,17 +43,28 @@ function CornerAccent({ corner }: { corner: "top-left" | "bottom-right" }) {
   );
 }
 
+/** Inlined as a data URI rather than fetched over HTTP from the site's own
+ * domain — fetching `${getSiteUrl()}/whatever.png` during THIS build would
+ * hit whichever deployment is *currently* live, not the one being built.
+ * A brand-new file (this route's own hero-og.jpg, the first time it was
+ * added) doesn't exist there yet, so the fetch 404s and Satori silently
+ * drops the image — no build error, just a missing layer in the output.
+ * Reading straight off disk has no such timing dependency. */
+function assetDataUri(publicPath: string, mimeType: string): string {
+  const bytes = readFileSync(join(process.cwd(), "public", publicPath));
+  return `data:${mimeType};base64,${bytes.toString("base64")}`;
+}
+
 // Generated at build time rather than shipped as a binary, so the card stays
 // in step with the brand colours. Uses the runtime's default font — Oswald
 // would need the font file fetched at build, which is a needless failure point.
 export default function OpengraphImage() {
-  const siteUrl = getSiteUrl();
-  const crestUrl = `${siteUrl}/crest.png`;
+  const crestUrl = assetDataUri("crest.png", "image/png");
   // A JPEG copy, not the site's own hero.webp — Satori's image decoder
   // (used to prerender this route) doesn't support WebP. Pre-cropped to
   // this route's exact 1200x630 via `npm run og:hero` (see package.json)
   // whenever public/hero.webp changes.
-  const heroUrl = `${siteUrl}/hero-og.jpg`;
+  const heroUrl = assetDataUri("hero-og.jpg", "image/jpeg");
 
   return new ImageResponse(
     (
