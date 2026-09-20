@@ -46,11 +46,12 @@ describe("site content", () => {
     });
   });
 
-  it("defines contact info with the Dumaguete office and a phone number", () => {
+  it("defines contact info with the Dumaguete office", () => {
     expect(contactInfo.email).toBe("atty.josemari.perdices@gmail.com");
     expect(contactInfo.offices).toHaveLength(1);
     contactInfo.offices.forEach((office) => {
-      expect(office.phone.length).toBeGreaterThan(0);
+      expect(office.address.length).toBeGreaterThan(0);
+      expect(office.phone).toBeUndefined();
     });
   });
 });

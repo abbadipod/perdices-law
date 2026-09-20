@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import { navLinks } from "@/content/site";
 
 describe("Footer", () => {
-  it("renders the brand, nav links, disclaimer, and copyright", () => {
+  it("renders the brand, nav links, and copyright", () => {
     render(<Footer />);
     expect(screen.getByText("Perdices Law")).toBeInTheDocument();
 
@@ -12,9 +12,11 @@ describe("Footer", () => {
       expect(screen.getByText(link.label)).toBeInTheDocument();
     });
 
+    // Practicing-capacity/legal-advice disclaimer removed at the client's
+    // request — it should not reappear.
     expect(
-      screen.getByText(/does not constitute legal advice/i)
-    ).toBeInTheDocument();
+      screen.queryByText(/does not constitute legal advice/i)
+    ).not.toBeInTheDocument();
 
     const year = new Date().getFullYear().toString();
     expect(screen.getByText(new RegExp(year))).toBeInTheDocument();

@@ -130,7 +130,7 @@ export default function Contact() {
               {contactInfo.email}
             </a>
             {contactInfo.offices.map((office) => {
-              const digitsOnly = office.phone.replace(/[^\d+]/g, "");
+              const digitsOnly = office.phone?.replace(/[^\d+]/g, "");
               return (
                 <div key={office.city} className="border border-comet/45 p-[26px]">
                   <h3 className="mb-3.5 font-display text-base font-normal uppercase tracking-[0.06em] text-paper">
@@ -144,12 +144,14 @@ export default function Contact() {
                       {office.hours}
                     </p>
                   )}
-                  <a
-                    href={`tel:${digitsOnly}`}
-                    className="inline-block py-1.5 text-sm text-sidewalk transition-colors hover:text-gold"
-                  >
-                    {office.phone}
-                  </a>
+                  {office.phone && (
+                    <a
+                      href={`tel:${digitsOnly}`}
+                      className="inline-block py-1.5 text-sm text-sidewalk transition-colors hover:text-gold"
+                    >
+                      {office.phone}
+                    </a>
+                  )}
                 </div>
               );
             })}

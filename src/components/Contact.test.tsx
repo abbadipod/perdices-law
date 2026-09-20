@@ -25,13 +25,14 @@ describe("Contact", () => {
     expect(emailLink).toHaveAttribute("href", `mailto:${contactInfo.email}`);
   });
 
-  it("renders a tel link for every office", () => {
+  it("renders no tel link when an office has no phone number", () => {
     render(<Contact />);
     contactInfo.offices.forEach((office) => {
-      const telLink = screen.getByRole("link", { name: office.phone });
-      const digitsOnly = office.phone.replace(/[^\d+]/g, "");
-      expect(telLink).toHaveAttribute("href", `tel:${digitsOnly}`);
+      expect(office.phone).toBeUndefined();
     });
+    expect(
+      screen.queryByRole("link", { name: /^\+?\d/ })
+    ).not.toBeInTheDocument();
   });
 
   it("renders every office's address and hours", () => {
