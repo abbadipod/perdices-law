@@ -123,7 +123,7 @@ export const credentials = [
     ),
   },
   {
-    label: "Honors",
+    label: "Academic Honors",
     detail:
       "CALI Excellence for the Future Awards — Constitutional Law I (Federalism) and Constitutional Law II (Individual Rights)",
   },

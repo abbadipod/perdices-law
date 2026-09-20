@@ -28,13 +28,11 @@ export default function Footer() {
           </ul>
         </div>
         <p className="mt-6 max-w-[80ch] text-xs leading-[1.7] text-comet">
-          Atty. Jose Mari V. Perdices is admitted to practice law in the
-          Philippines (Roll of Attorneys No. 51416) and in Washington State,
-          USA (WSBA No. 61514). The firm practises Philippine law; his United
-          States experience was gained in paralegal and legal-support roles,
-          not as a practicing attorney. This website is for informational
-          purposes only and does not constitute legal advice.
-          Prior results do not guarantee a similar outcome.
+          The firm practises Philippine law; his United States experience was
+          gained in paralegal and legal-support roles, not as a practicing
+          attorney. This website is for informational purposes only and does
+          not constitute legal advice. Prior results do not guarantee a
+          similar outcome.
         </p>
         <p className="mt-3.5 text-xs text-comet">
           © {new Date().getFullYear()} Perdices Law. All rights reserved.
