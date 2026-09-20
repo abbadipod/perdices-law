@@ -64,7 +64,9 @@ export async function POST(request: NextRequest) {
   }
 
   const resend = new Resend(apiKey);
-  const from = process.env.RESEND_FROM_EMAIL ?? "Perdices Law Website <intake@perdiceslaw.com>";
+  const from =
+    process.env.RESEND_FROM_EMAIL ??
+    "Perdices Law Website <intake@send.perdiceslaw.com>";
 
   const { error } = await resend.emails.send({
     from,
