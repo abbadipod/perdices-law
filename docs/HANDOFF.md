@@ -51,6 +51,26 @@ he supplied. Earlier drafts contained invented credentials; those are gone.
 Do not reintroduce plausible-sounding detail — if a fact is not in his
 documents, it does not belong on the site.
 
+**"6+ Years, Philippine practice," not "15+ Years in practice."** A reviewer
+checked the site against his actual employment dates and flagged that the
+site conflated three different things: his 2006 Philippine bar admission,
+his roughly six years of *active* Philippine practice, and his separate
+years of US paralegal (not attorney) work — the combination read as if he'd
+practised as an attorney for 15+ years. `credentialStats` in `site.ts` feeds
+both the hero and Credentials from one array, so fixing the figure there
+fixed both places it appeared. Also corrected: the "close to five years"
+Court of Appeals claim in the Appellate Litigation detail (his actual dates
+are 2008–2010, about 21 months); "non-attorney roles" reworded to "paralegal
+and legal-support roles" in About and the footer, since it's more specific
+about what he actually did rather than reading as a disclaimer; the page
+title, meta description, and OG card dropped "Dual-Qualified Attorney — US &
+Philippines" for the same reason the hero headline changed — it centred US
+practice the firm doesn't offer. The reviewer tied this to the Code of
+Professional Responsibility and Accountability's requirement that
+statements about a lawyer's services and qualifications be truthful and not
+misleading — treat this class of correction as accuracy, not a copy
+preference, if it comes up again.
+
 **Practice areas deliberately exclude immigration and family law.** Neither
 appears anywhere in his Philippine practice; his immigration/family exposure
 was US paralegal work in a *non-attorney* role. Two tests fail if either
@@ -214,14 +234,6 @@ Blocked on the client:
 5. **`NEXT_PUBLIC_SITE_URL`** should be set on Vercel once a custom domain
    exists. It currently falls back to the Vercel production URL, which is
    correct for now.
-
-Decided but not yet done: the JSON-LD `description` in `StructuredData.tsx`
-no longer mentions the Washington admission — the phrase went with the
-immigration/family fix when the description became derived. The dual-qualified
-framing in the tab title, hero and OG card is confirmed deliberate and stays,
-so the schema should match it: add an admission clause as separate copy,
-keeping the practice list derived. Deferred to avoid a deploy of its own;
-fold it in with the next change.
 
 Optional, unstarted: analytics, routed practice-area pages, a Filipino
 language toggle.

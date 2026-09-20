@@ -1,7 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt =
-  "Perdices Law — Dual-Qualified Attorney, US & Philippines";
+export const alt = "Perdices Law — Philippine Lawyer in Dumaguete City";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -63,7 +62,7 @@ export default function OpengraphImage() {
             color: "#C7A05E",
           }}
         >
-          Dual-Qualified Attorney — US &amp; Philippines
+          Philippine Lawyer — Dumaguete City
         </div>
       </div>
     ),

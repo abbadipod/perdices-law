@@ -20,7 +20,7 @@ describe("Home", () => {
     expect(screen.getByRole("banner")).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
-        name: "Dual-Qualified Attorney offering practical legal solutions",
+        name: "Philippine legal counsel for clients in the Philippines and abroad",
       })
     ).toBeInTheDocument();
     expect(

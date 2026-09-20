@@ -24,7 +24,7 @@ export const practiceAreas = [
     description:
       "Appeals, petitions for review, and certiorari before the Court of Appeals and higher courts.",
     detail:
-      "Atty. Perdices spent close to five years inside the Court of Appeals – Mindanao Station, researching appealed cases and drafting the decisions and resolutions the court issued. That vantage point shapes how appeals are handled here: identifying which errors are genuinely reviewable, framing assignments of error the court can act on, and building a record that survives scrutiny rather than restating the trial below. Work covers appeals and petitions for review, petitions for certiorari, motions for reconsideration, and appellate briefs and memoranda. Where an adverse decision has just been received, the first question is usually the remedy and the period left to take it — both worth establishing quickly, since appellate deadlines are unforgiving.",
+      "Atty. Perdices served as Court Attorney IV at the Court of Appeals – Mindanao Station from 2008 to 2010, researching appealed cases and drafting the decisions and resolutions the court issued. That vantage point shapes how appeals are handled here: identifying which errors are genuinely reviewable, framing assignments of error the court can act on, and building a record that survives scrutiny rather than restating the trial below. Work covers appeals and petitions for review, petitions for certiorari, motions for reconsideration, and appellate briefs and memoranda. Where an adverse decision has just been received, the first question is usually the remedy and the period left to take it — both worth establishing quickly, since appellate deadlines are unforgiving.",
   },
   {
     title: "Civil Litigation",
@@ -102,7 +102,7 @@ export const education = [
 export const credentialStats = [
   { figure: "2006", label: "Admitted, Philippines" },
   { figure: "2023", label: "Admitted, Washington State" },
-  { figure: "15+", label: "Years in practice" },
+  { figure: "6+", label: "Years, Philippine practice" },
 ];
 
 export const credentials = [
@@ -138,7 +138,7 @@ export const faqItems = [
   {
     question: "I live in the US but need help with a matter in the Philippines — can you still represent me?",
     answer:
-      "Yes. As a dual-qualified attorney, I can advise on and handle Philippine legal matters directly, and coordinate with US counsel when a matter touches both jurisdictions — you don't need to manage two separate lawyers yourself.",
+      "Yes. Perdices Law handles Philippine legal matters for clients in the Philippines and overseas; most consultations and case updates can be handled remotely. If a matter also involves another jurisdiction's law, the Philippine-law issues are handled here, and any separate foreign-law representation can be identified and coordinated as needed.",
   },
   {
     question: "What does a consultation involve?",
@@ -158,7 +158,7 @@ export const faqItems = [
   {
     question: "How long does a typical case take?",
     answer:
-      "Timelines vary widely: immigration petitions can take months to years depending on the visa category and government processing times, while real estate or contract matters often resolve in weeks. You'll get a realistic estimate specific to your case during the consultation.",
+      "The timeframe depends substantially on the type of matter involved. Court proceedings may take significantly longer than transactional, registration, or documentation matters, with delays depending on court calendars, opposing parties, government agencies, and case complexity. After reviewing your matter, we'll provide a realistic assessment of the process and likely timeline.",
   },
   {
     question: "Can I retain you without visiting the office in person?",

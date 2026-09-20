@@ -44,9 +44,9 @@ export default function About() {
                 </h2>
                 <p className="mb-4 text-[15px] leading-[1.75] text-ink">
                   Atty. Jose Mari V. Perdices is a Philippine lawyer with over
-                  fifteen years of experience in litigation, appellate research,
-                  and legal advisory work. He is admitted to practice in the
-                  Philippines and in Washington State.
+                  six years of active legal practice in the Philippines. He is
+                  admitted to practice law in the Philippines and is also a
+                  member of the Washington State Bar.
                 </p>
                 <p className="text-[15px] leading-[1.75] text-ink/85">
                   He began his career at the Court of Appeals – Mindanao
@@ -63,10 +63,11 @@ export default function About() {
                   before courts and government agencies.
                 </p>
                 <p className="text-[15px] leading-[1.75] text-ink/85">
-                  Several years in non-attorney roles with US firms in
-                  Washington State and New York added procedural depth in civil
-                  litigation, immigration, and family matters — the background
-                  he brings to cross-border concerns.
+                  Several years working as a paralegal with US law firms in
+                  Washington State and New York provided practical exposure to
+                  civil litigation, immigration, and family-law matters — work
+                  that was separate from his years of practice as an attorney
+                  in the Philippines.
                 </p>
               </div>
             </div>
