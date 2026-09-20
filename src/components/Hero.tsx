@@ -82,7 +82,7 @@ export default function Hero() {
         </p>
         <a
           href="#contact"
-          className="animate-hero-in mt-10 border border-gold px-[34px] py-[15px] text-[11px] uppercase tracking-[0.26em] text-paper transition-colors [animation-delay:240ms] hover:bg-gold hover:text-ink"
+          className="animate-hero-in mt-10 bg-gold px-11 py-[19px] text-[12px] font-semibold uppercase tracking-[0.22em] text-ink shadow-lg shadow-black/30 transition-colors [animation-delay:240ms] hover:bg-gold-deep"
         >
           Book a consultation
         </a>
