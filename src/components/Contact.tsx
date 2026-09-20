@@ -11,23 +11,40 @@ const FIELD_LABEL = "text-[10px] uppercase tracking-[0.24em] text-sidewalk";
 const FIELD_BASE = "bg-transparent text-base text-paper transition-colors";
 
 export default function Contact() {
-  // No backend exists, so the form hands off to the visitor's mail client
-  // rather than reporting a delivery it cannot actually perform.
-  const [status, setStatus] = useState<"idle" | "handoff">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const data = new FormData(form);
     const name = String(data.get("name") ?? "");
     const email = String(data.get("email") ?? "");
     const message = String(data.get("message") ?? "");
+    // Hidden honeypot field — see the "company" input below.
+    const company = String(data.get("company") ?? "");
 
-    const subject = `Consultation request — ${name}`;
-    const body = `${message}\n\n—\n${name}\n${email}`;
-    window.location.href = `mailto:${contactInfo.email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    setStatus("handoff");
+    setStatus("sending");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message, company }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error || "Something went wrong.");
+      }
+      setStatus("sent");
+      form.reset();
+    } catch (err) {
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong."
+      );
+      setStatus("error");
+    }
   }
 
   return (
@@ -73,21 +90,33 @@ export default function Contact() {
                 className={`${FIELD_BASE} resize-y border border-sidewalk/70 p-3 leading-[1.6] focus:border-gold`}
               />
             </label>
+            {/* Honeypot — hidden from sighted and keyboard users, so a real
+                visitor never fills it in. Bots that fill every field trip
+                it, and the response looks identical either way. */}
+            <label className="sr-only" aria-hidden="true">
+              Company
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </label>
             <div className="flex flex-wrap items-center gap-5">
               <button
                 type="submit"
-                className="border border-gold px-8 py-[15px] text-[11px] uppercase tracking-[0.24em] text-paper transition-colors hover:bg-gold hover:text-ink"
+                disabled={status === "sending"}
+                className="border border-gold px-8 py-[15px] text-[11px] uppercase tracking-[0.24em] text-paper transition-colors hover:bg-gold hover:text-ink disabled:opacity-60"
               >
-                Send inquiry
+                {status === "sending" ? "Sending…" : "Send inquiry"}
               </button>
               <span role="status" className="text-[13px] text-sidewalk">
-                {status === "handoff"
-                  ? "Opening your email app — press send there to reach me."
-                  : ""}
+                {status === "sent" &&
+                  "Message sent — I'll get back to you shortly."}
+                {status === "error" && errorMessage}
               </span>
             </div>
             <p className="text-xs leading-[1.6] text-sidewalk/95">
-              Opens in your email app so you keep a copy of what you sent.
               Submitting this form does not create an attorney-client
               relationship.
             </p>

@@ -216,40 +216,60 @@ Blocked on the client:
 
 1. **Office hours** — not in any source document. Deliberately omitted rather
    than invented; `Contact` and the JSON-LD skip them when absent.
-2. **Contact form delivery — decided, blocked on (5).** `mailto:` silently
-   does nothing for visitors with no mail client bound, which is common on
-   desktop. `Contact` does render the address as selectable text alongside
-   the button, so it is a poor experience rather than a dead end.
+2. **Contact form delivery — implemented, blocked on domain + env vars.**
+   `Contact` now POSTs to `src/app/api/contact/route.ts`, which sends via
+   Resend to `contactInfo.email` (`atty.josemari.perdices@gmail.com`), with a
+   honeypot field and a per-IP rate limit (5/hour, in-memory — resets per
+   serverless instance, which is a known limitation of not having a database,
+   but still stops a single abusive client) rather than a CAPTCHA. `replyTo`
+   is set to the inquirer's address, and only `error.message` is ever logged
+   on failure — never the message body. This ends the "every route is
+   statically prerendered, no API routes" property claimed at the top of this
+   file; `/api/contact` is server-rendered on demand.
 
-   The approach is a route handler + Resend. Formspree/Basin were considered
-   and ruled out despite being faster to wire up: storing submissions in a
-   third-party dashboard is their product, and a prospective client's inquiry
-   can carry privileged facts before any conflicts check has happened. Do not
-   reverse this on speed grounds.
+   Formspree/Basin were considered and ruled out despite being faster to wire
+   up: storing submissions in a third-party dashboard is their product, and a
+   prospective client's inquiry can carry privileged facts before any
+   conflicts check has happened. Do not reverse this on speed grounds.
 
-   Waiting on the custom domain in (5), because Resend needs a verified
-   sending domain and `onboarding@resend.dev` lands in spam. Once it exists:
-   verify the domain (SPF/DKIM/DMARC), add the route handler, use a honeypot
-   plus a per-IP rate limit rather than a CAPTCHA, set `reply_to` to the
-   inquirer, and keep the message body out of every log — Vercel function
-   logs included, which is where "do not store submissions" usually gets
-   broken by accident. Keep the visible address as a fallback. Note this ends
-   the "every route is statically prerendered, no API routes" property
-   claimed at the top of this file.
-3. **Practice-area detail copy needs Atty. Perdices's review.** The expandable
-   text describes Philippine procedure — filings, sequence, what needs a
-   personal appearance. It is a careful draft, not verified law. One factual
-   error a reviewer caught (the Appellate Litigation entry's Court of
-   Appeals tenure) is already fixed — see the "6+ Years" decision above —
-   but that pass covered years-in-practice framing specifically, not the
-   procedural accuracy of the other five entries.
+   The client bought `perdiceslaw.com` on Cloudflare (2026-09-20), which
+   unblocks the piece this was waiting on. Still needed before this actually
+   sends mail:
+   - Attach the domain in Vercel (Project Settings → Domains) and point its
+     DNS at Vercel from Cloudflare (Vercel's domain page gives the exact
+     A/CNAME records once added — set them to DNS-only in Cloudflare, not
+     proxied, so Vercel's own TLS/edge handles the domain instead of
+     Cloudflare's proxy fighting it).
+   - Verify `perdiceslaw.com` as a sending domain in Resend (the client
+     already has a Resend account from another project) — this adds its own
+     SPF/DKIM/DMARC records in Cloudflare, separate from the Vercel ones.
+   - Set `RESEND_API_KEY` (required) and `RESEND_FROM_EMAIL` (optional,
+     defaults to `Perdices Law Website <intake@perdiceslaw.com>` — must be
+     `@perdiceslaw.com` once verified) as Vercel env vars, and set
+     `NEXT_PUBLIC_SITE_URL=https://perdiceslaw.com` per (5) below.
+   Until the domain is verified with Resend, the route fails closed (500,
+   "This form is temporarily unavailable") rather than silently dropping
+   submissions — confirmed locally with no `RESEND_API_KEY` set. Keep the
+   visible address as a fallback regardless.
+3. **Practice-area detail copy needs Atty. Perdices's review before it's used
+   anywhere.** `practiceAreas[].detail` in `site.ts` describes Philippine
+   procedure — filings, sequence, what needs a personal appearance — and is a
+   careful draft, not verified law. It used to power an expandable "what this
+   covers" panel on each practice card; that UI was removed at the client's
+   request, so the field is currently unused dead data, kept only because a
+   future routed practice-area page (see Optional, below) would want it. One
+   factual error a reviewer caught while it was still live (the Appellate
+   Litigation entry's Court of Appeals tenure) is already fixed — see the
+   "6+ Years" decision above — but that pass covered years-in-practice
+   framing specifically, not the procedural accuracy of the other five
+   entries.
 4. **Hero photograph is low-resolution and probably stock.** 1240px wide,
    upscaled 1.68× on a 1440 screen, so it will look soft on a large monitor.
    Wants a ~2400px original, and a commercial licence if it came from a stock
    site or an image search.
-5. **`NEXT_PUBLIC_SITE_URL`** should be set on Vercel once a custom domain
-   exists. It currently falls back to the Vercel production URL, which is
-   correct for now.
+5. **`NEXT_PUBLIC_SITE_URL`** should be set to `https://perdiceslaw.com` on
+   Vercel once the domain in (2) is attached. It currently falls back to the
+   Vercel production URL, which is correct until then.
 
 Optional, unstarted: analytics, routed practice-area pages, a Filipino
 language toggle.

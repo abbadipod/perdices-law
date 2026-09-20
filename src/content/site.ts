@@ -159,7 +159,7 @@ export const faqItems = [
 ];
 
 export const contactInfo = {
-  email: "chemaperdices@gmail.com",
+  email: "atty.josemari.perdices@gmail.com",
   offices: [
     {
       city: "Dumaguete City, Philippines",

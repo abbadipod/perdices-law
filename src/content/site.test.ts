@@ -47,7 +47,7 @@ describe("site content", () => {
   });
 
   it("defines contact info with the Dumaguete office and a phone number", () => {
-    expect(contactInfo.email).toBe("chemaperdices@gmail.com");
+    expect(contactInfo.email).toBe("atty.josemari.perdices@gmail.com");
     expect(contactInfo.offices).toHaveLength(1);
     contactInfo.offices.forEach((office) => {
       expect(office.phone.length).toBeGreaterThan(0);
