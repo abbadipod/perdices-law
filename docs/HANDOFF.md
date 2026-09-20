@@ -24,6 +24,13 @@ npm run lint     # eslint . — `next lint` was removed in Next 16
 npm run build
 ```
 
+`.claude/launch.json` scopes the Browser-preview tool's `preview_start` to
+this project. Without it, `preview_start` was resolving "perdices-law" to an
+unrelated sibling project's dev server via the parent directory's own
+launch.json — if that happens again, just run `npm run dev` directly in the
+background and `navigate` the browser pane to `http://localhost:3000`
+rather than fighting the name lookup.
+
 ## Layout
 
 ```
@@ -71,6 +78,15 @@ statements about a lawyer's services and qualifications be truthful and not
 misleading — treat this class of correction as accuracy, not a copy
 preference, if it comes up again.
 
+**About's second column has no heading, and its top edge sits 34px above
+the "About" column next to it.** Per the client: dropped the "Approach"
+subheading and the "He is fluent in English, Tagalog, and Cebuano." line
+(the fact stays — it's still in the Credentials "Languages" entry, just not
+duplicated in prose). Nothing rebalances the column now that it has no
+heading pushing its first paragraph down — measured, not eyeballed, at
+1280px. Flagged to the client rather than fixed unasked; if it needs fixing,
+either drop "About" too or pad the second column to match.
+
 **Practice areas deliberately exclude immigration and family law.** Neither
 appears anywhere in his Philippine practice; his immigration/family exposure
 was US paralegal work in a *non-attorney* role. Two tests fail if either
@@ -80,8 +96,8 @@ because the first was not enough — the JSON-LD description was authored
 separately and still advertised both to crawlers long after they were dropped
 from the site. It is now derived from `practiceAreas`, so it cannot drift
 again. Anything else that restates the practice list should be derived too.
-Appellate leads because it is his strongest credential — close to five years
-inside the Court of Appeals drafting decisions.
+Appellate leads because it is his strongest credential — Court Attorney IV
+at the Court of Appeals from 2008–2010, drafting decisions.
 
 **The hero previews Credentials' three stat figures, not new content.**
 A trust strip sits under the “Book a consultation” button, using
@@ -102,10 +118,6 @@ Practice Areas → FAQ → Contact). Reordered to About, Credentials, Practice,
 FAQ, Contact. `Nav.test.tsx` and `Footer.test.tsx` were already order-agnostic
 (`.forEach`, not a literal array); only the exact-array assertion in
 `site.test.ts` needed updating.
-
-**US roles were non-attorney.** He is admitted in Washington State but worked
-there as a paralegal. The footer disclaimer says so explicitly. Keep that
-distinction; his own document is careful about it.
 
 **`gold` (#C7A05E) fails contrast as small text on light surfaces** (2.25–2.44
 on paper/white). So:
@@ -226,7 +238,11 @@ Blocked on the client:
    claimed at the top of this file.
 3. **Practice-area detail copy needs Atty. Perdices's review.** The expandable
    text describes Philippine procedure — filings, sequence, what needs a
-   personal appearance. It is a careful draft, not verified law.
+   personal appearance. It is a careful draft, not verified law. One factual
+   error a reviewer caught (the Appellate Litigation entry's Court of
+   Appeals tenure) is already fixed — see the "6+ Years" decision above —
+   but that pass covered years-in-practice framing specifically, not the
+   procedural accuracy of the other five entries.
 4. **Hero photograph is low-resolution and probably stock.** 1240px wide,
    upscaled 1.68× on a 1440 screen, so it will look soft on a large monitor.
    Wants a ~2400px original, and a commercial licence if it came from a stock
