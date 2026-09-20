@@ -13,7 +13,7 @@ describe("Hero", () => {
     render(<Hero />);
     expect(
       screen.getByRole("heading", {
-        name: "Philippine legal counsel for clients in the Philippines and abroad",
+        name: "Practical legal solutions from a dual-qualified attorney",
       })
     ).toBeInTheDocument();
 

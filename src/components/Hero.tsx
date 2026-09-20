@@ -70,7 +70,7 @@ export default function Hero() {
 
       <div className="relative flex min-h-[88vh] flex-col items-center justify-center px-7 pb-[150px] pt-[120px] text-center">
         <h1 className="animate-hero-in max-w-[26ch] text-balance font-display text-[clamp(40px,5.6vw,82px)] font-medium uppercase leading-[1.06] tracking-[0.01em] text-paper [animation-delay:80ms]">
-          Philippine legal counsel for clients in the Philippines and abroad
+          Practical legal solutions from a dual-qualified attorney
         </h1>
         <p className="animate-hero-in mt-7 max-w-[64ch] text-[17px] leading-[1.7] text-sidewalk [animation-delay:160ms]">
           Based in Dumaguete City, Perdices Law provides Philippine legal
