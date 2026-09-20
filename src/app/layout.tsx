@@ -19,8 +19,10 @@ const publicSans = Public_Sans({
 });
 
 const title = "Perdices Law | Philippine Lawyer in Dumaguete City";
+// Kept under ~160 characters and leads with the city so it doesn't get
+// truncated in search results before the local-targeting keywords land.
 const description =
-  "The Law Office of Atty. Jose Mari V. Perdices, Dumaguete City — a Philippine lawyer with over six years of active legal practice in the Philippines, admitted in the Philippines and Washington State.";
+  "Philippine lawyer based in Dumaguete City, Negros Oriental — litigation, property, estate, and corporate law for clients in the Philippines and abroad.";
 
 export const metadata: Metadata = {
   // Makes the OG/Twitter image URLs absolute, which scrapers require.
@@ -28,12 +30,14 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   openGraph: {
     title,
     description,
     url: "/",
     siteName: "Perdices Law",
-    locale: "en_US",
+    // en_PH, not en_US — this is a Philippine practice, not a US one.
+    locale: "en_PH",
     type: "website",
   },
   twitter: {

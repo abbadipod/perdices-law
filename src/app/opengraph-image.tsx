@@ -50,7 +50,7 @@ export default function OpengraphImage() {
             maxWidth: 900,
           }}
         >
-          Practical legal solutions, across two countries.
+          Practical legal solutions from a dual-qualified attorney.
         </div>
 
         <div

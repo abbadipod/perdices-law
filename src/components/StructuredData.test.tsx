@@ -18,8 +18,26 @@ describe("StructuredData", () => {
     const data = parsed(container);
 
     expect(data["@context"]).toBe("https://schema.org");
-    expect(data["@type"]).toBe("LegalService");
+    expect(data["@type"]).toEqual(["LegalService", "Attorney"]);
     expect(data.name).toBe("Perdices Law");
+  });
+
+  it("targets Dumaguete City and Negros Oriental without overstating US practice", () => {
+    // areaServed is where the *service* (Philippine law) applies, not
+    // everywhere a client might live — "United States" here would repeat
+    // the same overstatement already corrected in the hero and metadata.
+    const { container } = render(<StructuredData />);
+    const data = parsed(container);
+
+    const areaNames = data.areaServed.map((a: { name: string }) => a.name);
+    expect(areaNames).toContain("Philippines");
+    expect(areaNames).toContain("Dumaguete City");
+    expect(areaNames).toContain("Negros Oriental");
+    expect(areaNames).not.toContain("United States");
+
+    expect(data.address.addressLocality).toBe("Dumaguete City");
+    expect(data.address.addressRegion).toBe("Negros Oriental");
+    expect(data.address.addressCountry).toBe("PH");
   });
 
   it("stays in step with the content module", () => {
