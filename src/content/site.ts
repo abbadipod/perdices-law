@@ -164,7 +164,7 @@ export const contactInfo = {
     {
       city: "Dumaguete City, Philippines",
       address:
-        "Unit 202, corner National Highway, Aldecoa Drive, Daro, Dumaguete City, Negros Oriental",
+        "Unit 202, Bricktown Center, corner National Highway, Aldecoa Drive, Daro, Dumaguete City, Negros Oriental",
       // `hours` is optional and deliberately unset: office hours were not in
       // the source material, and inventing them on a law firm's site is worse
       // than omitting them. Phone is likewise omitted at the client's request.
