@@ -316,15 +316,6 @@ function`).
 
 ## Outstanding
 
-**URGENT, found 2026-10-12: Vercel auto-deploy has stopped.** The last
-GitHub deployment Vercel recorded is `bebf87b` (2026-09-25). Neither
-`0fafa52` nor `97018e4` (the Next 16.4.0 security upgrade) got a deployment
-or a commit status, so production is still on vulnerable Next 16.3.6. Check
-Vercel → perdices-law → Settings → Git (is the repo still connected?) and
-GitHub → Settings → Applications (is the Vercel app still installed with
-access to this repo?). Then redeploy the latest `master` and confirm on the
-live site. Needs the owner's Vercel login; Chrome was logged out of Vercel.
-
 Blocked on the client:
 
 1. **Google Business Profile / Search Console** — not set up. This matters
@@ -391,6 +382,17 @@ build` both looked correct and it still shipped broken.
 - CSS `:hover` can get stuck "on" in the browser pane's automation session
   after a synthetic hover — if a computed style looks wrong, reload the page
   before concluding it's a real bug
+- "did it deploy?": ask **Vercel**, not GitHub. On 2026-10-12 GitHub's
+  deployments/commit-status API showed nothing for two pushes, which looked
+  like auto-deploy had died — but Vercel had built and aliased both fine; it
+  had only stopped reporting back to GitHub (the owner reconnected the Git
+  integration). In Claude in Chrome, logged into vercel.com, the dashboard's
+  own API works from `javascript_tool`:
+  `fetch('/api/v13/deployments/dpl_<id>')` gives `readyState`, `alias`,
+  `meta.githubCommitSha`; `/api/v3/deployments/dpl_<id>/events?builds=1`
+  gives the build log (look for `Detected Next.js version`). One deploy
+  that ran during the reconnect failed with `git_info_fail` — transient, not
+  a code problem.
 - dashboard toggles (Cloudflare, Vercel) via Claude in Chrome: a reported
   "Clicked on element" does not mean the toggle changed. Twice this session a
   ref-based click silently did nothing (the Chrome window was minimised, so
