@@ -72,12 +72,19 @@ Footer.
   `NEXT_PUBLIC_SITE_URL=https://perdiceslaw.com` are set as Vercel env vars.
   Resend has its own SPF/DKIM/DMARC TXT + CNAME records in Cloudflare for
   `send.perdiceslaw.com`, separate from the two Vercel records above.
-- **Cloudflare security**: Bot Fight Mode and AI Labyrinth are both enabled
-  (per the client, from Cloudflare's own configuration suggestions). Bot
-  Fight Mode occasionally challenges legitimate automated traffic (link
-  crawlers, uptime monitors) alongside bad bots — if something odd shows up
-  fetching the site, check Security → Settings → Bot traffic before assuming
-  a code bug.
+- **Cloudflare security features are OFF, on purpose.** Bot Fight Mode and
+  AI Labyrinth were switched on from Cloudflare's configuration suggestions,
+  then switched back off once it was clear they did nothing: every record is
+  **DNS only**, so Cloudflare answers DNS but never sees an HTTP request —
+  its bot/WAF/DDoS features only act on *proxied* (orange-cloud) traffic.
+  The client chose to keep DNS-only (simpler; Vercel owns TLS end to end).
+  Cloudflare's dashboard will keep nagging "Proxying is required for most
+  security features" — that's expected, not a misconfiguration. If proxying
+  is ever wanted: set SSL/TLS to **Full (strict)** *before* flipping the
+  records (wrong order can break HTTPS), and change the contact route's
+  rate-limiter to read `CF-Connecting-IP` — behind Cloudflare,
+  `x-forwarded-for` would be Cloudflare's edge IP, so every visitor would
+  share one rate-limit bucket.
 - **Google Business Profile / Search Console**: explicitly **not** set up
   yet — client said "those will be updated later." Both need the client's
   own Google login; walk through it with them in the browser (same pattern
@@ -274,6 +281,24 @@ above). The photo is composed right of centre — detail centroid at 62.9% —
 and crop headroom is ~25% at desktop but 78% on a phone, so one value can't
 centre it at both.
 
+**Security headers are set in `next.config.mjs`, but there is no CSP — on
+purpose.** `headers()` sends `X-Frame-Options: DENY`, `X-Content-Type-Options:
+nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, a
+`Permissions-Policy` denying camera/mic/geolocation/payment, and HSTS
+(`max-age=63072000; includeSubDomains`). HSTS deliberately has no `preload`:
+that's a one-way submission to browsers' built-in lists and needs its own
+decision. A Content-Security-Policy was left out because a naive one would
+break the site — App Router hydration uses inline `<script>` blocks, and
+`Hero.tsx`'s parallax writes `.style.transform` from JS, which `style-src`
+without `'unsafe-inline'` blocks. Doing CSP properly means per-request nonces
+via middleware; that's listed under Optional below, not forgotten.
+
+**Next.js is on 16.3.6 because 16.0.0–16.3.2 had a critical RCE.**
+(GHSA-p293-qw3h-jr36, plus a high-severity image-optimizer one,
+GHSA-2xp9-vwfh-vxw4.) `npm audit` was clean (0 vulnerabilities) as of
+2026-09-25. Run it at the start of any session that touches dependencies —
+this one sat flagged-but-unpatched for most of a session once.
+
 **ESLint is pinned to 9.x, not latest.** `eslint-config-next@16` needs `>=9`,
 but ESLint 10 breaks its bundled parser (`scopeManager.addGlobals is not a
 function`).
@@ -299,13 +324,25 @@ Blocked on the client:
 4. **Office hours** — not in any source document. Deliberately omitted
    rather than invented; `Contact` and the JSON-LD skip them when absent.
 
-Resolved since the last version of this file (kept here so nobody re-opens
-them as if they were still open): custom domain, contact form email
-delivery, `NEXT_PUBLIC_SITE_URL`, and security.txt/Bot Fight Mode/AI
-Labyrinth are all live — see "Live infrastructure" above.
+Resolved (kept here so nobody re-opens them as if they were still open):
+custom domain, contact form email delivery, `NEXT_PUBLIC_SITE_URL`,
+security.txt, the Next.js RCE, and baseline security headers — see "Live
+infrastructure" and the decisions above.
 
 Optional, unstarted: analytics, routed practice-area pages, a Filipino
-language toggle.
+language toggle, and a nonce-based Content-Security-Policy (see the security
+headers decision for why it isn't a one-line add).
+
+**Tried and dropped: Google Stitch for design exploration.** The Stitch MCP
+only takes text in — no image upload, no URL to look at — so it can't use
+the real crest, the real hero photo, or a render of the live site; it
+generates its own placeholder imagery every time. It also invented content
+even when told not to (a second office in "Seattle", a "Cross-Border &
+Washington State Estate Matters" practice area — the exact US-practice
+overstatement this site has already corrected once). The client called it
+off. Design work happens directly in the codebase. A leftover private Stitch
+project ("Perdices Law — Design Explorations", id 14679247134231271206)
+exists; nothing depends on it.
 
 ## Verification habits that worked
 
@@ -334,6 +371,13 @@ build` both looked correct and it still shipped broken.
 - CSS `:hover` can get stuck "on" in the browser pane's automation session
   after a synthetic hover — if a computed style looks wrong, reload the page
   before concluding it's a real bug
+- dashboard toggles (Cloudflare, Vercel) via Claude in Chrome: a reported
+  "Clicked on element" does not mean the toggle changed. Twice this session a
+  ref-based click silently did nothing (the Chrome window was minimised, so
+  the viewport was 0×0 and screenshots failed too). Read the switch's real
+  state with `javascript_tool` (`aria-checked`), click it with `.click()`
+  if needed, and re-read after a second or two — state updates after the API
+  call returns, so an immediate read can show the old value
 
 DOM measurement has one gap of its own: the pane's `document.hidden` reads
 `true` even when fronted, which appears to stop the paint/compositor loop CSS
