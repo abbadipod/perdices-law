@@ -316,6 +316,15 @@ function`).
 
 ## Outstanding
 
+**URGENT, found 2026-10-12: Vercel auto-deploy has stopped.** The last
+GitHub deployment Vercel recorded is `bebf87b` (2026-09-25). Neither
+`0fafa52` nor `97018e4` (the Next 16.4.0 security upgrade) got a deployment
+or a commit status, so production is still on vulnerable Next 16.3.6. Check
+Vercel → perdices-law → Settings → Git (is the repo still connected?) and
+GitHub → Settings → Applications (is the Vercel app still installed with
+access to this repo?). Then redeploy the latest `master` and confirm on the
+live site. Needs the owner's Vercel login; Chrome was logged out of Vercel.
+
 Blocked on the client:
 
 1. **Google Business Profile / Search Console** — not set up. This matters
