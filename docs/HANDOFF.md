@@ -299,6 +299,17 @@ GHSA-2xp9-vwfh-vxw4.) `npm audit` was clean (0 vulnerabilities) as of
 2026-09-25. Run it at the start of any session that touches dependencies —
 this one sat flagged-but-unpatched for most of a session once.
 
+**Now on Next 16.4.0 (2026-10-12)** — 16.3.6 picked up six more high
+advisories within three weeks (image-optimizer SSRF GHSA-cjq9-62q9-8jv4,
+SSG/ISR cache poisoning, metadata-image info disclosure, among others).
+`npm audit fix` (non-force) handled it. What `npm audit` still reports
+(`braces`, `postcss-selector-parser`, via `chokidar`/`micromatch`/
+`fast-glob`) is **build-time only** — Tailwind 3's file watcher and
+eslint's glob matching, none of it shipped to or run on Vercel. Clearing it
+needs Tailwind 4 (`audit fix --force` offers it), which is a real migration
+— v4 replaces `tailwind.config` with CSS-first `@theme` config — not a
+patch. Don't run `--force` to make the number go to zero.
+
 **ESLint is pinned to 9.x, not latest.** `eslint-config-next@16` needs `>=9`,
 but ESLint 10 breaks its bundled parser (`scopeManager.addGlobals is not a
 function`).
